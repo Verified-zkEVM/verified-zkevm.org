@@ -193,200 +193,208 @@
 
     <div class="container">
     
-        <section id="top" class="section">
-            <div class="logo-container">
-                <img src="eth-diamond-multi.png" alt="Ethereum logo" class="profile">
-            </div>
-            <div class="content">
-                <h1>zkEVM Formal Verification Project</h1>
-                <h2>A project by the Ethereum Foundation to accelerate the application of formal verification methods to zkEVMs</h2>
-            </div>
-        </section>
+    <section id="top" class="section">
+        <div class="logo-container">
+            <img src="eth-diamond-multi.png" alt="Ethereum logo" class="profile">
+        </div>
+        <div class="content">
+            <h1>zkEVM Formal Verification Project</h1>
+            <h2>A project by the Ethereum Foundation to accelerate the application of formal verification methods to zkEVMs</h2>
+        </div>
+    </section>
 
-        <!-- <div class="social-links">
-            <a href="https://github.com/">Github</a>
-        </div> -->
+    <!-- <div class="social-links">
+        <a href="https://github.com/">Github</a>
+    </div> -->
 
-        <section id="project" class="section">
+    <section id="project" class="section">
         
-            <h2>Project Overview</h2>
-            <p>
-            The Ethereum Foundation is launching this project with the aim of obtaining the highest possible level of assurance for zkEVMs, the end goal being bug free zkEVMs.
-            This project will feature a combination of grants and bounties distributed across several stages over the next 18-24 months.
-            </p>
-            <p>
-            This project will also aim to:
-            <ul>
-            <li>Raise awareness of formal verification methods applied to zkEVMs, document their application, and increase their use.</li>
-            <li>Increase the coordination between different teams working in this ecosystem to work on an important problem.</li>
-            <li>Develop tooling and standards of maintenance and extensibility as the verification targets will continue to evolve, and investigate how to better integrate formal verification methods in the software development and maintenance processes.</li>
-            </ul>
-            </p>
-            <p>
-            The scope of this project is restricted to RISC-V zkVMs on which an EVM compiled to RISC-V can run (producing a zkEVM) and will be divided into three tracks.
-            </p>
-            
-            <h3>RISC-V zkVM Track</h3>
-            <p>
-            The goal of the RISC-V zkVM track is to be able to verify that a RISC-V zkVM correctly implements a RISC-V CPU and the correctness of the arithmetization and circuits, specifically:
-            <ul>
-            <li>That a circuit is not underconstrained or overconstrained, and performs the correct computation.</li>
-            <li>The correctness (polynomial constraints guarantee the existence of an execution trace), soundness (if the prover proves something, the result holds) and completeness (if something holds, the prover can prove it) of the arithmetization.</li>
-            </ul>
-            Formally verified precompiles are also within the scope of this track given that they are treated like extensions to the zkVM.
-            </p>
-            <h4>Choice of RISC-V specification</h4>
-            <p>
-            The current standard in existing RISC-V zkVMs is the RV32I base integer instruction set.
-            The M extension for integer multiplication and division is also typically used, and the ability to support other extensions is expected.
-            </p>
-            <h4>Choice of arithmetization</h4>
-            <p>
-            The aim is to be flexible with respect to choices of arithmetizations, but support for AIR (as required by Circle STARKs) is expected.
-            </p>
-            
-            <h3>EVM Track</h3>
-            <p>
-            The goal of the EVM track is to be able to show that an EVM running on RISC-V correctly implements the EVM specification.
-            </p>
-            <h4>Choice of EVM implementation</h4>
-            <p>
-            To be considered a good candidate for verification, an implementation of the EVM must performant and compilable on RISC-V zkVMs; for example, revm/Reth.
-            Extractions from formalizations of the EVM, if performant, can also be considered.
-            </p>
-            
-            <h3>Cryptography Track</h3>
-            <p>
-            The goal of the Cryptography track is to verify the specification and implementation of the cryptographic primitives and protocols used by zkVMs.
-            </p>
-            <h4>Choice of PCS and PIOP</h4>
-            <p>
-            Current RISC-V zkVMs currently rely on FRI + Circle STARks (wrapping into Groth16/Plonk for the purpose of onchain verification), making this our focus.
-            </p>
-            
-            <h3> Format </h3>
-            <h4>Supporting different approaches</h4>
-            <p>
-            We will support different approaches where possible in order to benefit from the varied expertise within the community and to make it possible to compare different approaches and to learn what works best for different components in terms of, for example, effort required, maintainability and ability to support external contributors.
-            </p>
-            <p>
-            If it becomes clear after a stage that one approach is better than the others, then we may focus solely on maintaining the results of that approach when moving onto the next stage. 
-            In cases where it would be advantageous to have the same method or language used for two tasks related to components that interact with each other, and it is possible to do so, this will be taken into account.
-            Similarly, languages with a more active community (e.g., Lean and Coq for interactive theorem proving) look more attractive in terms of maintenance.
-            </p>
-            <h4>Maintenance</h4>
-            <p>
-            RISC-V zkVMs and the EVM are still evolving so the ability to maintain and extend work (including by external contributors), rather than performing one-off proofs, is crucial.
-            </p>
-            <h4>Openness and collaboration</h4>
-            <p>
-            Everyone working on this project will be contributing towards a common end goal so a high standard of openness is expected.
-            This includes documenting work to facilitate its evaluation and use by others, and being open to collaboration. 
-            </p>
-            
-        </section>
+        <h2>Project Overview</h2>
+        <p>
+        The Ethereum Foundation is launching this project to obtain the highest possible level of assurance for zkEVMs, the end goal being bug-free zkEVMs.
+        This project will feature a combination of grants and bounties distributed across several stages over the next 18-24 months.
+        </p>
+        <p>
+        This project will also aim to:
+        <ul>
+        <li>Raise awareness of formal verification methods applied to zkEVMs, document their application, and increase their use.</li>
+        <li>Increase the coordination between different teams working in this ecosystem to work on an important problem.</li>
+        <li>Develop tooling and standards of maintenance and extensibility as the verification targets will continue to evolve, and investigate how to better integrate formal verification methods in the software development and maintenance processes.</li>
+        </ul>
+        </p>
+        <p>
+        The scope of this project is restricted to RISC-V zkVMs on which an EVM compiled to RISC-V can run (producing a zkEVM) and will be divided into three tracks.
+        </p>
         
-        <section id="stages" class="section">
+        <h3>RISC-V zkVM Track</h3>
+        <p>
+        The goal of the RISC-V zkVM track is to be able to verify that a RISC-V zkVM correctly implements a RISC-V CPU and the correctness of the arithmetization and circuits, specifically:
+        <ul>
+        <li>That a circuit is not under-constrained or over-constrained, and performs the correct computation.</li>
+        <li>The correctness (polynomial constraints guarantee the existence of an execution trace), soundness (if the prover proves something, the result holds) and completeness (if something holds, the prover can prove it) of the arithmetization.</li>
+        </ul>
+        Formally verified precompiles are also within the scope of this track given that they are treated like extensions to the zkVM.
+        </p>
+        <h4>Choice of RISC-V specification</h4>
+        <p>
+        The current standard in existing RISC-V zkVMs is the RV32I base integer instruction set.
+        The M extension for integer multiplication and division is also typically used, and the ability to support other extensions is expected.
+        </p>
+        <h4>Choice of arithmetization</h4>
+        <p>
+        The aim is to be flexible concerning choices of arithmetizations, but support for AIR (as required by Circle STARKs) is expected.
+        </p>
+        
+        <h3>EVM Track</h3>
+        <p>
+        The goal of the EVM track is to be able to show that an EVM running on RISC-V correctly implements the EVM specification.
+        </p>
+        <h4>Choice of EVM implementation</h4>
+        <p>
+        To be considered a good candidate for verification, an implementation of the EVM must be performant and compilable on RISC-V zkVMs; for example, revm/Reth.
+        Extractions from formal models of the EVM, if performant, can also be considered.
+        </p>
+        
+        <h3>Cryptography Track</h3>
+        <p>
+        The goal of the Cryptography track is to verify the specification, proofs of security for the expected security parameters, and implementation of the cryptographic primitives and protocols used by zkVMs.
+        </p>
+        <h4>Choice of PCS and PIOP</h4>
+        <p>
+        Current RISC-V zkVMs currently primarily rely on FRI + Circle STARks (wrapping into Groth16/Plonk for on-chain verification), making this our focus, although it does preclude considering alternatives.
+        </p>
+        
+        <h3> Format </h3>
+        <h4>Supporting different approaches</h4>
+        <p>
+        We will support different approaches where possible to benefit from the varied expertise within the community and to make it possible to compare different approaches and to learn what works best for different components in terms of, for example, effort required, maintainability and ability to support external contributors.
+        </p>
+        <p>
+        If it becomes clear after a stage that one approach is better than the others, then we may focus solely on maintaining the results of that approach when moving on to the next stage. 
+        In cases where it would be advantageous to have the same method or language used for two tasks related to components that interact with each other, and it is possible to do so, this will be taken into account.
+        Similarly, languages with a more active community (e.g., Lean and Coq for interactive theorem proving) look more attractive maintenance-wise.
+        </p>
+        <h4>Maintenance</h4>
+        <p>
+        RISC-V zkVMs, the EVM, and the cryptographic proof systems used are still evolving so the ability to maintain and extend work (including by external contributors), rather than performing one-off proofs, is crucial.
+        </p>
+        <h4>Openness and collaboration</h4>
+        <p>
+        Everyone working on this project will contribute towards a common end goal so a high standard of openness is expected.
+        This includes documenting work to facilitate its evaluation and use by others and being open to collaboration. 
+        </p>
+        
+    </section>
+    
+    <section id="stages" class="section">
+
+        <h2>Stages</h2>
+        <p>
+        This project will be split into several stages.
+        These are not strictly limited (i.e., work started in Stage 1 may overflow into Stage 2) but are intended to reflect different focuses and milestones as the project advances.
+        </p>
+
+        <h3> Stage 1 </h3>
+        <p>
+        The goal of Stage 1 is to start from the ground up and establish maintainable and extensible frameworks to verify specific artefacts in later stages formally.
+        </p>
+        <p>
+        Applications are particularly welcome (but not restricted to) to address the following:
+        </p>
+        <p>
+        <ul>
+        <li> (RISC-V zkVM track) An extraction from SAIL to Lean to be able to use the existing SAIL formal RISC-V specification in Lean. (There already exists support for SAIL to Isabelle, HOL4, and Coq.)</li>
+        <li> (RISC-V zkVM track) Frameworks to formally verify properties of circuits and arithmetizations. </li>
+        <li> (RISC-V zkVM track) Frameworks to obtain formally verified precompiles that can be re-used by different RISC-V zkVMs. </li>
+        <li> (EVM track) Approaches to formally verify EVM implementations running on RISC-V. </li>
+        </ul>
+        </p>
+        <p>
+        The Cryptography track is not a priority at this stage, although there is an overlap with precompiles, but work that can establish the basis required to later verify the desired PCS and PIOP may be considered. 
+        </p>
+
+        <h3> Stage 2 </h3>
+        Stage is expected to begin in the beginning of early 2025 and build upon the work completed in Stage 1, with a greater focus on proving and bounties where possible.
+    </section>
+    
+    <section id="grants" class="section">
+    
+        <h2>Grants</h2>
+        <h3>Application requirements</h3>
+        <p>
+        All applications must have a written proposal in PDF format addressing the following details:
+        </p>
+        
+        <ol>
+        <li>
+        <h4>Proposal overview</h4>
+        <ol>
+        <li>Proposed work, including goals, approach, and expected outcomes. Proposals should clearly explain what the proposal's target is and what a successful completion of the work would enable.</li>
+        <li>Chosen methods and tools.</li>
+        <li>Challenges, risks, and expected caveats.</li>
+        <li>Timeline, including possible milestones. Do you need some other work to be completed (by yourself or others) before beginning your proposed work?</li>
+        <li>Team composition.</li>
+        <li>Costs.</li>
+        </ol>
+        </li>
+        <li>
+        <h4>Technical approach</h4>
+        <ol>
+        <li>Breakdown of technical tasks.</li>
+        <li>References to relevant work.</li>
+        </ol>
+        </li>
+        <li>
+        <h4>Project management</h4>
+        <ol>
+        <li>Plans for coordination and communication about your work. </li>
+        <li>Approach to maintaining or extending your work and enabling external contributions to facilitate this. </li>
+        <li>Planned resource allocation (human and financial). </li>
+        </ol>
+        </li>
+        <li>
+        <h4>Team</h4>
+        <ol>
+        <li>Background and expertise of your team members.</li>
+        <li>Track record, including public repositories and published work relevant to your proposal.</li>
+        </ol>
+        </li>
+        </ol>
+        
+        <p>
+        Applications are open to any individuals, teams, and organizations, and will be selected for funding on a case-by-case basis.
+        Submitting more than one proposal is allowed as long as each proposal is distinct and relevant to the project.
+        Funding will be subject to a KYC process.
+        </p>
+        <p>
+        Several independent proposals may have similar goals.
+        In such cases, it is possible for several proposals to be funded if comparing the results of different approaches to the same problem would be useful, or if several teams can work together on similar or complementary goals.
+        Being flexible in this regard can be a plus.
+        </p>
+
+        <h3>Applications for Stage 1</h3>
+        <p>
+        Proposals for Stage 1 can be sent until further notice to the contact email address below.
+        The application review process will begin on  September 14, 2024.
+        </p>
+
+   
+    </section>
+    
+    <section id="bounties" class="section">
+
+        <h2>Bounties</h2>
+        <p> There are currently no open bounties.</p>
+   
+    </section>
+    
+    <section id="contact" class="section">
+    
+        <h2>Contact</h2>
+        <p> alexander dot hicks at ethereum dot org</p>
+        
+    </section>
+
  
-            <h2>Stages</h2>
-            <h3> Stage 1 </h3>
-            <p>
-            The goal of Stage 1 is to start from the ground up and establish maintainable and extensible frameworks to formally verify specific artifacts in later stages.
-            </p>
-            <p>
-            Applications are particularly welcome (but not restricted to) to address the following:
-            </p>
-            <p>
-            <ul>
-            <li> (RISC-V zkVM track) An extraction from SAIL to Lean in order to be able to use the existing SAIL formal RISC-V specification in Lean. (There already exists support for SAIL to Isabelle, HOL4, and Coq.)</li>
-            <li> (RISC-V zkVM track) Frameworks to formally verify properties of circuits and arithmetizations. </li>
-            <li> (RISC-V zkVM track) Frameworks to obtain formally verified precompiles that can be re-used by different RISC-V zkVMs. </li>
-            <li> (EVM track) Approaches to formally verify EVM implementations running on RISC-V. </li>
-            </ul>
-            </p>
-            <p>
-            The Cryptography track is not a priority at this stage, although there is an overlap with precompiles, but work that can establish the basis required to later verify the desired PCS and PIOP may be considered. 
-            </p>
-        </section>
-        
-        <section id="grants" class="section">
-        
-            <h2>Grants</h2>
-            <h3>Application requirements</h3>
-            <p>
-            All applications must have a written proposal in PDF format addressing the following details:
-            </p>
-            
-            <ol>
-            <li>
-            <h4>Proposal overview</h4>
-            <ol>
-            <li>Proposed work, including goals, approach, and expected outcomes. Proposals should clearly explain what the proposal's target is and what a successful completion of the work would enable.</li>
-            <li>Chosen methods and tools.</li>
-            <li>Challenges, risks, and expected caveats.</li>
-            <li>Timeline, including possible milestones.</li>
-            <li>Team composition.</li>
-            <li>Costs.</li>
-            </ol>
-            </li>
-            <li>
-            <h4>Technical approach</h4>
-            <ol>
-            <li>Breakdown of technical tasks.</li>
-            <li>References to relevant work.</li>
-            </ol>
-            </li>
-            <li>
-            <h4>Project management</h4>
-            <ol>
-            <li>Plans for coordination and communication about your work. </li>
-            <li>Approach to maintaining or extending your work and enabling external contributions to facilitate this. </li>
-            <li>Planned resource allocation (human and financial). </li>
-            </ol>
-            </li>
-            <li>
-            <h4>Team</h4>
-            <ol>
-            <li>Background and expertise of your team members.</li>
-            <li>Track record, including public repositories and published work relevant to your proposal.</li>
-            </ol>
-            </li>
-            </ol>
-            
-            <p>
-            Applications are open to any individuals, teams, and organizations, and will be selected for funding on a case-by-case basis.
-            Submitting more than one proposal is allowed as long as each proposal is distinct and relevant to the project.
-            Funding will be subject to a KYC process.
-            </p>
-            <p>
-            It is possible that several independent proposals will have similar goals.
-            In such cases, it is possible for several proposals to be funded if comparing the results of different approaches to the same problem would be useful, or if several teams can work together on a similar or complementary approach.
-            Being flexible in this regard can be a plus.
-            </p>
-
-            <h3>Applications for Stage 1</h3>
-            <p>
-            Applications for Stage 1 are now open and can be sent to the contact email address below.
-            The application review process will begin on  September 14, 2024.
-            </p>
-
-       
-        </section>
-        
-        <section id="bounties" class="section">
- 
-            <h2>Bounties</h2>
-            <p> There are currently no open bounties.</p>
-       
-        </section>
-        
-        <section id="contact" class="section">
-        
-            <h2>Contact</h2>
-            <p> alexander dot hicks at ethereum dot org</p>
-            
-        </section>
-
-     
 </body>
 </html>
