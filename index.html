@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #c2d9fa;
-            --secondary-color: #d7bde2;
+            --primary-color: #d0e3fd;
+            --secondary-color: #dccae4;
             --text-color: #1c2833;
             --border-color: #583f99;  /* New variable for border color */
         }
@@ -211,8 +211,8 @@
         
             <h2>Project Overview</h2>
             <p>
-             The Ethereum Foundation is launching this project with the aim of obtaining the highest possible level of assurance for zkEVMs, the end goal being bug free zkEVMs.
-             This project will feature a combination of grants and bounties distributed across several stages.
+            The Ethereum Foundation is launching this project with the aim of obtaining the highest possible level of assurance for zkEVMs, the end goal being bug free zkEVMs.
+            This project will feature a combination of grants and bounties distributed across several stages over the next 18-24 months.
             </p>
             <p>
             This project will also aim to:
@@ -228,8 +228,12 @@
             
             <h3>RISC-V zkVM Track</h3>
             <p>
-            The goal of the RISC-V zkVM track is to be able to verify that a RISC-V zkVM correctly implements a RISC-V CPU and the correctness of the arithmetization and circuits.
-            Formally verified precompiles are also within the scope of this track.
+            The goal of the RISC-V zkVM track is to be able to verify that a RISC-V zkVM correctly implements a RISC-V CPU and the correctness of the arithmetization and circuits, specifically:
+            <ul>
+            <li>That a circuit is not underconstrained or overconstrained, and performs the correct computation.</li>
+            <li>The correctness (polynomial constraints guarantee the existence of an execution trace), soundness (if the prover proves something, the result holds) and completeness (if something holds, the prover can prove it) of the arithmetization.</li>
+            </ul>
+            Formally verified precompiles are also within the scope of this track given that they are treated like extensions to the zkVM.
             </p>
             <h4>Choice of RISC-V specification</h4>
             <p>
@@ -272,11 +276,11 @@
             </p>
             <h4>Maintenance</h4>
             <p>
-            Because the goal of this project is to verify an evolving system, the ability to maintain and extend work (including by external contributors) is crucial and should be addressed in grant applications.
+            RISC-V zkVMs and the EVM are still evolving so the ability to maintain and extend work (including by external contributors), rather than performing one-off proofs, is crucial.
             </p>
             <h4>Openness and collaboration</h4>
             <p>
-            Everyone working on this project will be contributing towards a common end goal, formally verifying zkEVMs, so a high standard of openness is expected.
+            Everyone working on this project will be contributing towards a common end goal so a high standard of openness is expected.
             This includes documenting work to facilitate its evaluation and use by others, and being open to collaboration. 
             </p>
             
@@ -287,19 +291,21 @@
             <h2>Stages</h2>
             <h3> Stage 1 </h3>
             <p>
-            The goal of Stage 1 is to build up the scaffolding required to later formally verify specific artifacts.
-            Applications are particularly welcome to address the following:
+            The goal of Stage 1 is to start from the ground up and establish maintainable and extensible frameworks to formally verify specific artifacts in later stages.
+            </p>
+            <p>
+            Applications are particularly welcome (but not restricted to) to address the following:
             </p>
             <p>
             <ul>
-            <li> (RISC-V zkVM) An extraction from SAIL to Lean. (There already exists support for SAIL to Isabelle, HOL4, and Coq.)</li>
-            <li> (RISC-V zkVM) General approaches to formally verify circuits and arithmetizations. </li>
-            <li> (RISC-V zkVM) General approaches to obtain formally verified precompiles. </li>
-            <li> (EVM) Approaches to formally verify EVM implementations. </li>
+            <li> (RISC-V zkVM track) An extraction from SAIL to Lean in order to be able to use the existing SAIL formal RISC-V specification in Lean. (There already exists support for SAIL to Isabelle, HOL4, and Coq.)</li>
+            <li> (RISC-V zkVM track) Frameworks to formally verify properties of circuits and arithmetizations. </li>
+            <li> (RISC-V zkVM track) Frameworks to obtain formally verified precompiles that can be re-used by different RISC-V zkVMs. </li>
+            <li> (EVM track) Approaches to formally verify EVM implementations running on RISC-V. </li>
             </ul>
             </p>
             <p>
-            The Cryptography track is not a priority at this stage, but applications for work that will make it easier to verify proof systems may still be considered. 
+            The Cryptography track is not a priority at this stage, although there is an overlap with precompiles, but work that can establish the basis required to later verify the desired PCS and PIOP may be considered. 
             </p>
         </section>
         
@@ -333,9 +339,9 @@
             <li>
             <h4>Project management</h4>
             <ol>
-            <li>Plans for coordination and communication about your work.</li>
-            <li>Approach to maintaining or extending your work and enabling external contributions to facilitate this.</li>
-            <li>Planned resource allocation (human and financial).</li>
+            <li>Plans for coordination and communication about your work. </li>
+            <li>Approach to maintaining or extending your work and enabling external contributions to facilitate this. </li>
+            <li>Planned resource allocation (human and financial). </li>
             </ol>
             </li>
             <li>
@@ -360,9 +366,8 @@
 
             <h3>Applications for Stage 1</h3>
             <p>
-            Applications for Stage 1 will be open soon.
-            <!-- Applications for Stage 1 are now open and can be sent to the contact email address below.
-            The application review process will begin on  September 14, 2024. -->
+            Applications for Stage 1 are now open and can be sent to the contact email address below.
+            The application review process will begin on  September 14, 2024.
             </p>
 
        
