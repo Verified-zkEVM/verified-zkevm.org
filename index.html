@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,390 +9,230 @@
     <meta name="description" content="The zkEVM Formal Verification Project">
     <title>Verified zkEVMs</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #d0e3fd;
-            --secondary-color: #dccae4;
-            --text-color: #1c2833;
-            --border-color: #583f99;  /* New variable for border color */
-        }
-        body {
-            font-family: 'Merriweather', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--primary-color);
-            margin: 0;
-            padding: 0;
-            scroll-margin-top: 60px;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            background-color: var(--secondary-color);
-            padding: 0.1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            height: 50px;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-        }
-        nav a {
-            color: var(--text-color);
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            margin: 0 0.5rem;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        nav a:hover {
-            background-color: rgba(255,255,255,0.1);
-        }
-        h1, h2, h3, h4 {
-            margin-bottom: 0rem;
-        }
-        img.profile {
-            width: 100px;
-            height: auto;
-            border-radius: 0;
-            float: left;
-            margin-right: 2rem;
-            margin-bottom: 1rem;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 1rem 0;
-        }
-        .social-links a {
-            color: var(--text-color);
-            text-decoration: none;
-            margin: 0.3rem;
-            padding: 0.3rem 0.3rem;
-            background-color: var(--secondary-color);
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .social-links a:hover {
-            background-color: #f5eef8;
-        }
-        .section {
-            margin-bottom: 3rem;
-            clear: both;
-            padding: 2rem;
-            background-color: var(--secondary-color);
-            border-radius: 8px; 
-            border: 2px solid var(--border-color); 
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            scroll-margin-top: 60px;
-        }
-        .section-divider {
-            margin: 5rem 0;
-            border-bottom: 2px solid var(--border-color);
-            opacity: 0.3;
-        }
-        .subsection-divider {
-            width: 50%;
-            margin: 2rem auto;
-            border-bottom: 1px solid var(--border-color);
-            opacity: 0.4;
-        }
-        hr {
-            border: none;
-            border-top: 1px solid var(--secondary-color);
-            margin: 2rem 0;
-        }
-        a {
-            color: var(--text-color);
-            text-decoration: underline;
-            transition: text-decoration 0.3s ease;
-        }
-        a:hover {
-            text-decoration: none;
-        }        
-        @media (max-width: 768px) {
-            .container {
-                width: 95%;
-            }
-            img.profile {
-                float: none;
-                display: block;
-                margin: 0 auto 1rem;
-            }
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        #top {
-            display: flex;
-            align-items: center;
-            padding: 2rem;
-            background-color: var(--secondary-color);
-            border-radius: 8px;
-            border: 2px solid var(--border-color);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        #top .logo-container {
-            flex: 0 0 auto; /* Don't grow or shrink */
-            width: 100px; /* Fixed width */
-            margin-right: 2rem;
-        }
-
-        #top img.profile {
-            width: 100%; /* Fill the logo-container */
-            height: auto;
-            display: block;
-            max-width: 100%;
-        }
-
-        #top .content {
-            flex: 1;
-        }
-
-        #top h1 {
-            margin-top: 0;
-            font-size: calc(1.2rem + 1vw); /* Slightly smaller responsive font size */
-        }
-
-        #top h2 {
-            font-size: calc(0.9rem + 0.5vw); /* Slightly smaller responsive font size */
-        }
-
-        @media (max-width: 768px) {
-            #top {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            #top .logo-container {
-                margin-right: 0;
-                margin-bottom: 1rem;
-                width: 80px; /* Slightly smaller on mobile */
-            }
-
-            #top h1 {
-                font-size: calc(1rem + 1vw); /* Even smaller on mobile */
-            }
-
-            #top h2 {
-                font-size: calc(0.8rem + 0.5vw); /* Even smaller on mobile */
-            }
-        }        <div class="social-links">
-            <a href="https://github.com/">Github</a>
-        </div>
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <nav>
-            <a href="#overview">Project Overview</a>
-            <a href="#funding">Grants & Bounties</a>
+            <a href="#overview">Overview</a>
+            <a href="#funding">Funding</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
 
     <div class="container">
-    
+
         <section id="top" class="section">
-        <div class="logo-container">
-            <img src="eth-diamond-multi.png" alt="Ethereum logo" class="profile">
-        </div>
-        <div class="content">
-            <h1>zkEVM Formal Verification Project</h1>
-            <h2>A project by the Ethereum Foundation to accelerate the application of formal verification methods to zkEVMs</h2>
-        </div>
-    </section>
+            <div class="logo-container">
+                <img src="eth-diamond-multi.png" alt="Ethereum logo" class="profile">
+            </div>
+            <div class="content">
+                <h1>zkEVM Formal Verification Project</h1>
+                <h2>A project by the Ethereum Foundation to accelerate the application of formal verification methods to zkEVMs</h2>
+            </div>
+        </section>
 
-    <!-- <div class="social-links">
-        <a href="https://github.com/">Github</a>
-    </div> -->
+        <section id="overview" class="section">
+            <h2>Project Overview</h2>
+            <p>
+                The Ethereum Foundation is launching this project to obtain the highest possible level of assurance for zkEVMs, the end goal being bug-free zkEVMs.
+                This project will feature a combination of grants and bounties, with the project taking place until the end of 2026.
+            </p>
+            <p>
+                This project will also aim to:
+            </p>
+            <ul>
+                <li>Raise awareness of formal verification methods applied to zkEVMs, document their application, and increase their use.</li>
+                <li>Increase the coordination between different teams working in this ecosystem to work on an important problem.</li>
+                <li>Develop tooling and standards of maintenance and extensibility as the verification targets will continue to evolve, and investigate how to better integrate formal verification methods in the software development and maintenance processes.</li>
+            </ul>
+            <p>
+                This project focuses on RISC-V zkVMs on which an EVM compiled to RISC-V can run (producing a zkEVM) and will be divided into three tracks.
+            </p>
 
-    <section class="section">
-        
-        <h2>Project Overview</h2>
-        <p>
-        The Ethereum Foundation is launching this project to obtain the highest possible level of assurance for zkEVMs, the end goal being bug-free zkEVMs.
-        This project will feature a combination of grants and bounties, with the project taking place until the end of 2026.
-        </p>
-        <p>
-        This project will also aim to:
-        <ul>
-        <li>Raise awareness of formal verification methods applied to zkEVMs, document their application, and increase their use.</li>
-        <li>Increase the coordination between different teams working in this ecosystem to work on an important problem.</li>
-        <li>Develop tooling and standards of maintenance and extensibility as the verification targets will continue to evolve, and investigate how to better integrate formal verification methods in the software development and maintenance processes.</li>
-        </ul>
-        </p>
-        <p>
-        This project focuses on RISC-V zkVMs on which an EVM compiled to RISC-V can run (producing a zkEVM) and will be divided into three tracks.
-        </p>
-        
-        <h3>RISC-V zkVM Track</h3>
-        <p>
-        The goal of the RISC-V zkVM track is to be able to verify the arithmetization of RISC-V zkVMs;
-        that is, that the polynomial constraints exactly encode RISC-V instruction semantics, based on the official <a href="https://github.com/riscv/sail-riscv">Sail RISC-V specification </a>, and can be shown to satisfy
-        <ul>
-        <li>Correctness: polynomial constraints guarantee the existence of an execution trace.</li>
-        <li>Soundness: if the prover proves something, the result holds.</li>
-        <li>Completeness: if something holds, the prover can prove it.</li>
-        </ul>
-        zkVM precompiles are also within the scope of this track.
-        </p>
-        
-        <h3>EVM Track</h3>
-        <p>
-        The goal of the EVM track is to be able to show that an EVM running on RISC-V correctly implements the EVM specification.
-        </p>
-        <p>
-        To be considered a good candidate for verification, an implementation of the EVM must be performant and compilable to RISC-V zkVMs.
-        Extractions from formal models of the EVM, if performant, can also be considered.
-        </p>
-        
-        <h3>Cryptography Track</h3>
-        <p>
-        The goal of the Cryptography track is to verify the specification, proofs of security for the expected security parameters, and implementation of the proof systems and other cryptographic primitives used by zkVMs.
-        </p>
-        
-        <h3> Format </h3>
-        <h4>Supporting different approaches</h4>
-        <p>
-        We will support different approaches where possible to benefit from the varied expertise within the community and to make it possible to compare different approaches and to learn what works best for different components in terms of, for example, effort required, maintainability and ability to support external contributors.
-        </p>
-        <p>
-        If it becomes clear after a stage that one approach is better than the others, then we may focus solely on maintaining the results of that approach when moving on to the next stage. 
-        In cases where it would be advantageous to have the same method or language used for two tasks related to components that interact with each other, and it is possible to do so, this will be taken into account.
-        Similarly, languages with a more active community (e.g., Lean and Rocq for interactive theorem proving) look more attractive maintenance-wise.
-        </p>
-        <h4>Maintenance</h4>
-        <p>
-        RISC-V zkVMs, the EVM, and the cryptographic proof systems used are still evolving so the ability to maintain and extend work (including by external contributors), rather than performing one-off proofs, is crucial.
-        This project does not aim to slow down the development of zkVMs or require code freezes.
-        Instead, it aims to provide tools and methods that can be used to verify the correctness of zkVMs and to help maintain and extend these verifications as the zkVMs are updated, supporting their progress.
-        </p>
-        <h4>Openness and collaboration</h4>
-        <p>
-        Everyone working on this project will contribute towards a common end goal. 
-        Accordingly, a high standard of openness is expected.
-        This includes documenting work to facilitate its evaluation and use by others, as well as being open to collaborate with others. 
-        </p>
-        
-    </section>
-    
-    <section class="section">
+            <h3>RISC-V zkVM Track</h3>
+            <p>
+                The goal of the RISC-V zkVM track is to be able to verify the arithmetization of RISC-V zkVMs;
+                that is, that the polynomial constraints exactly encode RISC-V instruction semantics, based on the official <a href="https://github.com/riscv/sail-riscv">Sail RISC-V specification </a>, and can be shown to satisfy:
+            </p>
+            <ul>
+                <li>Correctness: polynomial constraints guarantee the existence of an execution trace.</li>
+                <li>Soundness: if the prover proves something, the result holds.</li>
+                <li>Completeness: if something holds, the prover can prove it.</li>
+            </ul>
+            <p>zkVM precompiles are also within the scope of this track.</p>
 
-        <h2>Stages</h2>
-        <p>
-        This project will be split into several stages.
-        These are not strictly limited (i.e., work started in Stage 1 may overflow into Stage 2) but are intended to reflect current priorities and milestones of the project as it progresses.
-        </p>
+            <h3>EVM Track</h3>
+            <p>
+                The goal of the EVM track is to be able to show that an EVM running on RISC-V correctly implements the EVM specification.
+            </p>
+            <p>
+                To be considered a good candidate for verification, an implementation of the EVM must be performant and compilable to RISC-V zkVMs.
+                Extractions from formal models of the EVM, if performant, can also be considered.
+            </p>
 
-        <h3> Stage 1 (ongoing) </h3>
-        <p>
-        The goal of Stage 1 is to start from the ground up and establish maintainable and extensible frameworks that will allow us to formally verify specific artefacts later in the project.
-        </p>
-        <p>
-        Applications are particularly welcome (but not restricted to) to address the following:
-        </p>
-        <p>
-        <ul>
-        <li> <s>(RISC-V zkVM track) An extraction from SAIL to Lean to be able to use the existing SAIL formal RISC-V specification in Lean. (There already exists support for SAIL to Isabelle, HOL4, and Rocq.) </s> </li>
-        <li> (RISC-V zkVM track) Frameworks to formally verify properties of circuits and arithmetizations.</li>
-        <li> (RISC-V zkVM track) Frameworks to formally verify zkVM precompiles.</li>
-        <li> (EVM track) Approaches to formally verify EVM implementations. (Note: there is currently limited scope for this given that the EVM used by zkVMs is primarily revm.)</li>
-        </ul>
-        </p>
-        <p>
-        For work related to formalizing proof systems, please see <a href="https://github.com/Verified-zkEVM/ZKLib">zkLib</a>.
-        </p>
-        <h3> Stage 2 </h3>
-        Stage 2 is expected to begin in the first half of 2025 and build upon the work completed in Stage 1, with a greater focus on proving properties of deployed software than in Stage 1, as well as introducing bounties where possible.
-    </section>
+            <h3>Cryptography Track</h3>
+            <p>
+                The goal of the Cryptography track is to verify the specification, proofs of security for the expected security parameters, and implementation of the proof systems and other cryptographic primitives used by zkVMs.
+            </p>
 
-    <div class="section-divider"></div>
-    
-    <section id="funding" class="section">
-    
-        <h2>Grants</h2>
-        <h3>Application requirements</h3>
-        <p>
-        All applications must have a written proposal in PDF format addressing the following details:
-        </p>
-        
-        <ol>
-        <li>
-        <h4>Proposal overview</h4>
-        <ol>
-        <li>Proposed work, including goals, approach, and expected outcomes. Proposals should clearly explain what the proposal's target is and what a successful completion of the work would enable.</li>
-        <li>Chosen methods and tools.</li>
-        <li>Challenges, risks, and expected caveats.</li>
-        <li>Timeline, including possible milestones. Do you need some other work to be completed (by yourself or others) before beginning your proposed work?</li>
-        <li>Team composition.</li>
-        <li>Costs.</li>
-        </ol>
-        </li>
-        <li>
-        <h4>Technical approach</h4>
-        <ol>
-        <li>Breakdown of technical tasks.</li>
-        <li>References to relevant work.</li>
-        </ol>
-        </li>
-        <li>
-        <h4>Project management</h4>
-        <ol>
-        <li>Plans for coordination and communication about your work. </li>
-        <li>Approach to maintaining or extending your work and enabling external contributions to facilitate this. </li>
-        <li>Planned resource allocation (human and financial). </li>
-        </ol>
-        </li>
-        <li>
-        <h4>Team</h4>
-        <ol>
-        <li>Background and expertise of your team members.</li>
-        <li>Track record, including public repositories and published work relevant to your proposal.</li>
-        </ol>
-        </li>
-        </ol>
-        
-        <p>
-        Applications are open to any individuals, teams, and organizations, and will be selected for funding on a case-by-case basis.
-        Submitting more than one proposal is allowed as long as each proposal is distinct and relevant to the project.
-        Funding will be subject to a KYC process.
-        </p>
-        <p>
-        Several independent proposals may have similar goals.
-        In such cases, it is possible for several proposals to be funded if comparing the results of different approaches to the same problem would be useful, or if several teams can work together on similar or complementary goals.
-        Being flexible in this regard can be a plus.
-        </p>
-        <p>
-        If your proposal is for general tooling, please make sure to address what this will be useful for within the expected lifetime of this project (e.g., verifying a specific artefact) and how others will also be able to use it.   
-        </p>
+            <h3>Format</h3>
+            <h4>Supporting different approaches</h4>
+            <p>
+                We will support different approaches where possible to benefit from the varied expertise within the community and to make it possible to compare different approaches and to learn what works best for different components in terms of, for example, effort required, maintainability and ability to support external contributors.
+            </p>
+            <p>
+                If it becomes clear after a stage that one approach is better than the others, then we may focus solely on maintaining the results of that approach when moving on to the next stage.
+                In cases where it would be advantageous to have the same method or language used for two tasks related to components that interact with each other, and it is possible to do so, this will be taken into account.
+                Similarly, languages with a more active community (e.g., Lean and Rocq for interactive theorem proving) look more attractive maintenance-wise.
+            </p>
+            <h4>Maintenance</h4>
+            <p>
+                RISC-V zkVMs, the EVM, and the cryptographic proof systems used are still evolving so the ability to maintain and extend work (including by external contributors), rather than performing one-off proofs, is crucial.
+                This project does not aim to slow down the development of zkVMs or require code freezes.
+                Instead, it aims to provide tools and methods that can be used to verify the correctness of zkVMs and to help maintain and extend these verifications as the zkVMs are updated, supporting their progress.
+            </p>
+            <h4>Openness and collaboration</h4>
+            <p>
+                Everyone working on this project will contribute towards a common end goal.
+                Accordingly, a high standard of openness is expected.
+                This includes documenting work to facilitate its evaluation and use by others, as well as being open to collaborate with others.
+            </p>
+        </section>
 
-        <h3>Applications are currently closed for a short amount of time while some of the earlier grants wrap up their work and we prepare for stage 2.</h3>
-        <p>
-        Once applications are open again, proposals can be sent until further notice to verified-zkevm@ethereum.org.
-        Please note that it is often useful to discuss any ideas ahead of submitting a proposal to see how they may fit in the project, particularly with respect to previous and ongoing work, as well as planned work that may not yet be announced.
-        </p>
+        <section class="section">
+            <h2>Stages</h2>
+            <p>
+                This project will be split into several stages.
+                These are not strictly limited (i.e., work started in Stage 1 may overflow into Stage 2) but are intended to reflect current priorities and milestones of the project as it progresses.
+            </p>
 
-    </section>
+            <h3>Stage 1 (ongoing)</h3>
+            <p>
+                The goal of Stage 1 is to start from the ground up and establish maintainable and extensible frameworks that will allow us to formally verify specific artefacts later in the project.
+            </p>
+            <p>
+                Applications are particularly welcome (but not restricted to) to address the following:
+            </p>
+            <ul>
+                <li><s>(RISC-V zkVM track) An extraction from SAIL to Lean to be able to use the existing SAIL formal RISC-V specification in Lean. (There already exists support for SAIL to Isabelle, HOL4, and Rocq.)</s></li>
+                <li>(RISC-V zkVM track) Frameworks to formally verify properties of circuits and arithmetizations.</li>
+                <li>(RISC-V zkVM track) Frameworks to formally verify zkVM precompiles.</li>
+                <li>(EVM track) Approaches to formally verify EVM implementations. (Note: there is currently limited scope for this given that the EVM used by zkVMs is primarily revm.)</li>
+            </ul>
+            <p>
+                For work related to formalizing proof systems, please see <a href="https://github.com/Verified-zkEVM/ArkLib">ArkLib</a>.
+            </p>
+            <h3>Stage 2</h3>
+            <p>
+                Stage 2 is expected to begin in the first half of 2025 and build upon the work completed in Stage 1, with a greater focus on proving properties of deployed software than in Stage 1, as well as introducing bounties where possible.
+            </p>
+        </section>
 
-    <section class="section">
-    
-        <h2>Grants Awarded</h2>
-        <div class="grant">
+        <section class="section">
+            <h2>Documentation</h2>
+
+                <h3>Code</h3>
+                <ul>
+                <li><a href="https://github.com/Verified-zkEVM" target="_blank">GitHub Organization</a></li>
+                </ul>
+
+                <h3>Video Updates & Presentations</h3>
+                <ul>
+                    <li><a href="https://www.youtube.com/live/L_uz5rH50Sw?si=U_TtFXsHbMr5lpZ9" target="_blank">[ZKProofs 7, March 2025]  Formally verifying zk(E)VMs with the Ethereum Foundation - Alexander Hicks (Ethereum Foundation Research) </a></li>
+                    <li><a href="https://www.youtube.com/live/O_bT89JK6_c?si=Sn1BiY__PWRAzoH9" target="_blank">[ZKProofs 7, March 2025]  Towards a verified Jolt zkVM - James Parker (Galois) </a></li>
+                    <li><a href="https://youtu.be/1bULK8iFVEo?si=vIQRUPyQDLalVs6c" target="_blank">[Project update, March 2025] Q1 2025: Cryptography Track update</a></li>
+                    <li><a href="https://youtu.be/C2NfJoihXyQ?si=PSjELgJCbwHtRgd6" target="_blank">[Project update, March 2025] Q1 2025: zkVM Track update</a></li>
+                    <li><a href="https://youtu.be/op9LYW9083w?si=IQKjEMRxjA0ktFMK" target="_blank">[Project update, March 2025] Q1 2025: EVM Track update</a></li>
+                </ul>
+
+                <div class="subsection-divider"></div>
+
+                <h3>Blog Posts & Articles</h3>
+                <ul>
+                </ul>
+                   
+                <div class="subsection-divider"></div>
+
+                <div class="subsection-divider"></div>
+
+                <h3>Papers</h3>
+                <ul>
+                </ul>
+
+        </section>
+
+        <div class="section-divider"></div>
+
+        <section id="funding" class="section">
+            <h2>Grants</h2>
+            <h3>Application requirements</h3>
+            <p>
+                All applications must have a written proposal in PDF format addressing the following details:
+            </p>
+            <ol>
+                <li>
+                    <h4>Proposal overview</h4>
+                    <ol>
+                        <li>Proposed work, including goals, approach, and expected outcomes. Proposals should clearly explain what the proposal's target is and what a successful completion of the work would enable.</li>
+                        <li>Chosen methods and tools.</li>
+                        <li>Challenges, risks, and expected caveats.</li>
+                        <li>Timeline, including possible milestones. Do you need some other work to be completed (by yourself or others) before beginning your proposed work?</li>
+                        <li>Team composition.</li>
+                        <li>Costs.</li>
+                    </ol>
+                </li>
+                <li>
+                    <h4>Technical approach</h4>
+                    <ol>
+                        <li>Breakdown of technical tasks.</li>
+                        <li>References to relevant work.</li>
+                    </ol>
+                </li>
+                <li>
+                    <h4>Project management</h4>
+                    <ol>
+                        <li>Plans for coordination and communication about your work.</li>
+                        <li>Approach to maintaining or extending your work and enabling external contributions to facilitate this.</li>
+                        <li>Planned resource allocation (human and financial).</li>
+                    </ol>
+                </li>
+                <li>
+                    <h4>Team</h4>
+                    <ol>
+                        <li>Background and expertise of your team members.</li>
+                        <li>Track record, including public repositories and published work relevant to your proposal.</li>
+                    </ol>
+                </li>
+            </ol>
+            <p>
+                Applications are open to any individuals, teams, and organizations, and will be selected for funding on a case-by-case basis.
+                Submitting more than one proposal is allowed as long as each proposal is distinct and relevant to the project.
+                Funding will be subject to a KYC process.
+            </p>
+            <p>
+                Several independent proposals may have similar goals.
+                In such cases, it is possible for several proposals to be funded if comparing the results of different approaches to the same problem would be useful, or if several teams can work together on similar or complementary goals.
+                Being flexible in this regard can be a plus.
+            </p>
+            <p>
+                If your proposal is for general tooling, please make sure to address what this will be useful for within the expected lifetime of this project (e.g., verifying a specific artefact) and how others will also be able to use it.
+            </p>
+            <h3>Applications are currently closed for a short amount of time while some of the earlier grants wrap up their work and we prepare for stage 2.</h3>
+            <p>
+                Once applications are open again, proposals can be sent until further notice to verified-zkevm@ethereum.org.
+                Please note that it is often useful to discuss any ideas ahead of submitting a proposal to see how they may fit in the project, particularly with respect to previous and ongoing work, as well as planned work that may not yet be announced.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Grants Awarded</h2>
                 <h3>RISC-V zkVM Track</h3>
                 <ul>
                     <li>
                         <h4>cLean</h4>
-                        <p>Intended to support the development of <a href="https://github.com/Verified-zkEVM/clean">cLean</a>, a Lean DSL aimed at writing AIR circuits directly in Lean (rather than verifying pre-existing circuits extracted to Lean). </p>
+                        <p>Intended to support the development of <a href="https://github.com/Verified-zkEVM/clean">cLean</a>, a Lean DSL aimed at writing AIR circuits directly in Lean (rather than verifying pre-existing circuits extracted to Lean).</p>
                         <p><strong>Awarded to:</strong> zkSecurity</p>
                     </li>
                     <li>
@@ -410,19 +251,19 @@
                         <p><strong>Awarded to:</strong> Galois</p>
                     </li>
                 </ul>
-                <div class="subsection-divider"></div>
-            </div>
-            <div class="grant">
+
+            <div class="subsection-divider"></div>
+
                 <h3>EVM Track</h3>
                 <ul>
                     <li>
                         <h4>Certified compilation with precompiles</h4>
                         <p>Intended to support research aiming to establish methods for certified compilation in the Rocq ecosystem together with tools for high assurance cryptography in order to develop formally verified artefacts relevant to this project.</p>
-                        <p><strong>Awarded to:</strong> Aarhus University </p>
+                        <p><strong>Awarded to:</strong> Aarhus University</p>
                     </li>
                     <li>
                         <h4>Development of an EVM in Rocq</h4>
-                        <p>Intended to support the development of a canonical, maintainable, and validated EVM specification in Rocq that can be the basis for a verified implementation of the EVM specification for RISC-V via certified compilation. </p>
+                        <p>Intended to support the development of a canonical, maintainable, and validated EVM specification in Rocq that can be the basis for a verified implementation of the EVM specification for RISC-V via certified compilation.</p>
                         <p><strong>Awarded to:</strong> KTH Royal Institute of Technology</p>
                     </li>
                     <li>
@@ -433,21 +274,21 @@
                         <p><strong>Awarded to:</strong> Runtime Verification</p>
                     </li>
                 </ul>
-                <div class="subsection-divider"></div>
-            </div>
-            <div class="grant">
+
+            <div class="subsection-divider"></div>
+            
                 <h3>Cryptography Track</h3>
                 <ul>
                     <li>
                         <h4>zkLib</h4>
-                        <p>Intended to support the development of <a href="https://github.com/Verified-zkEVM/ZKLib">zkLib</a>, a library of formalized proof systems in Lean, accompanied by work on <a href="https://github.com/dtumad/VCV-io">VCVio</a>. </p>
-                        <p><strong>Awarded to:</strong> Devon Tuma, zkSecurity </p>
+                        <p>Intended to support the development of <a href="https://github.com/Verified-zkEVM/ArkLib">ArkLib</a> (fka ZKLib), a library of formalized proof systems in Lean, accompanied by work on <a href="https://github.com/dtumad/VCV-io">VCVio</a>.</p>
+                        <p><strong>Awarded to:</strong> Devon Tuma, zkSecurity</p>
                     </li>
                 </ul>
-                <div class="subsection-divider"></div>
-            </div>
-            <div class="grant">
-                <h3>Other</h3>
+
+            <div class="subsection-divider"></div>
+
+            <h3>Other</h3>
                 <ul>
                     <li>
                         <h4>ZKProofs 7</h4>
@@ -462,20 +303,19 @@
                         <p><strong>Awarded to:</strong> ZKProofs</p>
                     </li>
                 </ul>
-            </div>
-    </section>
-    
-    <section class="section">
-        <h2>Bounties</h2>
-        <p> There are currently no open bounties.</p>
-    </section>
+        </section>
 
-    <div class="section-divider"></div>
-    
-    <section id="contact" class="section">
-        <h2>Contact</h2>
-        alexander dot hicks at ethereum dot org
-    </section>
- 
-</body>
+        <section class="section">
+            <h2>Bounties</h2>
+            <p>There are currently no open bounties.</p>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <section id="contact" class="section">
+            <h2>Contact</h2>
+            <p>alexander dot hicks at ethereum dot org</p>
+        </section>
+
+    </div> </body>
 </html>
