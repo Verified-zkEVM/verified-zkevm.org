@@ -1,0 +1,72 @@
+[
+    {
+        "track": "RISC-V zkVM Track",
+        "items": [
+            {
+                "title": "cLean",
+                "description": "Intended to support the development of <a href=\"https://github.com/Verified-zkEVM/clean\">cLean</a>, a Lean DSL aimed at writing AIR circuits directly in Lean (rather than verifying pre-existing circuits extracted to Lean).",
+                "awardedTo": "zkSecurity"
+            },
+            {
+                "title": "LLZK",
+                "description": "Intended to support for the development LLZK, a MLIR dialect for circuits.",
+                "awardedTo": "Veridise"
+            },
+            {
+                "title": "Lean backend for Sail",
+                "description": "Intended to support the development of a Lean backend for Sail (adding to the existing HOL4, Isabelle, and Rocq backends) that will allow the extraction of the official RISC-V Sail specification to Lean.",
+                "awardedTo": "University of Cambridge, Galois, Lindy Labs"
+            },
+            {
+                "title": "Formalization of lookup arguments and extraction of Jolt statements to Lean",
+                "description": "Intended to support an effort to develop a Lean DSL for lookups, their composition, and R1CS constraints that will allow Jolt-like circuits be verified.",
+                "awardedTo": "Galois"
+            }
+        ]
+    },
+    {
+        "track": "EVM Track",
+        "items": [
+            {
+                "title": "Certified compilation with precompiles",
+                "description": "Intended to support research aiming to establish methods for certified compilation in the Rocq ecosystem together with tools for high assurance cryptography in order to develop formally verified artefacts relevant to this project.",
+                "awardedTo": "Aarhus University"
+            },
+            {
+                "title": "Development of an EVM in Rocq",
+                "description": "Intended to support the development of a canonical, maintainable, and validated EVM specification in Rocq that can be the basis for a verified implementation of the EVM specification for RISC-V via certified compilation.",
+                "awardedTo": "KTH Royal Institute of Technology"
+            },
+            {
+                "title": "Verification of revm and Lean backend for K",
+                "description": "Intended to support (i) effort to verify the correctness of revm compiled to RISC-V against KEVM (a EVM specification in K); (ii) the development of a Lean backend for K that will make it possible to compare KEVM to a Lean specification of the EVM, and open up possibilities to use the K tooling for language semantics in Lean in future work.",
+                "awardedTo": "Runtime Verification"
+            }
+        ]
+    },
+    {
+        "track": "Cryptography Track",
+        "items": [
+            {
+                "title": "ArkLib",
+                "description": "Intended to support the development of <a href=\"https://github.com/Verified-zkEVM/ArkLib\">ArkLib</a> (fka ZKLib), a library of formalized proof systems in Lean, accompanied by work on <a href=\"https://github.com/dtumad/VCV-io\">VCVio</a>.",
+                "awardedTo": "Devon Tuma, zkSecurity"
+            }
+        ]
+    },
+    {
+        "track": "Other",
+        "items": [
+            {
+                "title": "ZKProofs 7",
+                "description": "Intended to support to <a href=\"https://zkproof.org/events/zkproof-7-sofia/\">ZKProofs 7</a> in March 2025.",
+                "awardedTo": "ZKProofs"
+            },
+            {
+                "title": "ZKProofs Zurich Event",
+                "description": "Intended to support to host a small one day event in Zurich in October 2024 to discuss the formal verification of proof systems. A summary of the event is available <a href=\"https://zkproof.org/verifier/\">here</a>.",
+                "awardedTo": "ZKProofs"
+            }
+        ]
+    }
+]

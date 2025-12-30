@@ -1,0 +1,14 @@
+[
+    {
+        "title": "RISC-V zkVM Track",
+        "description": "Verify the arithmetization of RISC-V zkVMs. Ensure polynomial constraints exactly encode RISC-V instruction semantics based on the official Sail RISC-V specification."
+    },
+    {
+        "title": "EVM Track",
+        "description": "Show that an EVM running on RISC-V correctly implements the EVM specification. Focus on performant implementations compilable to RISC-V zkVMs."
+    },
+    {
+        "title": "Cryptography Track",
+        "description": "Verify the specification, proofs of security, and implementation of proof systems and cryptographic primitives used by zkVMs."
+    }
+]

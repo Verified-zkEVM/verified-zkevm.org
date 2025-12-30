@@ -1,0 +1,27 @@
+[
+    {
+        "category": "Video Updates & Presentations",
+        "items": [
+            {
+                "title": "[ZKProofs 7, March 2025] Formally verifying zk(E)VMs with the Ethereum Foundation - Alexander Hicks (Ethereum Foundation Research)",
+                "url": "https://www.youtube.com/live/L_uz5rH50Sw?si=U_TtFXsHbMr5lpZ9"
+            },
+            {
+                "title": "[ZKProofs 7, March 2025] Towards a verified Jolt zkVM - James Parker (Galois)",
+                "url": "https://www.youtube.com/live/O_bT89JK6_c?si=Sn1BiY__PWRAzoH9"
+            },
+            {
+                "title": "[Project update, March 2025] Q1 2025: Cryptography Track update",
+                "url": "https://youtu.be/1bULK8iFVEo?si=vIQRUPyQDLalVs6c"
+            },
+            {
+                "title": "[Project update, March 2025] Q1 2025: zkVM Track update",
+                "url": "https://youtu.be/C2NfJoihXyQ?si=PSjELgJCbwHtRgd6"
+            },
+            {
+                "title": "[Project update, March 2025] Q1 2025: EVM Track update",
+                "url": "https://youtu.be/op9LYW9083w?si=IQKjEMRxjA0ktFMK"
+            }
+        ]
+    }
+]
