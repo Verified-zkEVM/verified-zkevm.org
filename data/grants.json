@@ -3,6 +3,21 @@
         "track": "RISC-V zkVM Track",
         "items": [
             {
+                "title": "",
+                "description": "",
+                "awardedTo": "Formal Land"
+            },
+            {
+                "title": "Plonky3 to LLZK",
+                "description": "Intended to support an integration of Plonky3 with LLZK.",
+                "awardedTo": "Nethermind"
+            },
+            {
+                "title": "Evaluating Verus",
+                "description": "Intended to support an evaluation of Verus as a tool to verify representative zkVM Rust code.",
+                "awardedTo": "CertiK"
+            },
+            {
                 "title": "cLean",
                 "description": "Intended to support the development of <a href=\"https://github.com/Verified-zkEVM/clean\">cLean</a>, a Lean DSL aimed at writing AIR circuits directly in Lean (rather than verifying pre-existing circuits extracted to Lean).",
                 "awardedTo": "zkSecurity"
@@ -47,6 +62,26 @@
     {
         "track": "Cryptography Track",
         "items": [
+            {
+                "title": "Lean backend for hax",
+                "description": "Intended to support the development of a Lean backend for <a href=\"https://github.com/cryspen/hax\">hax</a>.",
+                "awardedTo": "Cryspen"
+            },
+            {
+                "title": "Binius",
+                "description": "Intended to support the formalization of Binius in ArkLib.",
+                "awardedTo": "Chung Thai Nguyen"
+            },
+            {
+                "title": "STIR and WHIR",
+                "description": "Intended to support the formalization of STIR and WHIR in ArkLib.",
+                "awardedTo": "Least Authority"
+            },
+            {
+                "title": "Coding theory and FRI",
+                "description": "Intended to support the formalization of FRI in ArkLib as well as coding theory prerequisites.",
+                "awardedTo": "Nethermind"
+            },
             {
                 "title": "ArkLib",
                 "description": "Intended to support the development of <a href=\"https://github.com/Verified-zkEVM/ArkLib\">ArkLib</a> (fka ZKLib), a library of formalized proof systems in Lean, accompanied by work on <a href=\"https://github.com/dtumad/VCV-io\">VCVio</a>.",

@@ -23,5 +23,18 @@
                 "url": "https://youtu.be/op9LYW9083w?si=IQKjEMRxjA0ktFMK"
             }
         ]
+    },
+    {
+        "category": "Blog Posts & Articles",
+        "items": [
+            {
+                "title": "[zkSecurity, March 2025] Introducing clean, a formal verification DSL for ZK circuits in Lean4 - Giorgio Dell'Immagine",
+                "url": "https://blog.zksecurity.xyz/posts/clean/"
+            }
+        ]
+    },
+    {
+        "category": "Papers",
+        "items": []
     }
 ]
