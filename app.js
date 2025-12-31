@@ -114,16 +114,46 @@ async function loadMedia() {
             categoryTitle.textContent = category.category;
             categorySection.appendChild(categoryTitle);
 
-            const list = document.createElement('ul');
-            list.className = 'media-list';
+            // Special handling for Video Updates
+            if (category.category.includes('Video')) {
+                const grid = document.createElement('div');
+                grid.className = 'video-grid';
 
-            category.items.forEach(item => {
-                const li = document.createElement('li');
-                li.innerHTML = `<a href="${item.url}" target="_blank">${item.title}</a>`;
-                list.appendChild(li);
-            });
+                category.items.forEach(item => {
+                    const videoId = getYouTubeVideoId(item.url);
+                    const thumbnailUrl = videoId ?
+                        `https://img.youtube.com/vi/${videoId}/mqdefault.jpg` :
+                        'eth-diamond-multi.png'; // Fallback
 
-            categorySection.appendChild(list);
+                    const card = document.createElement('a');
+                    card.href = item.url;
+                    card.target = '_blank';
+                    card.className = 'video-card';
+                    card.innerHTML = `
+                        <div class="video-thumbnail">
+                            <img src="${thumbnailUrl}" alt="${item.title}" loading="lazy">
+                            <div class="play-icon">▶</div>
+                        </div>
+                        <div class="video-info">
+                            <h4>${item.title}</h4>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+                categorySection.appendChild(grid);
+            } else {
+                // Standard list for other categories
+                const list = document.createElement('ul');
+                list.className = 'media-list';
+
+                category.items.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="${item.url}" target="_blank">${item.title}</a>`;
+                    list.appendChild(li);
+                });
+                categorySection.appendChild(list);
+            }
+
             container.appendChild(categorySection);
         });
     } catch (error) {
@@ -133,6 +163,20 @@ async function loadMedia() {
             container.innerHTML = '<p>Failed to load media resources.</p>';
         }
     }
+}
+
+function getYouTubeVideoId(url) {
+    try {
+        const urlObj = new URL(url);
+        if (urlObj.hostname.includes('youtube.com')) {
+            return urlObj.searchParams.get('v');
+        } else if (urlObj.hostname.includes('youtu.be')) {
+            return urlObj.pathname.slice(1);
+        }
+    } catch (e) {
+        console.warn('Invalid YouTube URL:', url);
+    }
+    return null;
 }
 
 function setupMobileMenu() {
