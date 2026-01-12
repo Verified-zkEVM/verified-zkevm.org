@@ -1,5 +1,11 @@
 [
     "Verified-zkEVM/verified-zkevm.org",
     "Verified-zkEVM/ArkLib",
-    "Verified-zkEVM/clean"
+    "Verified-zkEVM/CompPoly",
+    "Verified-zkEVM/iris-lean",
+    "Verified-zkEVM/VCV-io",
+    "Verified-zkEVM/clean",
+    "Verified-zkEVM/Overview",
+    "project-llzk/llzk-benchmarks",
+    "NethermindEth/CertiPlonk"
 ]

@@ -3,6 +3,14 @@
         "category": "Video Updates & Presentations",
         "items": [
             {
+                "title": "Quang Dao - ArkLib (January 12th 2026)",
+                "url": "https://youtu.be/4aVI7MS0S4g"
+            },
+            {
+                "title": "Devon Tuma - Formally Verifying the SP1 RISC-V AIRs (December 9th 2025)",
+                "url": "https://youtu.be/4VnolGW-iv4"
+            },
+            {
                 "title": "[ZKProofs 7, March 2025] Formally verifying zk(E)VMs with the Ethereum Foundation - Alexander Hicks (Ethereum Foundation Research)",
                 "url": "https://www.youtube.com/live/L_uz5rH50Sw?si=U_TtFXsHbMr5lpZ9"
             },

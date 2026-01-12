@@ -3,39 +3,88 @@
         "track": "RISC-V zkVM Track",
         "items": [
             {
-                "title": "",
-                "description": "",
-                "awardedTo": "Formal Land"
+                "title": "Verifying autoprecompiles",
+                "description": "Intended to support the verification of Powdr Labs' autoprecompiles.",
+                "awardedTo": "Powdr Labs, Certora",
+                "period": "Q4 2025"
             },
             {
-                "title": "Plonky3 to LLZK",
-                "description": "Intended to support an integration of Plonky3 with LLZK.",
-                "awardedTo": "Nethermind"
+                "title": "AVAZAR: Automatic verification tools for zkVM arithmetization",
+                "description": "Intended to support the development of TODO.",
+                "awardedTo": "Universidad Complutense de Madrid (Albert Rubio)",
+                "period": "Q4 2025"
             },
             {
-                "title": "Evaluating Verus",
-                "description": "Intended to support an evaluation of Verus as a tool to verify representative zkVM Rust code.",
-                "awardedTo": "CertiK"
+                "title": "ZKVM Agnostic Fuzzing for Detecting Security Vulnerabilities",
+                "description": "Intended to support the development of TODO.",
+                "awardedTo": "zksecurity",
+                "period": "Q3 2025"
+            },
+            {
+                "title": "zkBugs 2.0",
+                "description": "Intended to support the development of TODO.",
+                "awardedTo": "zksecurity",
+                "period": "Q3 2025"
+            },
+            {
+                "title": "Automated Verification of ZK Circuits",
+                "description": "Intended to support the development of TODO.",
+                "awardedTo": "Veridise",
+                "period": "Q3 2025"
+            },
+            {
+                "title": "ZKarnage: Stress Testing ZK Systems Through Maximum Pain",
+                "description": "Intended to support work on prover killers",
+                "awardedTo": "Conner Swann",
+                "period": "Q2 2025"
+            },
+            {
+                "title": "Plonky3 in Rocq",
+                "description": "Intended to support an integration of Plonky3 with Rocq.",
+                "awardedTo": "Formal Land",
+                "period": "Q2 2025"
+            },
+            {
+                "title": "Plonky3 to Lean",
+                "description": "Intended to support an integration of Plonky3 with Lean.",
+                "awardedTo": "Nethermind",
+                "period": "Q1 2025"
+            },
+            {
+                "title": "Evaluating Verus for circuits and EVM precompiles",
+                "description": "Intended to support an evaluation of Verus as a tool to verify representative Rust code.",
+                "awardedTo": "CertiK",
+                "period": "Q1 2025"
+            },
+            {
+                "title": "Better Rocq tactics for modular arithmetic & handling packed integers",
+                "description": "Intended to support the development of Rocq tactics for handing arithmetic modulo and for handling packed integers.",
+                "awardedTo": "CertiK",
+                "period": "Q1 2025"
             },
             {
                 "title": "cLean",
                 "description": "Intended to support the development of <a href=\"https://github.com/Verified-zkEVM/clean\">cLean</a>, a Lean DSL aimed at writing AIR circuits directly in Lean (rather than verifying pre-existing circuits extracted to Lean).",
-                "awardedTo": "zkSecurity"
+                "awardedTo": "zkSecurity",
+                "period": "Q4 2025"
             },
             {
                 "title": "LLZK",
-                "description": "Intended to support for the development LLZK, a MLIR dialect for circuits.",
-                "awardedTo": "Veridise"
+                "description": "Intended to support for the development LLZK, a family of MLIR dialects for circuits.",
+                "awardedTo": "Veridise",
+                "period": "Q4 2024, Q4 2025"
             },
             {
                 "title": "Lean backend for Sail",
                 "description": "Intended to support the development of a Lean backend for Sail (adding to the existing HOL4, Isabelle, and Rocq backends) that will allow the extraction of the official RISC-V Sail specification to Lean.",
-                "awardedTo": "University of Cambridge, Galois, Lindy Labs"
+                "awardedTo": "University of Cambridge, Cambridge Enterprise, Galois, Lindy Labs (first grant only)",
+                "period": "Q1 2025, Q3 2025"
             },
             {
-                "title": "Formalization of lookup arguments and extraction of Jolt statements to Lean",
-                "description": "Intended to support an effort to develop a Lean DSL for lookups, their composition, and R1CS constraints that will allow Jolt-like circuits be verified.",
-                "awardedTo": "Galois"
+                "title": "zkLean",
+                "description": "Intended to support an effort to develop zKLean, a Lean DSL for constraints, as well as integration of zkLean with LLZK",
+                "awardedTo": "Galois",
+                "period": "Q1 2025, Q3 2025"
             }
         ]
     },
@@ -43,19 +92,22 @@
         "track": "EVM Track",
         "items": [
             {
-                "title": "Certified compilation with precompiles",
-                "description": "Intended to support research aiming to establish methods for certified compilation in the Rocq ecosystem together with tools for high assurance cryptography in order to develop formally verified artefacts relevant to this project.",
-                "awardedTo": "Aarhus University"
+                "title": "Certified compilation",
+                "description": "Intended to support research aiming to establish methods for certified compilation in the Rocq ecosystem together with tools for high assurance cryptography.",
+                "awardedTo": "Aarhus University",
+                "period": "Q4 2024"
             },
             {
                 "title": "Development of an EVM in Rocq",
                 "description": "Intended to support the development of a canonical, maintainable, and validated EVM specification in Rocq that can be the basis for a verified implementation of the EVM specification for RISC-V via certified compilation.",
-                "awardedTo": "KTH Royal Institute of Technology"
+                "awardedTo": "KTH Royal Institute of Technology",
+                "period": "Q4 2024"
             },
             {
                 "title": "Verification of revm and Lean backend for K",
                 "description": "Intended to support (i) effort to verify the correctness of revm compiled to RISC-V against KEVM (a EVM specification in K); (ii) the development of a Lean backend for K that will make it possible to compare KEVM to a Lean specification of the EVM, and open up possibilities to use the K tooling for language semantics in Lean in future work.",
-                "awardedTo": "Runtime Verification"
+                "awardedTo": "Runtime Verification",
+                "period": "Q4 2024"
             }
         ]
     },
@@ -63,44 +115,122 @@
         "track": "Cryptography Track",
         "items": [
             {
-                "title": "Lean backend for hax",
-                "description": "Intended to support the development of a Lean backend for <a href=\"https://github.com/cryspen/hax\">hax</a>.",
-                "awardedTo": "Cryspen"
+                "title": "Technical Review of Fiat-Shamir From Duplex Sponges",
+                "description": "Intended to support a thorough technical review of the Fiat-Shamir transformation instantiated via duplex sponges",
+                "awardedTo": "University of Maryland (Kasra Abbaszadeh)",
+                "period": "Q4 2025"
             },
             {
-                "title": "Binius",
+                "title": "Rust Verification Through Lean 4 Tooling",
+                "description": "Intended to support a three month investigation into Lean 4 based formal verification of Rust components used in zkEVM and zkVM stacks, focused on using the hax toolchain.",
+                "awardedTo": "Runtime Verification",
+                "period": "Q4 2025"
+            },
+            {
+                "title": "STIR & WHIR constructions in ArkLib",
+                "description": "Intended to support the addition of executable specifications for STIR and WHIR in ArkLib.",
+                "awardedTo": "Nethermind",
+                "period": "Q4 2025"
+            },
+            {
+                "title": "Fiat-Shamir specification",
+                "description": "Intended to support the development of a specification of the Fiat–Shamir transformation based on duplex sponges",
+                "awardedTo": "Article 12, LLC",
+                "period": "Q4 2025"
+            },
+            {
+                "title": "Bluebell",
+                "description": "Intended to support the implementation of the Bluebell program logic in Lean for use in ArkLib.",
+                "awardedTo": "Nethermind",
+                "period": "Q3 2025"
+            },
+            {
+                "title": "AI proofs in ArkLib",
+                "description": "This grant is intended to support an experiment in using Logical Intelligence's AI tools for proofs in ArkLib.",
+                "awardedTo": "Logical Intelligence",
+                "period": "Q3 2025"
+            },
+            {
+                "title": "Binius in ArkLib",
                 "description": "Intended to support the formalization of Binius in ArkLib.",
                 "awardedTo": "Chung Thai Nguyen"
             },
             {
-                "title": "STIR and WHIR",
-                "description": "Intended to support the formalization of STIR and WHIR in ArkLib.",
-                "awardedTo": "Least Authority"
+                "title": "Blueprint STIR and WHIR in ArkLib",
+                "description": "Intended to support the development of a blueprint for STIR and WHIR's security theorems in ArkLib.",
+                "awardedTo": "Least Authority",
+                "period": "Q1 2025"
             },
             {
-                "title": "Coding theory and FRI",
-                "description": "Intended to support the formalization of FRI in ArkLib as well as coding theory prerequisites.",
-                "awardedTo": "Nethermind"
+                "title": "Blueprint for FRI & Coding Theory prerequisites in ArkLib",
+                "description": "Intended to support the development of a blueprint for FRI and coding theory prerequisites in ArkLib.",
+                "awardedTo": "Nethermind",
+                "period": "Q1 2025"
             },
             {
                 "title": "ArkLib",
-                "description": "Intended to support the development of <a href=\"https://github.com/Verified-zkEVM/ArkLib\">ArkLib</a> (fka ZKLib), a library of formalized proof systems in Lean, accompanied by work on <a href=\"https://github.com/dtumad/VCV-io\">VCVio</a>.",
-                "awardedTo": "Devon Tuma, zkSecurity"
+                "description": "Intended to support the development of <a href=\"https://github.com/Verified-zkEVM/ArkLib\">ArkLib</a>, a library of formalized proof systems in Lean, accompanied by work on <a href=\"https://github.com/Verified-zkEVM/VCV-io\">VCVio</a>.",
+                "awardedTo": "Quang Dao, Devon Tuma, zkSecurity",
+                "period": "Q4 2024"
             }
         ]
     },
     {
-        "track": "Other",
+        "track": "General Tooling",
         "items": [
             {
+                "title": "MLIR sidekick for Lean",
+                "description": "Intended to support Lean-MLIR infrastructure development, including fast datastructures and a RISC-V dialect in Lean.",
+                "awardedTo": "University of Cambridge",
+                "period": "Q3 2025"
+            },
+            {
+                "title": "Lean backend for hax",
+                "description": "Intended to support the development of a Lean backend for <a href=\"https://github.com/cryspen/hax\">hax</a>.",
+                "awardedTo": "Cryspen",
+                "period": "Q2 2025, Q4 2025"
+            }
+        ]
+    },
+    {
+        "track": "Events",
+        "items": [
+            {
+                "title": "HACS 2026",
+                "description": "Intended to support to <a href=\"https://www.hacs-workshop.org/data/HACS_2026_Overview.pdf\">HACS 2026</a> in March 2026.",
+                "awardedTo": "Aspiration"
+            },
+            {
+                "title": "HACS 2025",
+                "description": "Intended to support to <a href=\"https://www.hacs-workshop.org/data/HACS_2025_Overview.pdf\">HACS 2025</a> in March 2025.",
+                "awardedTo": "Aspiration"
+            },
+            {
                 "title": "ZKProofs 7",
-                "description": "Intended to support to <a href=\"https://zkproof.org/events/zkproof-7-sofia/\">ZKProofs 7</a> in March 2025.",
+                "description": "Intended to support to <a href=\"https://zkproof.org/events/zkproof-7-sofia\">ZKProofs 7</a> in March 2025.",
                 "awardedTo": "ZKProofs"
             },
             {
                 "title": "ZKProofs Zurich Event",
-                "description": "Intended to support to host a small one day event in Zurich in October 2024 to discuss the formal verification of proof systems. A summary of the event is available <a href=\"https://zkproof.org/verifier/\">here</a>.",
+                "description": "Intended to support to host a small one day event in Zurich in October 2024 to discuss the formal verification of proof systems. A summary of the event is available <a href=\"https://zkproof.org/verifier\">here</a>.",
                 "awardedTo": "ZKProofs"
+            }
+        ]
+    }
+    {
+        "track": "Community Resources and Education",
+        "items": [
+            {
+                "title": "Foundations of Probabilistic Proofs MOOC",
+                "description": "Intended to support the development of a MOOC on the foundations of probabilistic proofs.",
+                "awardedTo": "Algorithmic Security GmbH (Alessandro Chiesa)",
+                "period": "Q3 2025"
+            }
+            {
+                "title": "EthProofs",
+                "description": "Intended to support the continued development of ethproofs.org following initial work by the Ethereum Digital Studio team.",
+                "awardedTo": "Fara Woolf",
+                "period": "Q2 2025, Q3 2025"
             }
         ]
     }
