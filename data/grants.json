@@ -5,7 +5,7 @@
             {
                 "title": "Verifying autoprecompiles",
                 "description": "Intended to support the verification of Powdr Labs' autoprecompiles.",
-                "awardedTo": "Powdr Labs, Certora",
+                "awardedTo": "Powdr Labs GmbH, Certora",
                 "period": "Q4 2025"
             },
             {
@@ -135,7 +135,7 @@
             {
                 "title": "Fiat-Shamir specification",
                 "description": "Intended to support the development of a specification of the Fiat–Shamir transformation based on duplex sponges",
-                "awardedTo": "Article 12, LLC",
+                "awardedTo": "Article 12, LLC (Michele Orrù)",
                 "period": "Q4 2025"
             },
             {
@@ -198,25 +198,29 @@
             {
                 "title": "HACS 2026",
                 "description": "Intended to support to <a href=\"https://www.hacs-workshop.org/data/HACS_2026_Overview.pdf\">HACS 2026</a> in March 2026.",
-                "awardedTo": "Aspiration"
+                "awardedTo": "Aspiration",
+                "period": "Q1 2026"
             },
             {
                 "title": "HACS 2025",
                 "description": "Intended to support to <a href=\"https://www.hacs-workshop.org/data/HACS_2025_Overview.pdf\">HACS 2025</a> in March 2025.",
-                "awardedTo": "Aspiration"
+                "awardedTo": "Aspiration",
+                "period": "Q1 2025"
             },
             {
                 "title": "ZKProofs 7",
                 "description": "Intended to support to <a href=\"https://zkproof.org/events/zkproof-7-sofia\">ZKProofs 7</a> in March 2025.",
-                "awardedTo": "ZKProofs"
+                "awardedTo": "ZKProofs",
+                "period": "Q1 2025"
             },
             {
                 "title": "ZKProofs Zurich Event",
                 "description": "Intended to support to host a small one day event in Zurich in October 2024 to discuss the formal verification of proof systems. A summary of the event is available <a href=\"https://zkproof.org/verifier\">here</a>.",
-                "awardedTo": "ZKProofs"
+                "awardedTo": "ZKProofs",
+                "period": "Q4 2024"
             }
         ]
-    }
+    },
     {
         "track": "Community Resources and Education",
         "items": [
@@ -225,7 +229,7 @@
                 "description": "Intended to support the development of a MOOC on the foundations of probabilistic proofs.",
                 "awardedTo": "Algorithmic Security GmbH (Alessandro Chiesa)",
                 "period": "Q3 2025"
-            }
+            },
             {
                 "title": "EthProofs",
                 "description": "Intended to support the continued development of ethproofs.org following initial work by the Ethereum Digital Studio team.",
