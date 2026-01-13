@@ -8,7 +8,7 @@ Applications are particularly welcome (but not restricted to) to address the fol
 *   (RISC-V zkVM track) Frameworks to formally verify zkVM precompiles.
 *   (EVM track) Approaches to formally verify EVM implementations. (Note: there is currently limited scope for this given that the EVM used by zkVMs is primarily revm.)
 
-For work related to formalizing proof systems, please see [ArkLib](https://github.com/Verified-zkEVM/ArkLib).
+For work related to formalizing proof systems, please see <a href="https://github.com/Verified-zkEVM/ArkLib" target="_blank">ArkLib</a>." target="_blank">ArkLib</a>.
 
 ### Stage 2
 Stage 2 will be starting soon with a greater focus on proving properties of deployed software than in Stage 1, as well as introducing bounties where possible.

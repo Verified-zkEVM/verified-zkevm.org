@@ -10,31 +10,31 @@
             },
             {
                 "title": "AVAZAR: Automatic verification tools for zkVM arithmetization",
-                "description": "Intended to support the development of TODO.",
+                "description": "Intended to support work on automated verification tools for zkVM arithmetizations.",
                 "awardedTo": "Universidad Complutense de Madrid (Albert Rubio)",
                 "period": "Q4 2025"
             },
             {
-                "title": "ZKVM Agnostic Fuzzing for Detecting Security Vulnerabilities",
-                "description": "Intended to support the development of TODO.",
+                "title": "ZKVM Agnostic Fuzzing",
+                "description": "Intended to support the development of fuzzing techniques applicable to any RISC-V zkVM.",
                 "awardedTo": "zksecurity",
                 "period": "Q3 2025"
             },
             {
                 "title": "zkBugs 2.0",
-                "description": "Intended to support the development of TODO.",
+                "description": "Intended to support an update of <a href=\"https://bugs.zksecurity.xyz\" target=\"_blank\">zkBugs</a>.",
                 "awardedTo": "zksecurity",
                 "period": "Q3 2025"
             },
             {
                 "title": "Automated Verification of ZK Circuits",
-                "description": "Intended to support the development of TODO.",
+                "description": "Intended to support the development of techniques to automatically verify the consistency between witness generation and constraints.",
                 "awardedTo": "Veridise",
                 "period": "Q3 2025"
             },
             {
                 "title": "ZKarnage: Stress Testing ZK Systems Through Maximum Pain",
-                "description": "Intended to support work on prover killers",
+                "description": "Intended to support work on prover killers.",
                 "awardedTo": "Conner Swann",
                 "period": "Q2 2025"
             },
@@ -64,7 +64,7 @@
             },
             {
                 "title": "cLean",
-                "description": "Intended to support the development of <a href=\"https://github.com/Verified-zkEVM/clean\">cLean</a>, a Lean DSL aimed at writing AIR circuits directly in Lean (rather than verifying pre-existing circuits extracted to Lean).",
+                "description": "Intended to support the development of <a href=\"https://github.com/Verified-zkEVM/clean\" target=\"_blank\">cLean</a>, a Lean DSL aimed at writing AIR circuits directly in Lean (rather than verifying pre-existing circuits extracted to Lean).",
                 "awardedTo": "zkSecurity",
                 "period": "Q4 2025"
             },
@@ -169,7 +169,7 @@
             },
             {
                 "title": "ArkLib",
-                "description": "Intended to support the development of <a href=\"https://github.com/Verified-zkEVM/ArkLib\">ArkLib</a>, a library of formalized proof systems in Lean, accompanied by work on <a href=\"https://github.com/Verified-zkEVM/VCV-io\">VCVio</a>.",
+                "description": "Intended to support the development of <a href=\"https://github.com/Verified-zkEVM/ArkLib\" target=\"_blank\">ArkLib</a>, a library of formalized proof systems in Lean, accompanied by work on <a href=\"https://github.com/Verified-zkEVM/VCV-io\" target=\"_blank\">VCVio</a>.",
                 "awardedTo": "Quang Dao, Devon Tuma, zkSecurity",
                 "period": "Q4 2024"
             }
@@ -186,7 +186,7 @@
             },
             {
                 "title": "Lean backend for hax",
-                "description": "Intended to support the development of a Lean backend for <a href=\"https://github.com/cryspen/hax\">hax</a>.",
+                "description": "Intended to support the development of a Lean backend for <a href=\"https://github.com/cryspen/hax\" target=\"_blank\">hax</a>.",
                 "awardedTo": "Cryspen",
                 "period": "Q2 2025, Q4 2025"
             }
@@ -197,25 +197,25 @@
         "items": [
             {
                 "title": "HACS 2026",
-                "description": "Intended to support to <a href=\"https://www.hacs-workshop.org/data/HACS_2026_Overview.pdf\">HACS 2026</a> in March 2026.",
+                "description": "Intended to support to <a href=\"https://www.hacs-workshop.org/data/HACS_2026_Overview.pdf\" target=\"_blank\">HACS 2026</a> in March 2026.",
                 "awardedTo": "Aspiration",
                 "period": "Q1 2026"
             },
             {
                 "title": "HACS 2025",
-                "description": "Intended to support to <a href=\"https://www.hacs-workshop.org/data/HACS_2025_Overview.pdf\">HACS 2025</a> in March 2025.",
+                "description": "Intended to support to <a href=\"https://www.hacs-workshop.org/data/HACS_2025_Overview.pdf\" target=\"_blank\">HACS 2025</a> in March 2025.",
                 "awardedTo": "Aspiration",
                 "period": "Q1 2025"
             },
             {
                 "title": "ZKProofs 7",
-                "description": "Intended to support to <a href=\"https://zkproof.org/events/zkproof-7-sofia\">ZKProofs 7</a> in March 2025.",
+                "description": "Intended to support to <a href=\"https://zkproof.org/events/zkproof-7-sofia\" target=\"_blank\">ZKProofs 7</a> in March 2025.",
                 "awardedTo": "ZKProofs",
                 "period": "Q1 2025"
             },
             {
                 "title": "ZKProofs Zurich Event",
-                "description": "Intended to support to host a small one day event in Zurich in October 2024 to discuss the formal verification of proof systems. A summary of the event is available <a href=\"https://zkproof.org/verifier\">here</a>.",
+                "description": "Intended to support to host a small one day event in Zurich in October 2024 to discuss the formal verification of proof systems. A summary of the event is available <a href=\"https://zkproof.org/verifier\" target=\"_blank\">here</a>.",
                 "awardedTo": "ZKProofs",
                 "period": "Q4 2024"
             }
