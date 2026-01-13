@@ -77,7 +77,7 @@
             {
                 "title": "Lean backend for Sail",
                 "description": "Intended to support the development of a Lean backend for Sail (adding to the existing HOL4, Isabelle, and Rocq backends) that will allow the extraction of the official RISC-V Sail specification to Lean.",
-                "awardedTo": "University of Cambridge, Cambridge Enterprise, Galois, Lindy Labs (first grant only)",
+                "awardedTo": "University of Cambridge, Galois, Lindy Labs (first grant only)",
                 "period": "Q1 2025, Q3 2025"
             },
             {
