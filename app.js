@@ -71,10 +71,14 @@ async function loadGrants() {
             track.items.forEach(item => {
                 const li = document.createElement('li');
                 li.className = 'grant-item';
+                const periodHtml = item.period ? `<p class="grant-period"><strong>Period:</strong> ${item.period}</p>` : '';
                 li.innerHTML = `
                     <h4>${item.title}</h4>
                     <p>${item.description}</p>
-                    <p class="awarded-to"><strong>Awarded to:</strong> ${item.awardedTo}</p>
+                    <div class="grant-meta">
+                        <p class="awarded-to"><strong>Awarded to:</strong> ${item.awardedTo}</p>
+                        ${periodHtml}
+                    </div>
                 `;
                 list.appendChild(li);
             });

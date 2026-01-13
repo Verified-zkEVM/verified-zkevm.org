@@ -489,3 +489,20 @@ a:hover {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+/* Grant Metadata */
+.grant-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.grant-meta p {
+    margin: 0;
+}
+
+.grant-period {
+    color: var(--text-secondary);
+}
