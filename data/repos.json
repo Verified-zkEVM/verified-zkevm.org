@@ -6,6 +6,11 @@
     "Verified-zkEVM/VCV-io",
     "Verified-zkEVM/clean",
     "Verified-zkEVM/Overview",
+    "project-llzk/circom",
+    "project-llzk/llzk-lib",
+    "project-llzk/llzk-rs",
+    "project-llzk/llzk-nix-pkgs",
     "project-llzk/llzk-benchmarks",
-    "NethermindEth/CertiPlonk"
+    "NethermindEth/CertiPlonk",
+    "formal-land/garden"
 ]
