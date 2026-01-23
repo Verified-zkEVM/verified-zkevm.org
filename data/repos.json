@@ -11,5 +11,6 @@
     "project-llzk/llzk-rs",
     "project-llzk/llzk-nix-pkgs",
     "project-llzk/llzk-benchmarks",
-    "NethermindEth/CertiPlonk"
+    "NethermindEth/CertiPlonk",
+    "formal-land/garden"
 ]
