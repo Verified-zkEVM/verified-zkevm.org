@@ -56,6 +56,10 @@
         "category": "Blog Posts & Articles",
         "items": [
             {
+                "title": "[Formal Land, January 2026] Formal verification of the Keccak precompile from Plonky3",
+                "url": "https://formal.land/blog/2026/01/14/formal-verification-keccak-plonky3"
+            },
+            {
                 "title": "[Nethermind, November 2025] Formally Verifying Zero-Knowledge Circuits: Introducing CertiPlonk",
                 "url": "https://www.nethermind.io/blog/formally-verifying-zero-knowledge-circuits-introducing-certiplonk"
             },
