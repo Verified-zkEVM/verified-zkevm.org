@@ -52,8 +52,12 @@
         "category": "Blog Posts & Articles",
         "items": [
             {
-                "title": "[zkSecurity, March 2025] Introducing clean, a formal verification DSL for ZK circuits in Lean4 - Giorgio Dell'Immagine",
-                "url": "https://blog.zksecurity.xyz/posts/clean/"
+                "title": "[Nethermind, November 2025] Formally Verifying Zero-Knowledge Circuits: Introducing CertiPlonk",
+                "url": "https://www.nethermind.io/blog/formally-verifying-zero-knowledge-circuits-introducing-certiplonk"
+            },
+            {
+                "title": "[zkSecurity, March 2025] Introducing clean, a formal verification DSL for ZK circuits in Lean4",
+                "url": "https://blog.zksecurity.xyz/posts/clean"
             }
         ]
     },
