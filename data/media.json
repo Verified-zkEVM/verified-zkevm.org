@@ -79,6 +79,15 @@
     },
     {
         "category": "Papers",
-        "items": []
+        "items": [
+            {
+                "title": "[OOPSLA 2025] Certified Decision Procedures for Width-Independent Bitvector Predicates. Siddharth Bhat, Léo Stefanesco, Chris Hughes, Tobias Grosser.",
+                "url": "https://dl.acm.org/doi/pdf/10.1145/3763148"
+            },
+            {
+                "title": "[OOPSLA 2025] Interactive Bitvector Reasoning using Verified Bit-Blasting. Henrik Böving, Siddharth Bhat, Luisa Cicolini, Alex Keizer, Léon Frenot, Abdalrhman Mohamed, Léo Stefanesco, Harun Khan, Joshua Clune, Clark Barrett, Tobias Grosser.",
+                "url": "https://dl.acm.org/doi/pdf/10.1145/3763167"
+            }
+        ]
     }
 ]
