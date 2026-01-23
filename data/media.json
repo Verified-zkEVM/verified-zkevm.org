@@ -70,19 +70,23 @@
             {
                 "title": "[Formal Land, September 2025] Verification of the completeness of an OpenVM chip",
                 "url": "https://formal.land/blog/2025/09/02/verification-completeness-open-vm-chip"
-            }
+            },
+            {
+                "title": "[Veridise, August 2025] Announcing LLZK: A unified, open-source intermediate representation (IR) for zero-knowledge languages",
+                "url": "https://veridise.com/blog/zero-knowledge/announcing-llzk-a-unified-open-source-intermediate-representation-ir-for-zero-knowledge-languages"
+            },
             {
                 "title": "[Formal Land, August 2025] Pretty-printing of Rust ZK constraints",
                 "url": "https://formal.land/blog/2025/08/26/pretty-printing-rust-constraints"
-            }
+            },
             {
                 "title": "[Formal Land, August 2025] Formal verification of an OpenVM chip",
                 "url": "https://formal.land/blog/2025/08/13/verification-of-openvm-branch-eq"
-            }
+            },
             {
                 "title": "[Formal Land, July 2025] Formal verification of LLZK circuits in Rocq",
                 "url": "https://formal.land/blog/2025/07/31/llzk-to-rocq-verification"
-            }
+            },
             {
                 "title": "[Formal Land, July 2025] Semantics for LLZK in Rocq",
                 "url": "https://formal.land/blog/2025/07/30/llzk-to-rocq-semantics"
@@ -90,7 +94,7 @@
             {
                 "title": "[Formal Land, July 2025] Beginning of a formal verification tool for LLZK",
                 "url": "https://formal.land/blog/2025/07/28/llzk-to-rocq-beginning"
-            }
+            },
             {
                 "title": "[Formal Land, June 2025] Beginning of translation of OpenVM to Rocq",
                 "url": "https://formal.land/blog/2025/06/15/beginning-of-openvm-to-rocq"

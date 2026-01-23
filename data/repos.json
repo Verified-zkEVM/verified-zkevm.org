@@ -11,6 +11,7 @@
     "project-llzk/llzk-rs",
     "project-llzk/llzk-nix-pkgs",
     "project-llzk/llzk-benchmarks",
+    "Veridise/zirgen-to-llzk",
     "NethermindEth/CertiPlonk",
     "formal-land/garden"
 ]
