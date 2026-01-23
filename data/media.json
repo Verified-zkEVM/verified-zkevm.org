@@ -3,47 +3,51 @@
         "category": "Video Updates & Presentations",
         "items": [
             {
-                "title": "Katerina Hristova - Coding Theory in ArkLib (January 22nd, 2026)",
+                "title": "[January 2026] Coding Theory in ArkLib",
                 "url": "https://www.youtube.com/watch?v=K4TqxUznYLo"
             },
             {
-                "title": "Quang Dao - ArkLib (January 12t, 2026)",
+                "title": "[January 2026] ArkLib",
                 "url": "https://youtu.be/4aVI7MS0S4g"
             },
             {
-                "title": "Devon Tuma - Formally Verifying the SP1 RISC-V AIRs (December 9th, 2025)",
+                "title": "[December 2025] Formally Verifying the SP1 RISC-V AIRs",
                 "url": "https://youtu.be/4VnolGW-iv4"
             },
             {
-                "title": "Securing Ethereum: The ZK-EVM Formal Verification Project | Alexander Hicks from Ethereum Foundation (November 16th, 2025)",
+                "title": "[November 2025] Securing Ethereum: The ZK-EVM Formal Verification Project",
                 "url": "https://youtu.be/jbCDHb4GMUw?si=O_VArNnHyDZyVp77"
             },
             {
-                "title": "pq2-08: Walkthrough of ArkLib (October 5th, 2025)",
+                "title": "[October 2025] Walkthrough of ArkLib",
                 "url": "https://youtu.be/xmvySCWZwN8?si=HNayiIjqy2G0sMih"
             },
             {
-                "title": "pq2-05: e2e Formal Verification (October 5th, 2025)",
+                "title": "[October 2025] pq2-05: e2e Formal Verification",
                 "url": "https://youtu.be/muryYp1ZIO8?si=9LwsDPydNwIO1Vt2"
             },
             {
-                "title": "[ZKProofs 7, March 2025] Formally verifying zk(E)VMs with the Ethereum Foundation - Alexander Hicks (Ethereum Foundation Research)",
+                "title": "[September 2025] LLZK: Open-source infrastructure for secure ZK",
+                "url": "https://www.youtube.com/watch?v=8vgPLhtwNJU"
+            },
+            {
+                "title": "[March 2025] Formally verifying zk(E)VMs with the Ethereum Foundation",
                 "url": "https://www.youtube.com/live/L_uz5rH50Sw?si=U_TtFXsHbMr5lpZ9"
             },
             {
-                "title": "[ZKProofs 7, March 2025] Towards a verified Jolt zkVM - James Parker (Galois)",
+                "title": "[March 2025] Towards a verified Jolt zkVM",
                 "url": "https://www.youtube.com/live/O_bT89JK6_c?si=Sn1BiY__PWRAzoH9"
             },
             {
-                "title": "[Project update, March 2025] Q1 2025: Cryptography Track update",
+                "title": "[March 2025] Q1 2025: Cryptography Track update",
                 "url": "https://youtu.be/1bULK8iFVEo?si=vIQRUPyQDLalVs6c"
             },
             {
-                "title": "[Project update, March 2025] Q1 2025: zkVM Track update",
+                "title": "[March 2025] Q1 2025: zkVM Track update",
                 "url": "https://youtu.be/C2NfJoihXyQ?si=PSjELgJCbwHtRgd6"
             },
             {
-                "title": "[Project update, March 2025] Q1 2025: EVM Track update",
+                "title": "[March 2025] Q1 2025: EVM Track update",
                 "url": "https://youtu.be/op9LYW9083w?si=IQKjEMRxjA0ktFMK"
             }
         ]
@@ -52,8 +56,24 @@
         "category": "Blog Posts & Articles",
         "items": [
             {
-                "title": "[zkSecurity, March 2025] Introducing clean, a formal verification DSL for ZK circuits in Lean4 - Giorgio Dell'Immagine",
-                "url": "https://blog.zksecurity.xyz/posts/clean/"
+                "title": "[Formal Land, January 2026] Formal verification of the Keccak precompile from Plonky3",
+                "url": "https://formal.land/blog/2026/01/14/formal-verification-keccak-plonky3"
+            },
+            {
+                "title": "[zkSecurity, November 2025] Comparison of Formal Verification Frameworks for Arithmetic Circuits",
+                "url": "https://blog.zksecurity.xyz/posts/formal-verification-arithmetic-circuits/"
+            },
+            {
+                "title": "[Nethermind, November 2025] Formally Verifying Zero-Knowledge Circuits: Introducing CertiPlonk",
+                "url": "https://www.nethermind.io/blog/formally-verifying-zero-knowledge-circuits-introducing-certiplonk"
+            },
+            {
+                "title": "[Galois, September 2025] Automated Lean Proofs for Every Type",
+                "url": "https://www.galois.com/articles/automated-lean-proofs-for-every-type"
+            },
+            {
+                "title": "[zkSecurity, March 2025] Introducing clean, a formal verification DSL for ZK circuits in Lean4",
+                "url": "https://blog.zksecurity.xyz/posts/clean"
             }
         ]
     },
