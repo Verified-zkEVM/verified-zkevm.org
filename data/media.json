@@ -68,6 +68,10 @@
                 "url": "https://www.nethermind.io/blog/formally-verifying-zero-knowledge-circuits-introducing-certiplonk"
             },
             {
+                "title": "[Galois, September 2025] Automated Lean Proofs for Every Type",
+                "url": "https://www.galois.com/articles/automated-lean-proofs-for-every-type"
+            },
+            {
                 "title": "[zkSecurity, March 2025] Introducing clean, a formal verification DSL for ZK circuits in Lean4",
                 "url": "https://blog.zksecurity.xyz/posts/clean"
             }
