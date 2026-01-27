@@ -64,6 +64,10 @@
                 "url": "https://formal.land/blog/2026/01/14/formal-verification-keccak-plonky3"
             },
             {
+                "title": "[zkSecurity, November 2025] Comparison of Formal Verification Frameworks for Arithmetic Circuits",
+                "url": "https://blog.zksecurity.xyz/posts/formal-verification-arithmetic-circuits/"
+            },
+            {
                 "title": "[Nethermind, November 2025] Formally Verifying Zero-Knowledge Circuits: Introducing CertiPlonk",
                 "url": "https://www.nethermind.io/blog/formally-verifying-zero-knowledge-circuits-introducing-certiplonk"
             },
