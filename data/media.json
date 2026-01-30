@@ -60,6 +60,10 @@
         "category": "Blog Posts & Articles",
         "items": [
             {
+                "title": "[zkSecurity, January 2026] Lean4 Formalization of \"a Simplified Round-by-round Soundness Proof of FRI\"",
+                "url": "https://blog.zksecurity.xyz/posts/simple-rbr-fri/"
+            },
+            {
                 "title": "[Formal Land, January 2026] Formal verification of the Keccak precompile from Plonky3",
                 "url": "https://formal.land/blog/2026/01/14/formal-verification-keccak-plonky3"
             },
