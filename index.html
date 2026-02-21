@@ -42,16 +42,15 @@
             <nav>
                 <a href="#top" class="nav-link">Home</a>
                 <a href="#overview" class="nav-link">Overview</a>
-                <a href="#stages" class="nav-link">Stages</a>
+                <a href="#tracks" class="nav-link">Tracks</a>
                 <a href="#documentation" class="nav-link">Documentation</a>
-                <a href="#funding" class="nav-link">Grants & Funding</a>
-                <a href="#awarded" class="nav-link">Grants Awarded</a>
+                <a href="#grants" class="nav-link">Grants</a>
                 <a href="#contact" class="nav-link">Contact</a>
                 <a href="#activity" class="nav-link">Activity</a>
             </nav>
-            <div class="sidebar-footer">
+            <!-- <div class="sidebar-footer">
                 <p>&copy; 2025 Ethereum Foundation</p>
-            </div>
+            </div> -->
         </aside>
 
         <!-- Main Content -->
@@ -69,19 +68,14 @@
                 <div id="overview-content">
                     <!-- Overview content loaded via JS -->
                 </div>
+            </section>
 
-                <h3>Tracks</h3>
+            <section id="tracks" class="content-section">
+                <h2>Tracks</h2>
                 <div id="tracks-container" class="grid-container">
                     <!-- Tracks loaded via JS -->
                 </div>
             </section>
-
-            <section id="stages" class="content-section">
-                <div id="stages-content">
-                    <!-- Stages content loaded via JS -->
-                </div>
-            </section>
-
 
             <section id="documentation" class="content-section">
                 <h2>Documentation</h2>
@@ -100,93 +94,22 @@
                 </div>
             </section>
 
-            <section id="funding" class="content-section">
-                <h2>Grants & Funding</h2>
+            <section id="grants" class="content-section">
+                <h2>Grants</h2>
                 <div class="alert-box">
-                    <strong>Status:</strong> Applications are currently closed while we prepare for Stage 2.
+                    <strong>Status:</strong> Applications are currently open. Although applications are not restricted
+                    to these, please see the RFPs below.
                 </div>
 
-                <div class="card">
-                    <h3>Application Requirements</h3>
-                    <p>
-                        All applications must have a written proposal in PDF format addressing the following details:
-                    </p>
-                    <ol class="styled-list">
-                        <li>
-                            <strong>Proposal overview</strong>
-                            <ul>
-                                <li>Proposed work, including goals, approach, and expected outcomes. Proposals should
-                                    clearly explain what the proposal's target is and what a successful completion of
-                                    the work would enable.</li>
-                                <li>Chosen methods and tools.</li>
-                                <li>Challenges, risks, and expected caveats.</li>
-                                <li>Timeline, including possible milestones. Do you need some other work to be completed
-                                    (by yourself or others) before beginning your proposed work?</li>
-                                <li>Team composition.</li>
-                                <li>Costs.</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Technical approach</strong>
-                            <ul>
-                                <li>Breakdown of technical tasks.</li>
-                                <li>References to relevant work.</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Project management</strong>
-                            <ul>
-                                <li>Plans for coordination and communication about your work.</li>
-                                <li>Approach to maintaining or extending your work and enabling external contributions
-                                    to facilitate this.</li>
-                                <li>Planned resource allocation (human and financial).</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <strong>Team</strong>
-                            <ul>
-                                <li>Background and expertise of your team members.</li>
-                                <li>Track record, including public repositories and published work relevant to your
-                                    proposal.</li>
-                            </ul>
-                        </li>
-                    </ol>
-                    <p>
-                        Applications are open to any individuals, teams, and organizations, and will be selected for
-                        funding on a case-by-case basis.
-                        Submitting more than one proposal is allowed as long as each proposal is distinct and relevant
-                        to the project.
-                        Funding will be subject to a KYC process.
-                    </p>
-                    <p>
-                        Several independent proposals may have similar goals.
-                        In such cases, it is possible for several proposals to be funded if comparing the results of
-                        different approaches to the same problem would be useful, or if several teams can work together
-                        on similar or complementary goals.
-                        Being flexible in this regard can be a plus.
-                    </p>
-                    <p>
-                        If your proposal is for general tooling, please make sure to address what this will be useful
-                        for within the expected lifetime of this project (e.g., verifying a specific artefact) and how
-                        others will also be able to use it.
-                    </p>
-                    <p>
-                        If your application relates to the cryptography track, please take into account <a
-                            href="https://github.com/Verified-zkEVM/ArkLib" target="_blank">ArkLib</a>.
-                    </p>
-                    <p>
-                        If your application relates to circuits, please take into account <a
-                            href="https://github.com/Veridise/llzk-lib" target="_blank">LLZK</a>.
-                    </p>
-                    <p>
-                        Once applications are open again, proposals can be sent until further notice to <a
-                            href="mailto:verified-zkevm@ethereum.org">verified-zkevm@ethereum.org</a>.
-                    </p>
+                <div class="card" id="rfps-content">
+                    <!-- RFPs content loaded via JS -->
                 </div>
-            </section>
 
-            <section id="awarded" class="content-section">
-                <h2>Grants Awarded</h2>
+                <div class="card" id="applications-content">
+                    <!-- Applications loaded via JS -->
+                </div>
+
+                <h3>Grants Awarded</h3>
                 <div id="grants-container" class="card">
                     <!-- Grants content loaded via JS -->
                 </div>
