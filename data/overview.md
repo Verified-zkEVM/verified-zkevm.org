@@ -18,6 +18,3 @@ Shared methods/languages for interacting components are preferred.
 High standard of openness and documentation is expected to facilitate evaluation and collaborative work on complex projects.
 
 As zkVMs evolve, there is a crucial need for maintainability and extensibility. We aim to support development and the push for greater performance, not slow it down.
-
-### Overview and highlights of ongoing work
-

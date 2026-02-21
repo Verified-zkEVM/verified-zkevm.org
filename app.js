@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadMarkdown('data/overview.md', 'overview-content');
     loadTracks();
-    loadMarkdown('data/stages.md', 'stages-content');
+    loadMarkdown('data/rfps.md', 'rfps-content');
+    loadMarkdown('data/applications.md', 'applications-content');
     loadMarkdown('data/contact.md', 'contact-content');
     loadGithubActivity();
     loadGrants();
@@ -32,13 +33,13 @@ async function loadTracks() {
         if (!container) return;
 
         data.forEach(track => {
-            const card = document.createElement('div');
-            card.className = 'card track-card';
-            card.innerHTML = `
-                <h4>${track.title}</h4>
+            const trackSection = document.createElement('div');
+            trackSection.className = 'card track-card';
+            trackSection.innerHTML = `
+                <h3>${track.title}</h3>
                 <p>${track.description}</p>
             `;
-            container.appendChild(card);
+            container.appendChild(trackSection);
         });
     } catch (error) {
         console.error('Error loading tracks:', error);
@@ -259,7 +260,7 @@ async function loadGithubActivity() {
         // Fetch events for each repo in parallel
         const fetchPromises = repos.map(async repo => {
             try {
-                const eventsResponse = await fetch(`https://api.github.com/repos/${repo}/events?per_page=5`);
+                const eventsResponse = await fetch(`https://api.github.com/repos/${repo}/events?per_page=30`);
                 if (eventsResponse.ok) {
                     return await eventsResponse.json();
                 }
@@ -273,11 +274,32 @@ async function loadGithubActivity() {
         const results = await Promise.all(fetchPromises);
         const allEvents = results.flat();
 
+        const meaningfulEvents = allEvents.filter(event => {
+            switch (event.type) {
+                case 'PushEvent':
+                    return event.payload.ref === 'refs/heads/main' || event.payload.ref === 'refs/heads/master';
+                case 'PullRequestEvent':
+                    return event.payload.action === 'opened' || event.payload.action === 'merged' || (event.payload.action === 'closed' && event.payload.pull_request.merged);
+                case 'ReleaseEvent':
+                    return event.payload.action === 'published';
+                case 'GollumEvent':
+                    return true;
+                case 'IssuesEvent':
+                    return event.payload.action === 'opened' || event.payload.action === 'closed';
+                case 'DiscussionEvent':
+                    return event.payload.action === 'created';
+                case 'PullRequestReviewEvent':
+                    return event.payload.action === 'created';
+                default:
+                    return false;
+            }
+        });
+
         // Sort by date (newest first)
-        allEvents.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        meaningfulEvents.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
         // Keep top 10
-        const topEvents = allEvents.slice(0, 10);
+        const topEvents = meaningfulEvents.slice(0, 10);
 
         // Cache result
         localStorage.setItem(CACHE_KEY, JSON.stringify({
@@ -317,12 +339,30 @@ function renderActivity(events, container) {
                 details = `branch <code>${event.payload.ref.replace('refs/heads/', '')}</code>`;
                 break;
             case 'PullRequestEvent':
-                action = `opened PR #${event.payload.number}`;
+                const prAction = (event.payload.action === 'merged' || (event.payload.action === 'closed' && event.payload.pull_request.merged)) ? 'merged' : 'opened';
+                action = `${prAction} PR #${event.payload.number}`;
                 details = `<a href="${event.payload.pull_request.html_url}" target="_blank">${event.payload.pull_request.title}</a>`;
                 break;
             case 'IssuesEvent':
                 action = `${event.payload.action} issue #${event.payload.issue.number}`;
                 details = `<a href="${event.payload.issue.html_url}" target="_blank">${event.payload.issue.title}</a>`;
+                break;
+            case 'ReleaseEvent':
+                action = `published release`;
+                details = `<a href="${event.payload.release.html_url}" target="_blank">${event.payload.release.name || event.payload.release.tag_name}</a>`;
+                break;
+            case 'DiscussionEvent':
+                action = `${event.payload.action} discussion`;
+                details = `<a href="${event.payload.discussion.html_url}" target="_blank">${event.payload.discussion.title}</a>`;
+                break;
+            case 'GollumEvent':
+                const page = event.payload.pages[0];
+                action = `${page.action} wiki page`;
+                details = `<a href="${page.html_url}" target="_blank">${page.title}</a>`;
+                break;
+            case 'PullRequestReviewEvent':
+                action = `reviewed PR #${event.payload.pull_request.number}`;
+                details = `<a href="${event.payload.review.html_url}" target="_blank">${event.payload.pull_request.title}</a>`;
                 break;
             default:
                 action = 'acted on';
