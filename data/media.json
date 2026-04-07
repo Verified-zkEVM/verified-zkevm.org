@@ -3,6 +3,10 @@
         "category": "Video Updates & Presentations",
         "items": [
             {
+                "title": "[April 2026] Yoichi Hirai - Your guide to formal verification when machines write Lean proofs",
+                "url": "https://www.youtube.com/watch?v=ciZZRyN26Dg"
+            },
+            {
               "title": "[February 2026] Julian Sutherland - FRI in ArkLib + Yoichi Hirai - Vibe FRI RBR soundness",
               "url": "https://youtu.be/tFbTc6fpCNc"
             },
