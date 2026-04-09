@@ -300,6 +300,13 @@ a:hover {
     padding: 0;
 }
 
+.disclaimer {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
 .grant-item {
     margin-bottom: 1.5rem;
     padding-bottom: 1.5rem;

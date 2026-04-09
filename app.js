@@ -151,6 +151,14 @@ async function loadMedia() {
                 const list = document.createElement('ul');
                 list.className = 'media-list';
 
+                // Add disclaimer for Papers category
+                if (category.category === 'Papers') {
+                    const disclaimer = document.createElement('p');
+                    disclaimer.className = 'disclaimer';
+                    disclaimer.innerHTML = '<em>Note: Papers may be co-funded with other organizations and not all authors are necessarily funded by this project.</em>';
+                    categorySection.appendChild(disclaimer);
+                }
+
                 category.items.forEach(item => {
                     const li = document.createElement('li');
                     li.innerHTML = `<a href="${item.url}" target="_blank">${item.title}</a>`;
