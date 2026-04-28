@@ -1,0 +1,15 @@
+name = "verified-zkevm-site"
+version = "0.1.0"
+defaultTargets = ["VerifiedZkEvmSite", "generate-site"]
+
+[[require]]
+name = "verso"
+git = "https://github.com/leanprover/verso.git"
+rev = "v4.29.0"
+
+[[lean_lib]]
+name = "VerifiedZkEvmSite"
+
+[[lean_exe]]
+name = "generate-site"
+root = "Main"
