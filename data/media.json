@@ -84,6 +84,10 @@
         "category": "Blog Posts & Articles",
         "items": [
             {
+                "title": "[zkSecurity, April 2026] The Final Form of Software Development",
+                "url": "https://blog.zksecurity.xyz/posts/end-coding/"
+            },
+            {
                 "title": "[zkSecurity, January 2026] Lean4 Formalization of \"a Simplified Round-by-round Soundness Proof of FRI\"",
                 "url": "https://blog.zksecurity.xyz/posts/simple-rbr-fri/"
             },
