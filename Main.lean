@@ -1,5 +1,5 @@
 import VersoBlog
-import VerifiedZkEvmSite
+import «verified-zkevm»
 
 open Verso Genre Blog Site Syntax
 
@@ -48,11 +48,12 @@ def theme : Theme :=
                   <img src={{ s!"{homeHref}static/eth-diamond-multi.png" }} alt="Verified zkEVMs logo"/>
                   <span>"Verified zkEVMs"</span>
                 </a>
-                {{ ← topNav }}
+                {{ ← VerifiedZkEvmSite.topLevelNav }}
               </div>
             </header>
             <main class="site-main">
               <div class="site-shell">
+                {{ ← VerifiedZkEvmSite.sectionNav }}
                 {{ ← VerifiedZkEvmSite.breadcrumbs 2 }}
                 {{ ← param "content" }}
                 {{ catList }}
@@ -68,7 +69,47 @@ def theme : Theme :=
     |>.override #[] {
       template := do
         pure {{
-          <article class="frontpage">
+          <article class="frontpage frontpage--home">
+            <h1>{{ ← param (α := String) "title" }}</h1>
+            {{ ← param "content" }}
+          </article>
+        }},
+      params := id
+    }
+    |>.override #["project"] {
+      template := do
+        pure {{
+          <article class="landing-page landing-page--project">
+            <h1>{{ ← param (α := String) "title" }}</h1>
+            {{ ← param "content" }}
+          </article>
+        }},
+      params := id
+    }
+    |>.override #["project", "tracks"] {
+      template := do
+        pure {{
+          <article class="landing-page landing-page--tracks">
+            <h1>{{ ← param (α := String) "title" }}</h1>
+            {{ ← param "content" }}
+          </article>
+        }},
+      params := id
+    }
+    |>.override #["grants"] {
+      template := do
+        pure {{
+          <article class="landing-page landing-page--grants">
+            <h1>{{ ← param (α := String) "title" }}</h1>
+            {{ ← param "content" }}
+          </article>
+        }},
+      params := id
+    }
+    |>.override #["resources"] {
+      template := do
+        pure {{
+          <article class="landing-page landing-page--resources">
             <h1>{{ ← param (α := String) "title" }}</h1>
             {{ ← param "content" }}
           </article>
@@ -76,26 +117,27 @@ def theme : Theme :=
       params := id
     }
 
-def website : Site := site VerifiedZkEvmSite.FrontPage /
+def website : Site := site «verified-zkevm».FrontPage /
   static "static" ← "static_files"
-  "project" VerifiedZkEvmSite.Project.Index /
-    "overview" VerifiedZkEvmSite.Project.Overview
-    "tracks" VerifiedZkEvmSite.Project.Tracks /
-      "riscv-zkvm" VerifiedZkEvmSite.Tracks.RiscvZkvm
-      "evm" VerifiedZkEvmSite.Tracks.Evm
-      "cryptography" VerifiedZkEvmSite.Tracks.Cryptography
-  "grants" VerifiedZkEvmSite.Grants.Index /
-    "rfps" VerifiedZkEvmSite.Grants.RFPs
-    "application-guidelines" VerifiedZkEvmSite.Grants.ApplicationGuidelines
-    "awarded" VerifiedZkEvmSite.Grants.Awarded
-  "resources" VerifiedZkEvmSite.Resources.Index /
-    "repositories" VerifiedZkEvmSite.Resources.Repositories
-    "talks-and-videos" VerifiedZkEvmSite.Resources.Talks
-    "articles" VerifiedZkEvmSite.Resources.Articles
-    "papers" VerifiedZkEvmSite.Resources.Papers
-  "activity" VerifiedZkEvmSite.Activity
-  "docs" VerifiedZkEvmSite.Docs
-  "updates" VerifiedZkEvmSite.Updates
-  "contact" VerifiedZkEvmSite.Contact
+  "project" «verified-zkevm».Project.Index /
+    "tracks" «verified-zkevm».Project.Tracks /
+      "riscv-zkvm" «verified-zkevm».Tracks.RiscvZkvm
+      "evm" «verified-zkevm».Tracks.Evm
+      "cryptography" «verified-zkevm».Tracks.Cryptography
+  "grants" «verified-zkevm».Grants.Index /
+    "rfps" «verified-zkevm».Grants.RFPs
+    "application-guidelines" «verified-zkevm».Grants.ApplicationGuidelines
+    "awarded" «verified-zkevm».Grants.Awarded /
+      "clean" «verified-zkevm».Grants.Awarded.Clean
+      "llzk" «verified-zkevm».Grants.Awarded.LLZK
+      "arklib" «verified-zkevm».Grants.Awarded.ArkLib
+  "resources" «verified-zkevm».Resources.Index /
+    "repositories" «verified-zkevm».Resources.Repositories
+    "talks-and-videos" «verified-zkevm».Resources.Talks
+    "articles" «verified-zkevm».Resources.Articles
+    "papers" «verified-zkevm».Resources.Papers
+  "docs" «verified-zkevm».Docs
+  "updates" «verified-zkevm».Updates
+  "contact" «verified-zkevm».Contact
 
 def main := blogMain theme website

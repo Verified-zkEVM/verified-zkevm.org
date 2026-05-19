@@ -1,23 +1,23 @@
 import VersoBlog
+import «verified-zkevm».Meta
 
-open Verso Genre Blog
+open Verso Genre Blog VerifiedZkEvmSite
 
 #doc (Page) "Tracks" =>
 
 The project is currently organized around three main tracks.
 
-# Track Pages
+# Tracks
+
+:::featured_tracks
+
+:::
+
+Each track page now combines overview, current status, outcomes, and related resources in one place:
 
 * [RISC-V zkVM Track](/project/tracks/riscv-zkvm/)
 * [EVM Track](/project/tracks/evm/)
 * [Cryptography Track](/project/tracks/cryptography/)
-
-This split is intended to scale. Each track can eventually grow from a short summary into a small documentation area with:
-
-* current status pages
-* artefact and repository links
-* grant-linked outcomes
-* notes on methodology and open questions
 
 # Current Summaries
 
