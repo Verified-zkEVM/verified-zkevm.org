@@ -9,10 +9,6 @@ open Verso Genre Blog VerifiedZkEvmSite
 
 :::
 
-The project supports formal verification work across zkVMs, EVM implementations, and the cryptographic core of the stack.
-
-Start with the [Project Overview](project/) if you want the aims and framing, or go directly to the three core tracks below.
-
 # Tracks
 
 :::featured_tracks
@@ -24,11 +20,3 @@ Start with the [Project Overview](project/) if you want the aims and framing, or
 :::grant_snapshot
 
 :::
-
-# Selected Resources
-
-:::featured_resources
-
-:::
-
-For funding details, browse [Grants](grants/). For code, talks, articles, and papers, use [Resources](resources/). Project contact details remain on the [Contact](contact/) page.

@@ -17,7 +17,7 @@ def TrackKey.title : TrackKey → String
   | .cryptography => "Cryptography"
 
 def TrackKey.path : TrackKey → List String
-  | t => ["project", "tracks", t.slug]
+  | t => ["project", t.slug]
 
 def trackKeyOfSlug? (slug : String) : Option TrackKey :=
   match slug with
@@ -77,36 +77,40 @@ def tracks : Array TrackInfo := #[
   },
   {
     key := .evm
-    summary := "Verification that EVM implementations on RISC-V correctly realize the EVM specification."
-    focus := "This track sits at the boundary between language semantics, implementations, and compilation paths that matter for zkVM targets."
-    statusHeadline := "The EVM track is narrower than the zkVM infrastructure track, but it already has a clear technical center of gravity."
-    statusSummary := "Work here is focused on maintaining executable and validated EVM specifications, relating existing semantics frameworks, and verifying practical implementations that target RISC-V and zkVM environments."
+    summary := "Verifying that the EVM guest program executed inside a zkVM correctly implements the EVM specification, with the assurance carried down to the RISC-V the prover actually runs."
+    focus := "A zkVM proves the execution of a guest program, but there is no canonical guest. EVM implementations exist in Rust, Go, C++, Java, and other languages with very different formal-verification friendliness, and verifying any one of them at scale — while keeping a comparable level of assurance across them — is the central difficulty of this track. The work therefore targets EVM guests that can be verified down to the RISC-V they run as, currently centred on evm-asm: a verified macro assembler that builds the guest bottom-up from a machine-checked RV64 core so that no compiler sits in the trusted base."
+    statusHeadline := "The track's current centre of gravity is evm-asm, a Lean 4 verified macro assembler that implements EVM opcodes directly as RISC-V (RV64IM) subroutines with machine-checked correctness proofs."
+    statusSummary := "evm-asm builds the EVM guest from the bottom up. Each opcode is implemented as RV64IM macro-assembly over 256-bit words held as four 64-bit limbs, and specified by a step-bounded Hoare triple in separation logic that the Lean kernel checks with no compiler in the trusted base and no unproved gaps or custom axioms. The explicit step bound on each opcode doubles as a per-proof zkVM cycle budget and as a gas-cost surrogate. A parallel codegen path emits the verified programs as RISC-V ELFs and runs them on the Zisk emulator against the Python execution-specs reference. The approach is a deliberate complement to compiling an existing client to RISC-V and verifying the result: it trades building the guest from scratch for keeping the compiler out of the trusted path."
     currentWork := [
-      "maintaining or improving EVM specifications in Rocq and related frameworks",
-      "connecting KEVM-style semantics with executable and verification-friendly backends",
-      "verifying concrete implementation paths such as revm compiled to RISC-V"
+      "evm-asm: proving EVM opcodes as RV64IM subroutines — 42 of 85 registry opcodes carry a complete, unconditional stack-level Hoare triple (snapshot 2026-06-04)",
+      "tying the hand-written RISC-V instruction semantics to the official Sail RISC-V model, so the opcode proofs rest on a validated machine model (shared with the RISC-V zkVM track)",
+      "emitting verified programs as RISC-V ELFs and checking them end-to-end on the Zisk emulator against the execution-specs reference",
+      "building out the stateless-block-validator scaffolding — RLP decoding, Merkle-Patricia-Trie checks, transaction and block-body accessors — ahead of proving it"
     ]
     nextMilestones := [
-      "clear status notes on the state of canonical EVM specifications",
-      "better documentation of how implementation verification relates to zkVM targets",
-      "consolidated outcomes across the certified compilation and revm workstreams"
+      "complete Hoare triples for the remaining arithmetic opcodes (MOD, SDIV, SMOD, ADDMOD, MULMOD, EXP) and the environment and control-flow opcodes currently covered only by executable specs",
+      "prove the stateless-guest helpers that are presently tested but unproved, closing the gap to the verified opcode core",
+      "verify Merkle-Patricia-Trie checking of the pre-state witness, the one guest obligation not yet started",
+      "produce a verified RISC-V ELF that validates a block end-to-end, from RLP input to post-state root"
     ]
     dependencies := [
-      "stable EVM semantics with credible validation against real implementations",
-      "bridges between existing semantics frameworks and Lean/Rocq-based verification tooling",
-      "clarity on which execution paths matter most for zkVM deployment"
+      "a RISC-V instruction model validated against the official Sail semantics (shared with the RISC-V zkVM track)",
+      "stable zkVM target standards: the RISC-V target, IO interface, accelerator ABI, and termination semantics from eth-act/zkvm-standards",
+      "the Python execution-specs as the EVM reference oracle for conformance testing",
+      "cryptographic precompiles supplied as accelerator calls rather than proved in-guest (links to the cryptography track)"
     ]
-    outcomeSummary := "The current outcomes are specification and semantics oriented: canonical EVM modeling, work on certified compilation, and verification paths tying existing implementation ecosystems back to trusted semantics."
+    outcomeSummary := "The earliest substantial work in this track was a Runtime Verification grant that took the opposite route from evm-asm: it symbolically verified the revm-interpreter crate of REVM, compiled to RISC-V via the RISC Zero and SP1 toolchains, using the K Framework and a K model of RISC-V semantics. It showed the compile-and-verify route is viable for arithmetic, memory, and logical opcodes and delivered reusable RISC-V semantics, an EVM opcode summarization system, and a K-to-Lean code generator — while also surfacing the limits of that route, which motivate the current evm-asm work."
     outcomeThemes := [
-      "specification quality and maintainability",
-      "verification of practical implementation paths instead of abstract models alone",
-      "tooling that lets semantics work feed into zkVM-relevant execution targets"
+      "compile-and-verify route (Runtime Verification: REVM on RISC-V via the K Framework) shown viable for arithmetic, memory, and logical opcodes",
+      "reusable artefacts from that grant: RISC-V semantics in K, an EVM opcode summarization system, and a K-to-Lean 4 backend",
+      "documented limits of compiling an existing client: the ZK toolchain compiler sits in the trusted base, the work is tied to one Rust implementation, and symbolic execution hits expression-explosion bottlenecks (256-bit data on 32-bit RISC-V, memory-model and type-conversion blow-up)",
+      "build-from-scratch route (evm-asm): a kernel-checked opcode core that removes the compiler from the trusted base, at the cost of re-implementing the guest"
     ]
     whatNext := [
-      "status and dependency notes",
-      "links to reference specifications",
-      "grant outcomes relevant to EVM correctness",
-      "implementation-focused documentation"
+      "a current picture of which EVM opcodes are proven, conditionally proven, or still open",
+      "the path from verified opcodes to a complete, verified stateless block validator",
+      "a comparison of the compile-and-verify and build-from-scratch routes on assurance, effort, and trusted-base size",
+      "guidance on reaching parity of assurance across EVM guests written in different languages"
     ]
   },
   {
@@ -837,6 +841,14 @@ def resources : Array ResourceItem := #[
     title := "Verified-zkEVM"
     url := "https://github.com/Verified-zkEVM"
     blurb? := some "GitHub organization"
+    featured := true
+  },
+  {
+    kind := .repo
+    title := "Verified-zkEVM/evm-asm"
+    url := "https://github.com/Verified-zkEVM/evm-asm"
+    blurb? := some "Verified macro assembler building the EVM guest bottom-up from a machine-checked RV64 core (experimental prototype)"
+    trackTags := [.evm]
     featured := true
   },
   {

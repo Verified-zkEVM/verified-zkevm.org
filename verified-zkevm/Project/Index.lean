@@ -25,12 +25,10 @@ High standard of openness and documentation is expected to facilitate evaluation
 
 As zkVMs evolve, there is a crucial need for maintainability and extensibility. We aim to support development and the push for greater performance, not slow it down.
 
-# Main Tracks
+# Tracks
 
-The work is organized around three primary tracks. You can explore the tracks details in the [Tracks](/project/tracks/) section or view them below:
+The work is organized around three primary tracks. Open any track below for its current status, outcomes, and related resources:
 
 :::featured_tracks
 
 :::
-
-Use [Grants](/grants/) for funding and awarded work, and [Resources](/resources/) for outward-facing artefacts such as repositories, talks, articles, and papers.

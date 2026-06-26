@@ -16,18 +16,15 @@ Then serve `_site/` with any static file server.
 The current rewrite moves the site into a page hierarchy that is easier to extend:
 
 - `/` for the landing page
-- `/project/` for project overview and track structure
+- `/project/` for project overview and per-track pages
 - `/grants/` for grant process and awarded grants
 - `/resources/` for talks, articles, papers, and repositories
-- `/activity/` for tracked ecosystem activity
-- `/docs/` reserved for future technical documentation
-- `/updates/` reserved for future time-based updates
+- `/contact/` for project contact details
 
 ## Notes
 
-- The original static frontend files are still present during the migration.
-- The `data/` directory remains a useful source of truth while the content is being ported into Lean pages.
-- The current activity feed has not been reimplemented as a live client-side widget; the Verso version is structured so this can be added later as a build-time or curated page instead.
+- Site content lives in Lean. Structured data (tracks, grants, resources) is defined in `verified-zkevm/Data.lean` and rendered through the directives in `verified-zkevm/Components/`.
+- The original single-page frontend (`index.html`, `app.js`, `style.css`) and the `data/` JSON/Markdown sources have been removed; their content was ported into the Lean pages above.
 
 ## Cloudflare Pages
 

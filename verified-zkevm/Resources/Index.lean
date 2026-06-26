@@ -5,21 +5,18 @@ open Verso Genre Blog VerifiedZkEvmSite
 
 #doc (Page) "Resources" =>
 
-This section keeps the project’s outward-facing material in one place: code, talks, articles, and papers.
-
-# Selected Resources
-
-:::featured_resources
+:::repo_grid
 
 :::
 
-# Browse By Type
+:::resource_section "talks"
 
-* [Repositories](/resources/repositories/) for code and tracked repositories
-* [Talks and Videos](/resources/talks-and-videos/) for presentations and updates
-* [Articles](/resources/articles/) for blog posts and writeups
-* [Papers](/resources/papers/) for academic publications
+:::
 
-# Code
+:::resource_section "articles"
 
-* [GitHub Organization](https://github.com/Verified-zkEVM)
+:::
+
+:::papers_section
+
+:::

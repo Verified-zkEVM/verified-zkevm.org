@@ -25,7 +25,7 @@ def theme : Theme :=
             </section>
           }}
       let title : String ← param "title"
-      let homeHref := String.join ((← currentPath).toList.map (fun _ => "../")) ++ "./"
+      let homeHref := "./"
       pure {{
         <html lang="en">
           <head>
@@ -67,77 +67,33 @@ def theme : Theme :=
     cssFiles := #[("site.css", VerifiedZkEvmSite.siteCss)]
   }
     |>.override #[] {
-      template := do
-        pure {{
-          <article class="frontpage frontpage--home">
-            <h1>{{ ← param (α := String) "title" }}</h1>
-            {{ ← param "content" }}
-          </article>
-        }},
+      template := VerifiedZkEvmSite.articleTemplate "frontpage frontpage--home",
       params := id
     }
     |>.override #["project"] {
-      template := do
-        pure {{
-          <article class="landing-page landing-page--project">
-            <h1>{{ ← param (α := String) "title" }}</h1>
-            {{ ← param "content" }}
-          </article>
-        }},
-      params := id
-    }
-    |>.override #["project", "tracks"] {
-      template := do
-        pure {{
-          <article class="landing-page landing-page--tracks">
-            <h1>{{ ← param (α := String) "title" }}</h1>
-            {{ ← param "content" }}
-          </article>
-        }},
+      template := VerifiedZkEvmSite.articleTemplate "landing-page landing-page--project",
       params := id
     }
     |>.override #["grants"] {
-      template := do
-        pure {{
-          <article class="landing-page landing-page--grants">
-            <h1>{{ ← param (α := String) "title" }}</h1>
-            {{ ← param "content" }}
-          </article>
-        }},
+      template := VerifiedZkEvmSite.articleTemplate "landing-page landing-page--grants",
       params := id
     }
     |>.override #["resources"] {
-      template := do
-        pure {{
-          <article class="landing-page landing-page--resources">
-            <h1>{{ ← param (α := String) "title" }}</h1>
-            {{ ← param "content" }}
-          </article>
-        }},
+      template := VerifiedZkEvmSite.articleTemplate "landing-page landing-page--resources",
       params := id
     }
 
 def website : Site := site «verified-zkevm».FrontPage /
   static "static" ← "static_files"
   "project" «verified-zkevm».Project.Index /
-    "tracks" «verified-zkevm».Project.Tracks /
-      "riscv-zkvm" «verified-zkevm».Tracks.RiscvZkvm
-      "evm" «verified-zkevm».Tracks.Evm
-      "cryptography" «verified-zkevm».Tracks.Cryptography
+    "riscv-zkvm" «verified-zkevm».Tracks.RiscvZkvm
+    "evm" «verified-zkevm».Tracks.Evm
+    "cryptography" «verified-zkevm».Tracks.Cryptography
   "grants" «verified-zkevm».Grants.Index /
-    "rfps" «verified-zkevm».Grants.RFPs
-    "application-guidelines" «verified-zkevm».Grants.ApplicationGuidelines
-    "awarded" «verified-zkevm».Grants.Awarded /
-      "clean" «verified-zkevm».Grants.Awarded.Clean
-      "llzk" «verified-zkevm».Grants.Awarded.LLZK
-      "arklib" «verified-zkevm».Grants.Awarded.ArkLib
-  "resources" «verified-zkevm».Resources.Index /
-    "repositories" «verified-zkevm».Resources.Repositories
-    "talks-and-videos" «verified-zkevm».Resources.Talks
-    "articles" «verified-zkevm».Resources.Articles
-    "papers" «verified-zkevm».Resources.Papers
-  "docs" «verified-zkevm».Docs
-  "updates" «verified-zkevm».Updates
+    "clean" «verified-zkevm».Grants.Awarded.Clean
+    "llzk" «verified-zkevm».Grants.Awarded.LLZK
+    "arklib" «verified-zkevm».Grants.Awarded.ArkLib
+  "resources" «verified-zkevm».Resources.Index
   "contact" «verified-zkevm».Contact
 
 def main := blogMain theme website
