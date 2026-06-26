@@ -6,4 +6,4 @@ open Verso Genre Blog
 
 Alexander Hicks
 
-alexander dot hicks at ethereum dot org
+alex at ethereum dot org
