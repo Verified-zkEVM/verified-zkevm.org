@@ -49,7 +49,7 @@ def sectionNav : Template := do
     | "project" :: _ =>
       pure <| some #[
         ← mkEntry "Overview" ["project"],
-        ← mkEntry "RISC-V zkVM" ["project", "riscv-zkvm"],
+        ← mkEntry "zkVM" ["project", "zkvm"],
         ← mkEntry "EVM" ["project", "evm"],
         ← mkEntry "Cryptography" ["project", "cryptography"]
       ]

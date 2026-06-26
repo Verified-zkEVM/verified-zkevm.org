@@ -5,7 +5,7 @@ open Verso Genre Blog VerifiedZkEvmSite
 
 #doc (Page) "Grants" =>
 
-Applications are currently open. Although applications are not restricted to the calls below, please see the Requests for Proposals for current areas of interest.
+Applications are currently closed. New calls will be announced here when applications reopen. Although applications are not restricted to specific calls, the Requests for Proposals below describe current areas of interest.
 This page covers the funding process, current calls, and the full record of awarded work.
 
 # Requests for Proposals
@@ -46,9 +46,9 @@ If your proposal is for general tooling, please make sure to address what this w
 
 If your application relates to the cryptography track, please take into account [ArkLib](https://github.com/Verified-zkEVM/ArkLib).
 
-If your application relates to circuits, please take into account [LLZK](https://github.com/Veridise/llzk-lib).
+If your application relates to circuits, please take into account [LLZK](https://github.com/project-llzk/llzk-lib).
 
-Proposals can be sent until further notice to [verified-zkevm@ethereum.org](mailto:verified-zkevm@ethereum.org).
+Once applications are open again, proposals can be sent until further notice to [verified-zkevm@ethereum.org](mailto:verified-zkevm@ethereum.org).
 
 # Awarded Grants
 

@@ -3,30 +3,30 @@ import «verified-zkevm».Meta
 
 open Verso Genre Blog VerifiedZkEvmSite
 
-#doc (Page) "RISC-V zkVM Track" =>
+#doc (Page) "zkVM Track" =>
 
-:::track_spotlight "riscv-zkvm"
+:::track_spotlight "zkvm"
 
 :::
 
 # Current Status
 
-:::track_status "riscv-zkvm"
+:::track_status "zkvm"
 
 :::
 
 # Outcomes
 
-:::grants_for "riscv-zkvm"
+:::grants_for "zkvm"
 
 :::
 
-:::track_outcomes "riscv-zkvm"
+:::track_outcomes "zkvm"
 
 :::
 
 # Selected Resources
 
-:::resources_for "riscv-zkvm"
+:::resources_for "zkvm"
 
 :::

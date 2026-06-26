@@ -26,7 +26,7 @@ block_component +directive grant_snapshot where
     pure {{
       <section class="spotlight-card spotlight-card--warm">
         <p class="eyebrow">"Grants"</p>
-        <p class="lead">"Applications are currently open. The grants page covers the funding process, current calls, and the full record of awarded work."</p>
+        <p class="lead">"Applications are currently closed. The grants page covers the funding process, current calls, and the full record of awarded work."</p>
         <div class="metric-row">
           <span class="pill">{{ s!"{total} recorded awards" }}</span>
           <span class="pill">"application guidelines available"</span>

@@ -1,29 +1,33 @@
 namespace VerifiedZkEvmSite
 
 inductive TrackKey where
-  | riscvZkvm
+  | zkVM
   | evm
   | cryptography
+  | general
 deriving BEq, DecidableEq, Inhabited, Repr
 
 def TrackKey.slug : TrackKey → String
-  | .riscvZkvm => "riscv-zkvm"
+  | .zkVM => "zkvm"
   | .evm => "evm"
   | .cryptography => "cryptography"
+  | .general => "general"
 
 def TrackKey.title : TrackKey → String
-  | .riscvZkvm => "RISC-V zkVM"
+  | .zkVM => "zkVM"
   | .evm => "EVM"
   | .cryptography => "Cryptography"
+  | .general => "General"
 
 def TrackKey.path : TrackKey → List String
   | t => ["project", t.slug]
 
 def trackKeyOfSlug? (slug : String) : Option TrackKey :=
   match slug with
-  | "riscv-zkvm" => some .riscvZkvm
+  | "zkvm" => some .zkVM
   | "evm" => some .evm
   | "cryptography" => some .cryptography
+  | "general" => some .general
   | _ => none
 
 structure TrackInfo where
@@ -42,7 +46,7 @@ deriving Repr, Inhabited
 
 def tracks : Array TrackInfo := #[
   {
-    key := .riscvZkvm
+    key := .zkVM
     summary := "Verification of zkVM arithmetizations against the official RISC-V Sail semantics."
     focus := "This track covers circuit semantics, extraction and comparison against machine specifications, and tooling that makes zkVM verification maintainable."
     statusHeadline := "The track is moving from general infrastructure grants into more concrete verification workflows and comparison tooling."
@@ -83,7 +87,7 @@ def tracks : Array TrackInfo := #[
     statusSummary := "evm-asm builds the EVM guest from the bottom up. Each opcode is implemented as RV64IM macro-assembly over 256-bit words held as four 64-bit limbs, and specified by a step-bounded Hoare triple in separation logic that the Lean kernel checks with no compiler in the trusted base and no unproved gaps or custom axioms. The explicit step bound on each opcode doubles as a per-proof zkVM cycle budget and as a gas-cost surrogate. A parallel codegen path emits the verified programs as RISC-V ELFs and runs them on the Zisk emulator against the Python execution-specs reference. The approach is a deliberate complement to compiling an existing client to RISC-V and verifying the result: it trades building the guest from scratch for keeping the compiler out of the trusted path."
     currentWork := [
       "evm-asm: proving EVM opcodes as RV64IM subroutines — 42 of 85 registry opcodes carry a complete, unconditional stack-level Hoare triple (snapshot 2026-06-04)",
-      "tying the hand-written RISC-V instruction semantics to the official Sail RISC-V model, so the opcode proofs rest on a validated machine model (shared with the RISC-V zkVM track)",
+      "tying the hand-written RISC-V instruction semantics to the official Sail RISC-V model, so the opcode proofs rest on a validated machine model (shared with the zkVM track)",
       "emitting verified programs as RISC-V ELFs and checking them end-to-end on the Zisk emulator against the execution-specs reference",
       "building out the stateless-block-validator scaffolding — RLP decoding, Merkle-Patricia-Trie checks, transaction and block-body accessors — ahead of proving it"
     ]
@@ -94,7 +98,7 @@ def tracks : Array TrackInfo := #[
       "produce a verified RISC-V ELF that validates a block end-to-end, from RLP input to post-state root"
     ]
     dependencies := [
-      "a RISC-V instruction model validated against the official Sail semantics (shared with the RISC-V zkVM track)",
+      "a RISC-V instruction model validated against the official Sail semantics (shared with the zkVM track)",
       "stable zkVM target standards: the RISC-V target, IO interface, accelerator ABI, and termination semantics from eth-act/zkvm-standards",
       "the Python execution-specs as the EVM reference oracle for conformance testing",
       "cryptographic precompiles supplied as accelerator calls rather than proved in-guest (links to the cryptography track)"
@@ -183,32 +187,32 @@ deriving Repr
 
 def grants : Array GrantAward := #[
   {
-    group := "RISC-V zkVM Track"
-    relatedTrack := some .riscvZkvm
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
     title := "Verifying autoprecompiles"
     description := "Intended to support the verification of Powdr Labs' autoprecompiles."
     awardedTo := "Powdr Labs GmbH, Certora"
     period := some "Q4 2025"
   },
   {
-    group := "RISC-V zkVM Track"
-    relatedTrack := some .riscvZkvm
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
     title := "AVAZAR: Automatic verification tools for zkVM arithmetization"
     description := "Intended to support work on automated verification tools for zkVM arithmetizations."
     awardedTo := "Universidad Complutense de Madrid (Albert Rubio)"
     period := some "Q4 2025"
   },
   {
-    group := "RISC-V zkVM Track"
-    relatedTrack := some .riscvZkvm
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
     title := "ZKVM Agnostic Fuzzing"
     description := "Intended to support the development of fuzzing techniques applicable to any RISC-V zkVM."
     awardedTo := "zksecurity"
     period := some "Q3 2025"
   },
   {
-    group := "RISC-V zkVM Track"
-    relatedTrack := some .riscvZkvm
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
     title := "zkBugs 2.0"
     description := "Intended to support an update of zkBugs."
     awardedTo := "zksecurity"
@@ -217,56 +221,56 @@ def grants : Array GrantAward := #[
     urlLabel := some "zkBugs"
   },
   {
-    group := "RISC-V zkVM Track"
-    relatedTrack := some .riscvZkvm
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
     title := "Automated Verification of ZK Circuits"
     description := "Intended to support the development of techniques to automatically verify the consistency between witness generation and constraints."
     awardedTo := "Veridise"
     period := some "Q3 2025"
   },
   {
-    group := "RISC-V zkVM Track"
-    relatedTrack := some .riscvZkvm
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
     title := "ZKarnage: Stress Testing ZK Systems Through Maximum Pain"
     description := "Intended to support work on prover killers."
     awardedTo := "Conner Swann"
     period := some "Q2 2025"
   },
   {
-    group := "RISC-V zkVM Track"
-    relatedTrack := some .riscvZkvm
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
     title := "Plonky3 in Rocq"
     description := "Intended to support an integration of Plonky3 with Rocq."
     awardedTo := "Formal Land"
     period := some "Q2 2025"
   },
   {
-    group := "RISC-V zkVM Track"
-    relatedTrack := some .riscvZkvm
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
     title := "Plonky3 to Lean"
     description := "Intended to support an integration of Plonky3 with Lean."
     awardedTo := "Nethermind"
     period := some "Q1 2025"
   },
   {
-    group := "RISC-V zkVM Track"
-    relatedTrack := some .riscvZkvm
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
     title := "Evaluating Verus for circuits and EVM precompiles"
     description := "Intended to support an evaluation of Verus as a tool to verify representative Rust code."
     awardedTo := "CertiK"
     period := some "Q1 2025"
   },
   {
-    group := "RISC-V zkVM Track"
-    relatedTrack := some .riscvZkvm
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
     title := "Better Rocq tactics for modular arithmetic & handling packed integers"
     description := "Intended to support the development of Rocq tactics for handling arithmetic modulo and packed integers."
     awardedTo := "CertiK"
     period := some "Q1 2025"
   },
   {
-    group := "RISC-V zkVM Track"
-    relatedTrack := some .riscvZkvm
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
     title := "cLean"
     description := "Intended to support the development of a Lean DSL aimed at writing AIR circuits directly in Lean."
     awardedTo := "zkSecurity"
@@ -275,24 +279,24 @@ def grants : Array GrantAward := #[
     urlLabel := some "Repository"
   },
   {
-    group := "RISC-V zkVM Track"
-    relatedTrack := some .riscvZkvm
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
     title := "LLZK"
     description := "Intended to support the development of LLZK, a family of MLIR dialects for circuits."
     awardedTo := "Veridise"
     period := some "Q4 2024, Q4 2025"
   },
   {
-    group := "RISC-V zkVM Track"
-    relatedTrack := some .riscvZkvm
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
     title := "Lean backend for Sail"
     description := "Intended to support a Lean backend for Sail so that the official RISC-V Sail specification can be extracted to Lean."
     awardedTo := "University of Cambridge, Galois, Lindy Labs (first grant only)"
     period := some "Q1 2025, Q3 2025"
   },
   {
-    group := "RISC-V zkVM Track"
-    relatedTrack := some .riscvZkvm
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
     title := "zkLean"
     description := "Intended to support a Lean DSL for constraints and its integration with LLZK."
     awardedTo := "Galois"
@@ -472,7 +476,7 @@ def grants : Array GrantAward := #[
 ]
 
 def grantSectionOrder : List String := [
-  "RISC-V zkVM Track",
+  "zkVM Track",
   "EVM Track",
   "Cryptography Track",
   "General Tooling",
@@ -484,7 +488,7 @@ def grantCaseStudies : Array GrantCaseStudy := #[
   {
     slug := "clean"
     awardTitle := "cLean"
-    relatedTrack := .riscvZkvm
+    relatedTrack := .zkVM
     summary := "cLean is intended to make circuit-oriented specifications expressible directly in Lean, so verification work can stay closer to the proof assistant rather than being spread across separate DSLs and ad hoc translations."
     currentState := "This is best understood as enabling infrastructure: the point is not only one codebase, but a better path for specifying AIR-like constraints and connecting them to other tooling in the ecosystem."
     outputs := [
@@ -494,7 +498,7 @@ def grantCaseStudies : Array GrantCaseStudy := #[
     ]
     significance := [
       "reduces friction for teams that want Lean-native verification workflows",
-      "gives the RISC-V zkVM track a reusable artefact rather than a one-off report",
+      "gives the zkVM track a reusable artefact rather than a one-off report",
       "fits the broader effort to make circuit verification infrastructure cumulative"
     ]
     links := [
@@ -504,7 +508,7 @@ def grantCaseStudies : Array GrantCaseStudy := #[
   {
     slug := "llzk"
     awardTitle := "LLZK"
-    relatedTrack := .riscvZkvm
+    relatedTrack := .zkVM
     summary := "LLZK is a family of MLIR dialects for circuits intended to support shared infrastructure for representing and verifying zero-knowledge artefacts."
     currentState := "The grant’s main value is architectural: it creates a reusable intermediate layer that can support translation, analysis, and verification workflows across multiple circuit systems."
     outputs := [
@@ -579,6 +583,27 @@ deriving Repr
 def resources : Array ResourceItem := #[
   {
     kind := .talk
+    dateLabel := "June 2026"
+    title := "Ryan Kim - A Verifiable ZK Compiler Stack for Lean"
+    url := "https://www.youtube.com/watch?v=A-z2EbiFRk8"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .talk
+    dateLabel := "May 2026"
+    title := "Ian Neal & Timothy Hoffman - LLZK 1.0"
+    url := "https://www.youtube.com/watch?v=XOjWkWeG5QE"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .talk
+    dateLabel := "May 2026"
+    title := "Mathieu Fehr - Formal Semantics for MLIR dialects"
+    url := "https://www.youtube.com/watch?v=6gspW3nNiCc"
+    trackTags := [.general]
+  },
+  {
+    kind := .talk
     dateLabel := "April 2026"
     title := "Yoichi Hirai - Your guide to formal verification when machines write Lean proofs"
     url := "https://www.youtube.com/watch?v=ciZZRyN26Dg"
@@ -595,6 +620,20 @@ def resources : Array ResourceItem := #[
   },
   {
     kind := .talk
+    dateLabel := "April 2026"
+    title := "Luisa Cicolini - Certified Instruction Selection For LLVM IR Through Bitblasting"
+    url := "https://www.youtube.com/watch?v=QJHtkyBSxaQ"
+    trackTags := [.general]
+  },
+  {
+    kind := .talk
+    dateLabel := "April 2026"
+    title := "Petar Maksimović - OpenVM and Pico in Lean"
+    url := "https://www.youtube.com/watch?v=HVqf8lARdF0"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .talk
     dateLabel := "March 2026"
     title := "Manuel Puebla - AMO-Lean"
     url := "https://youtu.be/seCiuBS7Eb0?si=k-1aLYl0zQdZtIMo"
@@ -605,7 +644,7 @@ def resources : Array ResourceItem := #[
     dateLabel := "March 2026"
     title := "Eske Nielsen - Peregrine"
     url := "https://www.youtube.com/watch?v=0MI4U-g9Gus"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .talk
@@ -641,7 +680,7 @@ def resources : Array ResourceItem := #[
     dateLabel := "December 2025"
     title := "Formally Verifying the SP1 RISC-V AIRs"
     url := "https://youtu.be/4VnolGW-iv4"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .talk
@@ -660,6 +699,13 @@ def resources : Array ResourceItem := #[
   {
     kind := .talk
     dateLabel := "October 2025"
+    title := "Elizaveta Pertseva - Automated Lean Proofs for Every Type"
+    url := "https://www.youtube.com/watch?v=qyo3INdLAJk"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .talk
+    dateLabel := "October 2025"
     title := "pq2-05: e2e Formal Verification"
     url := "https://youtu.be/muryYp1ZIO8?si=9LwsDPydNwIO1Vt2"
     trackTags := [.evm]
@@ -669,14 +715,14 @@ def resources : Array ResourceItem := #[
     dateLabel := "October 2025"
     title := "Comparing ZK Constraints - Keccak, Plonky3 - Rust/Rocq"
     url := "https://www.youtube.com/watch?v=53BXAxY7ThQ"
-    trackTags := [.evm, .riscvZkvm]
+    trackTags := [.evm, .zkVM]
   },
   {
     kind := .talk
     dateLabel := "September 2025"
     title := "LLZK: Open-source infrastructure for secure ZK"
     url := "https://www.youtube.com/watch?v=8vgPLhtwNJU"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .talk
@@ -690,7 +736,7 @@ def resources : Array ResourceItem := #[
     dateLabel := "March 2025"
     title := "Towards a verified Jolt zkVM"
     url := "https://www.youtube.com/live/O_bT89JK6_c?si=Sn1BiY__PWRAzoH9"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .talk
@@ -704,7 +750,7 @@ def resources : Array ResourceItem := #[
     dateLabel := "March 2025"
     title := "Q1 2025: zkVM Track update"
     url := "https://youtu.be/C2NfJoihXyQ?si=PSjELgJCbwHtRgd6"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .talk
@@ -728,7 +774,7 @@ def resources : Array ResourceItem := #[
     sourceLabel := "Formal Land"
     title := "Formal verification of the Keccak precompile from Plonky3"
     url := "https://formal.land/blog/2026/01/14/formal-verification-keccak-plonky3"
-    trackTags := [.evm, .riscvZkvm]
+    trackTags := [.evm, .zkVM]
     featured := true
   },
   {
@@ -737,7 +783,7 @@ def resources : Array ResourceItem := #[
     sourceLabel := "zkSecurity"
     title := "Comparison of Formal Verification Frameworks for Arithmetic Circuits"
     url := "https://blog.zksecurity.xyz/posts/formal-verification-arithmetic-circuits/"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .article
@@ -745,7 +791,7 @@ def resources : Array ResourceItem := #[
     sourceLabel := "Nethermind"
     title := "Formally Verifying Zero-Knowledge Circuits: Introducing CertiPlonk"
     url := "https://www.nethermind.io/blog/formally-verifying-zero-knowledge-circuits-introducing-certiplonk"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .article
@@ -753,7 +799,7 @@ def resources : Array ResourceItem := #[
     sourceLabel := "Formal Land"
     title := "Verification of the completeness of an OpenVM chip"
     url := "https://formal.land/blog/2025/09/02/verification-completeness-open-vm-chip"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .article
@@ -761,7 +807,7 @@ def resources : Array ResourceItem := #[
     sourceLabel := "Veridise"
     title := "Announcing LLZK: A unified, open-source intermediate representation for zero-knowledge languages"
     url := "https://veridise.com/blog/zero-knowledge/announcing-llzk-a-unified-open-source-intermediate-representation-ir-for-zero-knowledge-languages"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .article
@@ -769,7 +815,7 @@ def resources : Array ResourceItem := #[
     sourceLabel := "Formal Land"
     title := "Pretty-printing of Rust ZK constraints"
     url := "https://formal.land/blog/2025/08/26/pretty-printing-rust-constraints"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .article
@@ -777,7 +823,7 @@ def resources : Array ResourceItem := #[
     sourceLabel := "Formal Land"
     title := "Formal verification of an OpenVM chip"
     url := "https://formal.land/blog/2025/08/13/verification-of-openvm-branch-eq"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .article
@@ -785,7 +831,7 @@ def resources : Array ResourceItem := #[
     sourceLabel := "Formal Land"
     title := "Formal verification of LLZK circuits in Rocq"
     url := "https://formal.land/blog/2025/07/31/llzk-to-rocq-verification"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .article
@@ -793,7 +839,7 @@ def resources : Array ResourceItem := #[
     sourceLabel := "Formal Land"
     title := "Semantics for LLZK in Rocq"
     url := "https://formal.land/blog/2025/07/30/llzk-to-rocq-semantics"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .article
@@ -801,7 +847,7 @@ def resources : Array ResourceItem := #[
     sourceLabel := "Formal Land"
     title := "Beginning of a formal verification tool for LLZK"
     url := "https://formal.land/blog/2025/07/28/llzk-to-rocq-beginning"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .article
@@ -809,7 +855,7 @@ def resources : Array ResourceItem := #[
     sourceLabel := "Formal Land"
     title := "Beginning of translation of OpenVM to Rocq"
     url := "https://formal.land/blog/2025/06/15/beginning-of-openvm-to-rocq"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .article
@@ -817,7 +863,7 @@ def resources : Array ResourceItem := #[
     sourceLabel := "zkSecurity"
     title := "Introducing clean, a formal verification DSL for ZK circuits in Lean4"
     url := "https://blog.zksecurity.xyz/posts/clean"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .paper
@@ -885,7 +931,7 @@ def resources : Array ResourceItem := #[
     kind := .repo
     title := "Verified-zkEVM/clean"
     url := "https://github.com/Verified-zkEVM/clean"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
     featured := true
   },
   {
@@ -897,50 +943,50 @@ def resources : Array ResourceItem := #[
     kind := .repo
     title := "project-llzk/circom"
     url := "https://github.com/project-llzk/circom"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .repo
     title := "project-llzk/llzk-lib"
     url := "https://github.com/project-llzk/llzk-lib"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
     featured := true
   },
   {
     kind := .repo
     title := "project-llzk/llzk-rs"
     url := "https://github.com/project-llzk/llzk-rs"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .repo
     title := "project-llzk/llzk-nix-pkgs"
     url := "https://github.com/project-llzk/llzk-nix-pkgs"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .repo
     title := "project-llzk/llzk-benchmarks"
     url := "https://github.com/project-llzk/llzk-benchmarks"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .repo
     title := "Veridise/zirgen-to-llzk"
     url := "https://github.com/Veridise/zirgen-to-llzk"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .repo
     title := "NethermindEth/CertiPlonk"
     url := "https://github.com/NethermindEth/CertiPlonk"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   },
   {
     kind := .repo
     title := "formal-land/garden"
     url := "https://github.com/formal-land/garden"
-    trackTags := [.riscvZkvm]
+    trackTags := [.zkVM]
   }
 ]
 

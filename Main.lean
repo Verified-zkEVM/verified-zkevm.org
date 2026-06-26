@@ -86,7 +86,7 @@ def theme : Theme :=
 def website : Site := site «verified-zkevm».FrontPage /
   static "static" ← "static_files"
   "project" «verified-zkevm».Project.Index /
-    "riscv-zkvm" «verified-zkevm».Tracks.RiscvZkvm
+    "zkvm" «verified-zkevm».Tracks.RiscvZkvm
     "evm" «verified-zkevm».Tracks.Evm
     "cryptography" «verified-zkevm».Tracks.Cryptography
   "grants" «verified-zkevm».Grants.Index /
