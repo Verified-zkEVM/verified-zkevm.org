@@ -9,19 +9,9 @@ open Verso Genre Blog VerifiedZkEvmSite
 
 :::
 
-# Current Status
+# Overview
 
-:::track_status "cryptography"
-
-:::
-
-# Outcomes
-
-:::grants_for "cryptography"
-
-:::
-
-:::track_outcomes "cryptography"
+:::track_overview "cryptography"
 
 :::
 

@@ -160,7 +160,11 @@ blockquote {
 }
 
 .frontpage {
-  padding-top: 0.25rem;
+  padding: 0.25rem 0 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .frontpage h1:first-child {
@@ -333,13 +337,6 @@ nav.top a.active {
   font-size: 1.05rem;
 }
 
-.spotlight-card--warm {
-  background:
-    linear-gradient(135deg, rgba(var(--vz-accent-rgb), 0.12), rgba(60, 112, 98, 0.08)),
-    rgba(18, 23, 21, 0.85);
-  border-color: rgba(var(--vz-accent-rgb), 0.25);
-}
-
 .metric-row,
 .action-row {
   display: flex;
@@ -395,20 +392,18 @@ nav.top a.active {
 .hero-panel {
   display: grid;
   grid-template-columns: minmax(0, 1.8fr) minmax(17rem, 0.9fr);
-  gap: 1.2rem;
-  margin-bottom: 1.6rem;
-  padding: 1.6rem;
-  border: 1px solid rgba(var(--vz-accent-rgb), 0.15);
-  border-radius: 1.5rem;
-  background:
-    radial-gradient(circle at top right, rgba(var(--vz-accent-rgb), 0.15), transparent 20rem),
-    linear-gradient(135deg, rgba(60, 112, 98, 0.1), rgba(18, 23, 21, 0.8)),
-    #0c0f0d;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  gap: 1.6rem 2.4rem;
+  align-items: center;
+  margin-bottom: 2.4rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .hero-panel h1 {
-  max-width: 11ch;
+  max-width: 24ch;
   margin-bottom: 0.35em;
   color: #ffffff;
 }
@@ -420,7 +415,7 @@ nav.top a.active {
 
 .hero-panel__stats {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 0.8rem;
   align-content: start;
 }
@@ -503,16 +498,14 @@ nav.top a.active {
   max-width: 52rem;
 }
 
-.spotlight-card--status {
+.spotlight-card--overview {
   background:
     linear-gradient(135deg, rgba(60, 112, 98, 0.08), rgba(var(--vz-accent-rgb), 0.06)),
     rgba(18, 23, 21, 0.85);
 }
 
-.spotlight-card--outcomes {
-  background:
-    linear-gradient(135deg, rgba(var(--vz-accent-rgb), 0.08), rgba(60, 112, 98, 0.04)),
-    rgba(18, 23, 21, 0.85);
+.spotlight-card--overview p + p {
+  margin-top: 0.85rem;
 }
 
 .clean-list {

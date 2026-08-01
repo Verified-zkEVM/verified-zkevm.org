@@ -13,10 +13,10 @@ open Verso Genre Blog VerifiedZkEvmSite
 
 :::
 
-:::resource_section "articles"
+:::papers_section
 
 :::
 
-:::papers_section
+:::resource_section "articles"
 
 :::

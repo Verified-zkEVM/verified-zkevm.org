@@ -35,15 +35,15 @@ def renderGrantLink (grant : GrantAward) : Html :=
   | some url, none => {{ <a href={{ url }} class="mini-link">"Link"</a> }}
   | none, _ => .empty
 
-def renderGrantCard (grant : GrantAward) (outcomeHref : Option String) : Html :=
+def renderGrantCard (grant : GrantAward) : Html :=
   let periodHtml :=
     match grant.period with
     | some period => {{ <span class="pill">{{ period }}</span> }}
     | none => .empty
-  let detailLink :=
-    match outcomeHref with
-    | some href =>
-      {{ <a href={{ href }} class="mini-link">"Outcome page"</a> }}
+  let outputHtml :=
+    match grant.output with
+    | some output =>
+      {{ <p class="supporting"><strong>"Output: "</strong>{{ output }}</p> }}
     | none => .empty
   {{
     <article class="grant-card">
@@ -57,8 +57,8 @@ def renderGrantCard (grant : GrantAward) (outcomeHref : Option String) : Html :=
       <p class="supporting">
         <strong>"Awarded to: "</strong>{{ grant.awardedTo }}
       </p>
+      {{ outputHtml }}
       {{ renderGrantLink grant }}
-      {{ detailLink }}
     </article>
   }}
 
@@ -78,7 +78,6 @@ def renderResourceCard (item : ResourceItem) : Html :=
     | .article =>
       {{
         <div class="metric-row">
-          <span class="pill">"Article"</span>
           {{ renderInfoListCompact "Tracks" (item.trackTags.map TrackKey.title) }}
         </div>
         <a href={{ item.url }} class="mini-link">"Read article"</a>
@@ -86,7 +85,6 @@ def renderResourceCard (item : ResourceItem) : Html :=
     | .paper =>
       {{
         <div class="metric-row">
-          <span class="pill">"Paper"</span>
           {{ renderInfoListCompact "Tracks" (item.trackTags.map TrackKey.title) }}
         </div>
         <a href={{ item.url }} class="mini-link">"Read paper"</a>
@@ -94,7 +92,6 @@ def renderResourceCard (item : ResourceItem) : Html :=
     | .talk =>
       {{
         <div class="metric-row">
-          <span class="pill">"Talk / Video"</span>
           {{ renderInfoListCompact "Tracks" (item.trackTags.map TrackKey.title) }}
         </div>
         <a href={{ item.url }} class="mini-link">"Watch video"</a>
@@ -103,7 +100,6 @@ def renderResourceCard (item : ResourceItem) : Html :=
       let codeLink := {{ <a href={{ item.url }} class="mini-link">"GitHub repository"</a> }}
       {{
         <div class="metric-row">
-          <span class="pill">"Repository"</span>
           {{ renderInfoListCompact "Tracks" (item.trackTags.map TrackKey.title) }}
         </div>
         {{ codeLink }}
@@ -159,12 +155,12 @@ def renderTrackSpotlight (key : TrackKey) : Html :=
     </section>
   }}
 
-def renderGrantSection (title : String) (items : Array (GrantAward × Option String)) : Html :=
+def renderGrantSection (title : String) (items : Array GrantAward) : Html :=
   {{
     <section>
       <h2>{{ title }}</h2>
       <div class="card-grid card-grid--grants">
-        {{ Html.seq (items.map fun (grant, href) => renderGrantCard grant href) }}
+        {{ Html.seq (items.map renderGrantCard) }}
       </div>
     </section>
   }}
@@ -205,91 +201,18 @@ def renderInfoList (title : String) (items : List String) : Html :=
       </section>
     }}
 
-def renderLinkItem (item : LinkItem) : Html :=
-  {{
-    <li><a href={{ item.url }}>{{ item.label }}</a></li>
-  }}
-
-def renderTrackStatus (key : TrackKey) : Html :=
+def renderTrackOverview (key : TrackKey) : Html :=
   let track := trackInfo! key
+  let paragraphs : Array Html := track.overview.toArray.map fun para =>
+    Html.tag "p" #[] (Html.ofString para)
   {{
     <div class="detail-stack">
-      <section class="spotlight-card spotlight-card--status">
-        <p class="eyebrow">{{ track.key.title }} " status"</p>
-        <p class="lead">{{ track.statusHeadline }}</p>
-        <p>{{ track.statusSummary }}</p>
+      <section class="spotlight-card spotlight-card--overview">
+        <p class="eyebrow">{{ track.key.title }} " overview"</p>
+        {{ Html.seq paragraphs }}
       </section>
-      <div class="detail-grid">
-        {{ renderInfoList "Current Work" track.currentWork }}
-        {{ renderInfoList "Next Milestones" track.nextMilestones }}
-        {{ renderInfoList "Dependencies" track.dependencies }}
-      </div>
     </div>
   }}
-
-def renderTrackOutcomes (key : TrackKey) : HtmlM Page Html := do
-  let track := trackInfo! key
-  let grantPages := grantCaseStudiesForTrack key
-  let grantLinks ←
-    if grantPages.isEmpty then
-      pure Html.empty
-    else
-      let links ← grantPages.mapM fun detail => do
-        let href ← htmlHrefTo ["grants", detail.slug]
-        pure {{ <li><a href={{ href }}>{{ detail.awardTitle }}</a></li> }}
-      pure {{
-        <section class="detail-card">
-          <h3>"Related grant outcome pages"</h3>
-          <ul class="clean-list">
-            {{ Html.seq links }}
-          </ul>
-        </section>
-      }}
-  pure {{
-    <div class="detail-stack">
-      <section class="spotlight-card spotlight-card--outcomes">
-        <p class="eyebrow">{{ track.key.title }} " outcomes"</p>
-        <p class="lead">{{ track.outcomeSummary }}</p>
-      </section>
-      <div class="detail-grid">
-        {{ renderInfoList "Outcome Themes" track.outcomeThemes }}
-        {{ grantLinks }}
-      </div>
-    </div>
-  }}
-
-
-def renderGrantCaseStudy (slug : String) : Html :=
-  match grantCaseStudyOfSlug? slug with
-  | none => {{ <p>"Unknown grant outcome page."</p> }}
-  | some detail =>
-    let relatedTrack := trackInfo! detail.relatedTrack
-    let linkItems :=
-      if detail.links.isEmpty then
-        .empty
-      else
-        {{
-          <section class="detail-card">
-            <h3>"Links"</h3>
-            <ul class="clean-list">
-              {{ detail.links.toArray.map renderLinkItem }}
-            </ul>
-          </section>
-        }}
-    {{
-      <div class="detail-stack">
-        <section class="spotlight-card spotlight-card--warm">
-          <p class="eyebrow">{{ relatedTrack.key.title }} " grant outcome"</p>
-          <p class="lead">{{ detail.summary }}</p>
-          <p>{{ detail.currentState }}</p>
-        </section>
-        <div class="detail-grid">
-          {{ renderInfoList "Outputs" detail.outputs }}
-          {{ renderInfoList "Why It Matters" detail.significance }}
-          {{ linkItems }}
-        </div>
-      </div>
-    }}
 
 
 end VerifiedZkEvmSite

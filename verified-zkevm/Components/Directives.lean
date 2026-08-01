@@ -19,24 +19,6 @@ block_component +directive featured_tracks where
       </div>
     }}
 
-block_component +directive grant_snapshot where
-  toHtml _ _ _ _ _ := do
-    let total := grants.size
-    let openHref ← htmlHrefTo ["grants"]
-    pure {{
-      <section class="spotlight-card spotlight-card--warm">
-        <p class="eyebrow">"Grants"</p>
-        <p class="lead">"Applications are currently closed. The grants page covers the funding process, current calls, and the full record of awarded work."</p>
-        <div class="metric-row">
-          <span class="pill">{{ s!"{total} recorded awards" }}</span>
-          <span class="pill">"application guidelines available"</span>
-        </div>
-        <div class="action-row">
-          <a href={{ openHref }} class="action-link">"Grants: apply and awarded work"</a>
-        </div>
-      </section>
-    }}
-
 block_component +directive featured_resources where
   toHtml _ _ _ _ _ := pure {{
     <div class="card-grid">
@@ -48,8 +30,7 @@ block_component +directive home_hero where
   toHtml _ _ _ _ _ := do
     let trackCount := tracks.size
     let grantCount := grants.size
-    let resourceCount := resources.filter (·.kind != .repo) |>.size
-    let repoCount := resources.filter (·.kind == .repo) |>.size
+    let resourceCount := resources.size
     let projectHref ← htmlHrefTo ["project"]
     let grantsHref ← htmlHrefTo ["grants"]
     let resourcesHref ← htmlHrefTo ["resources"]
@@ -72,15 +53,11 @@ block_component +directive home_hero where
           </a>
           <a class="hero-stat" href={{ grantsHref }}>
             <span class="hero-stat__value">{{ toString grantCount }}</span>
-            <span class="hero-stat__label">"recorded awards"</span>
+            <span class="hero-stat__label">"grants awarded"</span>
           </a>
           <a class="hero-stat" href={{ resourcesHref }}>
             <span class="hero-stat__value">{{ toString resourceCount }}</span>
-            <span class="hero-stat__label">"talks, papers, and articles"</span>
-          </a>
-          <a class="hero-stat" href={{ resourcesHref }}>
-            <span class="hero-stat__value">{{ toString repoCount }}</span>
-            <span class="hero-stat__label">"tracked repositories"</span>
+            <span class="hero-stat__label">"resources"</span>
           </a>
         </div>
       </section>
@@ -92,82 +69,57 @@ block_component +directive track_spotlight (track : String) where
       | pure {{ <p>"Unknown track."</p> }}
     pure <| renderTrackSpotlight key
 
-block_component +directive track_status (track : String) where
+block_component +directive track_overview (track : String) where
   toHtml _ _ _ _ _ := do
     let some key := trackKeyOfSlug? track
       | pure {{ <p>"Unknown track."</p> }}
-    pure <| renderTrackStatus key
-
-block_component +directive track_outcomes (track : String) where
-  toHtml _ _ _ _ _ := do
-    let some key := trackKeyOfSlug? track
-      | pure {{ <p>"Unknown track."</p> }}
-    renderTrackOutcomes key
-
-block_component +directive grants_for (track : String) where
-  toHtml _ _ _ _ _ := do
-    let some key := trackKeyOfSlug? track
-      | pure {{ <p>"Unknown track."</p> }}
-    let items := (grantsForTrack key).take 6
-    let cards ← items.mapM fun grant => do
-      let outcomeHref ←
-        match grantCaseStudyForAward? grant with
-        | some detail => do
-          let href ← htmlHrefTo ["grants", detail.slug]
-          pure <| some href
-        | none => pure none
-      pure <| renderGrantCard grant outcomeHref
-    let href ← htmlHrefTo ["grants"]
-    pure {{
-      <div>
-        <div class="card-grid card-grid--grants">
-          {{ Html.seq cards }}
-        </div>
-        <p><a href={{ href }} class="mini-link">"View all awarded grants"</a></p>
-      </div>
-    }}
+    pure <| renderTrackOverview key
 
 block_component +directive resources_for (track : String) where
   toHtml _ _ _ _ _ := do
     let some key := trackKeyOfSlug? track
       | pure {{ <p>"Unknown track."</p> }}
-    let items := (resourcesForTrack key).filter (·.kind != .repo) |>.take 6
-    let repoItems := (resourcesForTrack key).filter (·.kind == .repo) |>.take 3
+    -- Grants tagged for this track.
+    let trackGrants := grantsForTrack key
+    let grantSection :=
+      if trackGrants.isEmpty then
+        Html.empty
+      else {{
+        <section>
+          <h3>"Grants"</h3>
+          <div class="card-grid card-grid--grants">
+            {{ Html.seq (trackGrants.map renderGrantCard) }}
+          </div>
+        </section>
+      }}
+    -- All other resources tagged for this track, grouped by kind.
+    let kindSections : Array Html := #[.repo, .talk, .paper, .article].filterMap fun kind =>
+      let items := (resourcesForTrack key).filter (·.kind == kind)
+      if items.isEmpty then none
+      else some {{
+        <section>
+          <h3>{{ kind.title }}</h3>
+          <div class="card-grid">
+            {{ items.map renderResourceCard }}
+          </div>
+        </section>
+      }}
     pure {{
       <div>
-        <div class="card-grid">
-          {{ items.map renderResourceCard }}
-        </div>
-        {{ if repoItems.isEmpty then .empty else {{
-          <section>
-            <h3>"Related repositories"</h3>
-            <div class="card-grid">
-              {{ repoItems.map renderResourceCard }}
-            </div>
-          </section>
-        }} }}
+        {{ grantSection }}
+        {{ Html.seq kindSections }}
       </div>
     }}
 
 block_component +directive awarded_grants where
   toHtml _ _ _ _ _ := do
-    let sections ← grantSectionOrder.toArray.mapM fun title => do
+    let sections := grantSectionOrder.toArray.filterMap fun title =>
       let items := grants.filter (·.group == title)
-      if items.isEmpty then
-        pure none
-      else
-        let itemsWithHrefs ← items.mapM fun grant => do
-          let outcomeHref ←
-            match grantCaseStudyForAward? grant with
-            | some detail => do
-              let href ← htmlHrefTo ["grants", detail.slug]
-              pure <| some href
-            | none => pure none
-          pure (grant, outcomeHref)
-        pure <| some <| renderGrantSection title itemsWithHrefs
+      if items.isEmpty then none
+      else some <| renderGrantSection title items
     pure {{
       <div>
-        {{ Html.seq (sections.filterMap id) }}
+        {{ Html.seq sections }}
       </div>
     }}
 
@@ -184,10 +136,5 @@ block_component +directive papers_section where
   toHtml _ _ _ _ _ := pure <| renderResourceSectionWithNote "Papers"
     "Papers may be co-funded with other organizations, and not all authors are necessarily funded by this project."
     (resourceItemsByKind .paper)
-
-block_component +directive grant_case_study (slug : String) where
-  toHtml _ _ _ _ _ := do
-    pure <| renderGrantCaseStudy slug
-
 
 end VerifiedZkEvmSite

@@ -34,13 +34,8 @@ structure TrackInfo where
   key : TrackKey
   summary : String
   focus : String
-  statusHeadline : String
-  statusSummary : String
-  currentWork : List String
-  nextMilestones : List String
-  dependencies : List String
-  outcomeSummary : String
-  outcomeThemes : List String
+  /-- Free-text executive summary of the track (status + outcomes), one entry per paragraph. Edit freely. -/
+  overview : List String
   whatNext : List String
 deriving Repr, Inhabited
 
@@ -49,28 +44,9 @@ def tracks : Array TrackInfo := #[
     key := .zkVM
     summary := "Verification of zkVM arithmetizations against the official RISC-V Sail semantics."
     focus := "This track covers circuit semantics, extraction and comparison against machine specifications, and tooling that makes zkVM verification maintainable."
-    statusHeadline := "The track is moving from general infrastructure grants into more concrete verification workflows and comparison tooling."
-    statusSummary := "Current work is concentrated around extraction from machine specifications, verification of concrete circuit artifacts, and tooling that makes zkVM verification repeatable across implementations."
-    currentWork := [
-      "comparing AIR/circuit constraints against machine-level semantics",
-      "improving toolchains such as LLZK and cLean so verification work is easier to express and maintain",
-      "building automated testing and fuzzing workflows around zkVM implementations"
-    ]
-    nextMilestones := [
-      "track-specific status notes for major zkVM efforts",
-      "clearer mappings from grants to artefacts and repositories",
-      "documentation around verification methodology for RISC-V zkVM components"
-    ]
-    dependencies := [
-      "reliable extraction from the Sail RISC-V specification",
-      "maintained intermediate representations for circuits and constraints",
-      "shared tooling for relating witness generation, constraints, and machine semantics"
-    ]
-    outcomeSummary := "The strongest outcomes so far are infrastructure-heavy: circuit DSLs, MLIR-based intermediate representations, fuzzing and bug-finding work, and early formal verification reports around concrete zkVM components."
-    outcomeThemes := [
-      "verification-oriented infrastructure rather than one-off proofs",
-      "intermediate representations and tooling that can be reused across zkVMs",
-      "artefacts that connect specifications, circuits, and implementation testing"
+    overview := [
+      "Current work is concentrated around extraction from machine specifications, verification of concrete circuit artifacts, and tooling that makes zkVM verification repeatable across implementations.",
+      "The strongest outcomes so far are infrastructure-heavy: circuit DSLs, MLIR-based intermediate representations, fuzzing and bug-finding work, and early formal verification reports around concrete zkVM components."
     ]
     whatNext := [
       "track status summaries",
@@ -83,32 +59,9 @@ def tracks : Array TrackInfo := #[
     key := .evm
     summary := "Verifying that the EVM guest program executed inside a zkVM correctly implements the EVM specification, with the assurance carried down to the RISC-V the prover actually runs."
     focus := "A zkVM proves the execution of a guest program, but there is no canonical guest. EVM implementations exist in Rust, Go, C++, Java, and other languages with very different formal-verification friendliness, and verifying any one of them at scale — while keeping a comparable level of assurance across them — is the central difficulty of this track. The work therefore targets EVM guests that can be verified down to the RISC-V they run as, currently centred on evm-asm: a verified macro assembler that builds the guest bottom-up from a machine-checked RV64 core so that no compiler sits in the trusted base."
-    statusHeadline := "The track's current centre of gravity is evm-asm, a Lean 4 verified macro assembler that implements EVM opcodes directly as RISC-V (RV64IM) subroutines with machine-checked correctness proofs."
-    statusSummary := "evm-asm builds the EVM guest from the bottom up. Each opcode is implemented as RV64IM macro-assembly over 256-bit words held as four 64-bit limbs, and specified by a step-bounded Hoare triple in separation logic that the Lean kernel checks with no compiler in the trusted base and no unproved gaps or custom axioms. The explicit step bound on each opcode doubles as a per-proof zkVM cycle budget and as a gas-cost surrogate. A parallel codegen path emits the verified programs as RISC-V ELFs and runs them on the Zisk emulator against the Python execution-specs reference. The approach is a deliberate complement to compiling an existing client to RISC-V and verifying the result: it trades building the guest from scratch for keeping the compiler out of the trusted path."
-    currentWork := [
-      "evm-asm: proving EVM opcodes as RV64IM subroutines — 42 of 85 registry opcodes carry a complete, unconditional stack-level Hoare triple (snapshot 2026-06-04)",
-      "tying the hand-written RISC-V instruction semantics to the official Sail RISC-V model, so the opcode proofs rest on a validated machine model (shared with the zkVM track)",
-      "emitting verified programs as RISC-V ELFs and checking them end-to-end on the Zisk emulator against the execution-specs reference",
-      "building out the stateless-block-validator scaffolding — RLP decoding, Merkle-Patricia-Trie checks, transaction and block-body accessors — ahead of proving it"
-    ]
-    nextMilestones := [
-      "complete Hoare triples for the remaining arithmetic opcodes (MOD, SDIV, SMOD, ADDMOD, MULMOD, EXP) and the environment and control-flow opcodes currently covered only by executable specs",
-      "prove the stateless-guest helpers that are presently tested but unproved, closing the gap to the verified opcode core",
-      "verify Merkle-Patricia-Trie checking of the pre-state witness, the one guest obligation not yet started",
-      "produce a verified RISC-V ELF that validates a block end-to-end, from RLP input to post-state root"
-    ]
-    dependencies := [
-      "a RISC-V instruction model validated against the official Sail semantics (shared with the zkVM track)",
-      "stable zkVM target standards: the RISC-V target, IO interface, accelerator ABI, and termination semantics from eth-act/zkvm-standards",
-      "the Python execution-specs as the EVM reference oracle for conformance testing",
-      "cryptographic precompiles supplied as accelerator calls rather than proved in-guest (links to the cryptography track)"
-    ]
-    outcomeSummary := "The earliest substantial work in this track was a Runtime Verification grant that took the opposite route from evm-asm: it symbolically verified the revm-interpreter crate of REVM, compiled to RISC-V via the RISC Zero and SP1 toolchains, using the K Framework and a K model of RISC-V semantics. It showed the compile-and-verify route is viable for arithmetic, memory, and logical opcodes and delivered reusable RISC-V semantics, an EVM opcode summarization system, and a K-to-Lean code generator — while also surfacing the limits of that route, which motivate the current evm-asm work."
-    outcomeThemes := [
-      "compile-and-verify route (Runtime Verification: REVM on RISC-V via the K Framework) shown viable for arithmetic, memory, and logical opcodes",
-      "reusable artefacts from that grant: RISC-V semantics in K, an EVM opcode summarization system, and a K-to-Lean 4 backend",
-      "documented limits of compiling an existing client: the ZK toolchain compiler sits in the trusted base, the work is tied to one Rust implementation, and symbolic execution hits expression-explosion bottlenecks (256-bit data on 32-bit RISC-V, memory-model and type-conversion blow-up)",
-      "build-from-scratch route (evm-asm): a kernel-checked opcode core that removes the compiler from the trusted base, at the cost of re-implementing the guest"
+    overview := [
+      "The track's current centre of gravity is evm-asm, a Lean 4 verified macro assembler that implements EVM opcodes directly as RISC-V (RV64IM) subroutines with machine-checked correctness proofs. It builds the EVM guest from the bottom up: each opcode is implemented as RV64IM macro-assembly over 256-bit words held as four 64-bit limbs, and specified by a step-bounded Hoare triple in separation logic that the Lean kernel checks with no compiler in the trusted base and no unproved gaps or custom axioms. A parallel codegen path emits the verified programs as RISC-V ELFs and runs them on the Zisk emulator against the Python execution-specs reference.",
+      "The earliest substantial work in this track was a Runtime Verification grant that took the opposite route: it symbolically verified the revm-interpreter crate of REVM, compiled to RISC-V via the RISC Zero and SP1 toolchains, using the K Framework and a K model of RISC-V semantics. It showed the compile-and-verify route is viable for arithmetic, memory, and logical opcodes and delivered reusable RISC-V semantics, an EVM opcode summarization system, and a K-to-Lean code generator — while also surfacing the limits of that route, which motivate the current evm-asm work."
     ]
     whatNext := [
       "a current picture of which EVM opcodes are proven, conditionally proven, or still open",
@@ -121,28 +74,9 @@ def tracks : Array TrackInfo := #[
     key := .cryptography
     summary := "Verification of proof systems, security arguments, and cryptographic components used by zkVMs and zkEVMs."
     focus := "This track connects executable specifications, proof libraries, and formalized security reasoning for the cryptographic core of the stack."
-    statusHeadline := "The cryptography track has the clearest library-centered outcome story so far, with ArkLib acting as a visible focal point."
-    statusSummary := "Current work spans executable specifications for proof-system components, foundations for security arguments, and Lean-based tooling needed to make proof-system verification and cryptographic reasoning cumulative."
-    currentWork := [
-      "formalizing proof-system components and prerequisite mathematics in ArkLib",
-      "developing executable specifications for constructions such as Fiat-Shamir, STIR, WHIR, and Binius-related work",
-      "exploring better proof engineering workflows, including Lean tooling and AI-assisted proof experiments"
-    ]
-    nextMilestones := [
-      "better reporting on which cryptographic components already have executable specifications",
-      "clearer links from grants to papers, talks, and repositories around ArkLib",
-      "more explicit documentation of dependencies between security blueprints and library code"
-    ]
-    dependencies := [
-      "robust mathematical prerequisites for coding theory and proof-system arguments",
-      "library structure that supports both executable specs and proof-oriented abstractions",
-      "maintained links between research outputs, grants, and formalized artefacts"
-    ]
-    outcomeSummary := "This track already has visible outputs in the form of ArkLib, papers, talks, and specification-oriented grants. The main value now is consolidating those outputs into a clearer map of what has been formalized and what remains open."
-    outcomeThemes := [
-      "library-first accumulation of formalized proof-system knowledge",
-      "security blueprints and executable specifications moving in parallel",
-      "strong outward-facing outputs through talks, articles, and papers"
+    overview := [
+      "Current work spans executable specifications for proof-system components, foundations for security arguments, and Lean-based tooling needed to make proof-system verification and cryptographic reasoning cumulative.",
+      "This track already has visible outputs in the form of ArkLib, papers, talks, and specification-oriented grants, with ArkLib acting as a visible focal point. The main value now is consolidating those outputs into a clearer map of what has been formalized and what remains open."
     ]
     whatNext := [
       "security-proof and specification notes",
@@ -167,22 +101,8 @@ structure GrantAward where
   period : Option String := none
   url : Option String := none
   urlLabel : Option String := none
-deriving Repr
-
-structure LinkItem where
-  label : String
-  url : String
-deriving Repr
-
-structure GrantCaseStudy where
-  slug : String
-  awardTitle : String
-  relatedTrack : TrackKey
-  summary : String
-  currentState : String
-  outputs : List String
-  significance : List String
-  links : List LinkItem := []
+  /-- One-line summary of what the grant produced. Populate per grant. -/
+  output : Option String := none
 deriving Repr
 
 def grants : Array GrantAward := #[
@@ -484,70 +404,6 @@ def grantSectionOrder : List String := [
   "Community Resources and Education"
 ]
 
-def grantCaseStudies : Array GrantCaseStudy := #[
-  {
-    slug := "clean"
-    awardTitle := "cLean"
-    relatedTrack := .zkVM
-    summary := "cLean is intended to make circuit-oriented specifications expressible directly in Lean, so verification work can stay closer to the proof assistant rather than being spread across separate DSLs and ad hoc translations."
-    currentState := "This is best understood as enabling infrastructure: the point is not only one codebase, but a better path for specifying AIR-like constraints and connecting them to other tooling in the ecosystem."
-    outputs := [
-      "a Lean-oriented DSL for writing verification-relevant circuit descriptions",
-      "a concrete repository that can anchor follow-on documentation and examples",
-      "a bridge between grant funding and future track documentation around Lean-native circuit work"
-    ]
-    significance := [
-      "reduces friction for teams that want Lean-native verification workflows",
-      "gives the zkVM track a reusable artefact rather than a one-off report",
-      "fits the broader effort to make circuit verification infrastructure cumulative"
-    ]
-    links := [
-      { label := "Repository", url := "https://github.com/Verified-zkEVM/clean" }
-    ]
-  },
-  {
-    slug := "llzk"
-    awardTitle := "LLZK"
-    relatedTrack := .zkVM
-    summary := "LLZK is a family of MLIR dialects for circuits intended to support shared infrastructure for representing and verifying zero-knowledge artefacts."
-    currentState := "The grant’s main value is architectural: it creates a reusable intermediate layer that can support translation, analysis, and verification workflows across multiple circuit systems."
-    outputs := [
-      "an MLIR-based representation strategy for zero-knowledge circuits",
-      "a growing repository ecosystem around LLZK tooling",
-      "a foundation for verification flows that do not depend on one source language or proving stack"
-    ]
-    significance := [
-      "helps separate circuit verification from source-language churn",
-      "supports interoperability between tooling efforts funded by different grants",
-      "is one of the clearest examples of infrastructure with cross-project leverage"
-    ]
-    links := [
-      { label := "LLZK Library", url := "https://github.com/project-llzk/llzk-lib" },
-      { label := "LLZK Rust Tooling", url := "https://github.com/project-llzk/llzk-rs" }
-    ]
-  },
-  {
-    slug := "arklib"
-    awardTitle := "ArkLib"
-    relatedTrack := .cryptography
-    summary := "ArkLib is the clearest library-centered outcome in the cryptography track: a growing body of formalized proof-system components, specifications, and related supporting infrastructure in Lean."
-    currentState := "ArkLib already acts as a focal point for multiple grants, talks, and research outputs. The next documentation step is to make that accumulation legible by connecting grants, components, and published outputs more explicitly."
-    outputs := [
-      "a public repository for proof-system and cryptographic formalization work",
-      "a visible accumulation point for grants involving FRI, Fiat-Shamir, STIR, WHIR, and related topics",
-      "a concrete anchor for track-level documentation in the cryptography section"
-    ]
-    significance := [
-      "turns otherwise fragmented cryptography grants into a coherent library story",
-      "supports cumulative formalization rather than isolated proofs",
-      "creates a natural home for future specifications, blueprints, and component documentation"
-    ]
-    links := [
-      { label := "Repository", url := "https://github.com/Verified-zkEVM/ArkLib" }
-    ]
-  }
-]
-
 inductive ResourceKind where
   | talk
   | article
@@ -584,6 +440,20 @@ def resources : Array ResourceItem := #[
   {
     kind := .talk
     dateLabel := "June 2026"
+    title := "Raghav Malik - LLZK equivalence checker"
+    url := "https://www.youtube.com/watch?v=RUNafYO6qqE"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .talk
+    dateLabel := "June 2026"
+    title := "Ian Neal & Daniel Dominguez Alvarez - LLZK verification dialect"
+    url := "https://www.youtube.com/watch?v=GGwsm5BiaBM"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .talk
+    dateLabel := "June 2026"
     title := "Ryan Kim - A Verifiable ZK Compiler Stack for Lean"
     url := "https://www.youtube.com/watch?v=A-z2EbiFRk8"
     trackTags := [.zkVM]
@@ -601,6 +471,78 @@ def resources : Array ResourceItem := #[
     title := "Mathieu Fehr - Formal Semantics for MLIR dialects"
     url := "https://www.youtube.com/watch?v=6gspW3nNiCc"
     trackTags := [.general]
+  },
+  {
+    kind := .talk
+    dateLabel := "May 2026"
+    sourceLabel := "ZKProof 8"
+    title := "Quang Dao - Evolving the foundations of ArkLib"
+    url := "https://www.youtube.com/watch?v=2lXCtxk-XxI"
+    trackTags := [.cryptography]
+  },
+  {
+    kind := .talk
+    dateLabel := "May 2026"
+    sourceLabel := "ZKProof 8"
+    title := "Julian Sutherland - Reasoning about IOPPs"
+    url := "https://www.youtube.com/watch?v=rnSo4dYYzLY"
+    trackTags := [.cryptography]
+  },
+  {
+    kind := .talk
+    dateLabel := "May 2026"
+    sourceLabel := "ZKProof 8"
+    title := "Katerina Hristova - Mathematical foundations"
+    url := "https://www.youtube.com/watch?v=2Ut6GLOCdJA"
+    trackTags := [.cryptography]
+  },
+  {
+    kind := .talk
+    dateLabel := "May 2026"
+    sourceLabel := "ZKProof 8"
+    title := "Derek Sorensen - CompPoly"
+    url := "https://www.youtube.com/watch?v=bqSiYJe6N-Q"
+    trackTags := [.cryptography]
+  },
+  {
+    kind := .talk
+    dateLabel := "May 2026"
+    sourceLabel := "ZKProof 8"
+    title := "Devon Tuma - VCVio"
+    url := "https://www.youtube.com/watch?v=ShcceSuJqxQ"
+    trackTags := [.cryptography]
+  },
+  {
+    kind := .talk
+    dateLabel := "May 2026"
+    sourceLabel := "ZKProof 8"
+    title := "James Parker - zkLean: A DSL for ZK statement verification"
+    url := "https://www.youtube.com/watch?v=tR2w-xScTtw"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .talk
+    dateLabel := "May 2026"
+    sourceLabel := "ZKProof 8"
+    title := "Gregor Mitscha-Baude - Clean: From verification of circuits to verification of zkVMs"
+    url := "https://www.youtube.com/watch?v=Vcj6hjIXwNg"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .talk
+    dateLabel := "May 2026"
+    sourceLabel := "Lean FRO"
+    title := "Bas Spitters - Software Verification in Lean"
+    url := "https://www.youtube.com/watch?v=8K_kWJBQ20w"
+    trackTags := [.cryptography]
+  },
+  {
+    kind := .talk
+    dateLabel := "May 2026"
+    sourceLabel := "Lean FRO"
+    title := "Quang Dao - Software Verification in Lean"
+    url := "https://www.youtube.com/watch?v=WcOyDCqpN-w"
+    trackTags := [.cryptography]
   },
   {
     kind := .talk
@@ -992,15 +934,6 @@ def resources : Array ResourceItem := #[
 
 def grantsForTrack (track : TrackKey) : Array GrantAward :=
   grants.filter (·.relatedTrack == some track)
-
-def grantCaseStudyOfSlug? (slug : String) : Option GrantCaseStudy :=
-  grantCaseStudies.find? (·.slug == slug)
-
-def grantCaseStudyForAward? (grant : GrantAward) : Option GrantCaseStudy :=
-  grantCaseStudies.find? (·.awardTitle == grant.title)
-
-def grantCaseStudiesForTrack (track : TrackKey) : Array GrantCaseStudy :=
-  grantCaseStudies.filter (·.relatedTrack == track)
 
 def resourcesForTrack (track : TrackKey) : Array ResourceItem :=
   resources.filter fun r => r.trackTags.any (· == track)

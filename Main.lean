@@ -89,10 +89,7 @@ def website : Site := site «verified-zkevm».FrontPage /
     "zkvm" «verified-zkevm».Tracks.RiscvZkvm
     "evm" «verified-zkevm».Tracks.Evm
     "cryptography" «verified-zkevm».Tracks.Cryptography
-  "grants" «verified-zkevm».Grants.Index /
-    "clean" «verified-zkevm».Grants.Awarded.Clean
-    "llzk" «verified-zkevm».Grants.Awarded.LLZK
-    "arklib" «verified-zkevm».Grants.Awarded.ArkLib
+  "grants" «verified-zkevm».Grants.Index
   "resources" «verified-zkevm».Resources.Index
   "contact" «verified-zkevm».Contact
 

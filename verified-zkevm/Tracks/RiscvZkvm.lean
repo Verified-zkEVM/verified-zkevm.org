@@ -9,19 +9,9 @@ open Verso Genre Blog VerifiedZkEvmSite
 
 :::
 
-# Current Status
+# Overview
 
-:::track_status "zkvm"
-
-:::
-
-# Outcomes
-
-:::grants_for "zkvm"
-
-:::
-
-:::track_outcomes "zkvm"
+:::track_overview "zkvm"
 
 :::
 
