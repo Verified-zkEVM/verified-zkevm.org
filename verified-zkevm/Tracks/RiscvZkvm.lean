@@ -5,13 +5,19 @@ open Verso Genre Blog VerifiedZkEvmSite
 
 #doc (Page) "zkVM Track" =>
 
-:::track_spotlight "zkvm"
+:::track_header "zkvm"
 
 :::
 
 # Overview
 
 :::track_overview "zkvm"
+
+:::
+
+# Verification Goals
+
+:::track_goals "zkvm"
 
 :::
 

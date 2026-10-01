@@ -5,16 +5,18 @@ open Verso Genre Blog VerifiedZkEvmSite
 
 #doc (Page) "Grants" =>
 
-Applications are currently closed. New calls will be announced here when applications reopen. Although applications are not restricted to specific calls, the Requests for Proposals below describe current areas of interest.
-This page covers the funding process, current calls, and the full record of awarded work.
+*Grant applications are closed. No new proposals are being accepted.*
+This page preserves the application guidelines for reference and the full record of awarded work.
 
 # Requests for Proposals
 
-There are currently no active requests for proposals listed beyond the general areas of interest described across the tracks. New calls will appear in this section as they open, and proposals on related topics remain welcome in the meantime.
+There are no active requests for proposals.
 
-# How to Apply
+# Application Guidelines (Archived)
 
-All applications must have a written proposal in PDF format addressing the following details:
+These guidelines describe the requirements used when applications were open. They are retained for reference; new proposals are not being accepted.
+
+Applications required a written proposal in PDF format addressing the following details:
 
 1. *Proposal overview*
    * Proposed work, including goals, approach, and expected outcomes. Proposals should clearly explain what the proposal's target is and what a successful completion of the work would enable.
@@ -34,21 +36,19 @@ All applications must have a written proposal in PDF format addressing the follo
    * Background and expertise of your team members.
    * Track record, including public repositories and published work relevant to your proposal.
 
-Applications are open to any individuals, teams, and organizations, and will be selected for funding on a case-by-case basis.
-Submitting more than one proposal is allowed as long as each proposal is distinct and relevant to the project.
-Funding will be subject to a KYC process.
+Applications were open to individuals, teams, and organizations, with funding selected on a case-by-case basis.
+Applicants could submit more than one proposal as long as each proposal was distinct and relevant to the project.
+Funding was subject to a KYC process.
 
-Several independent proposals may have similar goals.
-In such cases, it is possible for several proposals to be funded if comparing the results of different approaches to the same problem would be useful, or if several teams can work together on similar or complementary goals.
-Being flexible in this regard can be a plus.
+Several independent proposals could have similar goals.
+In such cases, several proposals could be funded if comparing the results of different approaches to the same problem would be useful, or if several teams could work together on similar or complementary goals.
+Flexibility in this regard was encouraged.
 
-If your proposal is for general tooling, please make sure to address what this will be useful for within the expected lifetime of this project (e.g., verifying a specific artefact) and how others will also be able to use it.
+Proposals for general tooling were expected to explain how the tooling would be useful within the expected lifetime of this project (e.g., verifying a specific artefact) and how others could also use it.
 
-If your application relates to the cryptography track, please take into account [ArkLib](https://github.com/Verified-zkEVM/ArkLib).
+Applications related to the cryptography track were expected to take into account [ArkLib](https://github.com/Verified-zkEVM/ArkLib).
 
-If your application relates to circuits, please take into account [LLZK](https://github.com/project-llzk/llzk-lib).
-
-Once applications are open again, proposals can be sent until further notice to [verified-zkevm@ethereum.org](mailto:verified-zkevm@ethereum.org).
+Applications related to circuits were expected to take into account [LLZK](https://github.com/project-llzk/llzk-lib).
 
 # Awarded Grants
 

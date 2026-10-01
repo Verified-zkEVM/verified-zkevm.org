@@ -4,6 +4,11 @@ inductive TrackKey where
   | zkVM
   | evm
   | cryptography
+  /--
+  Tag-only key for resources that belong to no single track. There is no `general` track page and
+  no entry in `tracks`, so it is deliberately absent from `trackKeyOfSlug?`: nothing can route to
+  it, and `trackInfo!` is never reached with it.
+  -/
   | general
 deriving BEq, DecidableEq, Inhabited, Repr
 
@@ -22,12 +27,12 @@ def TrackKey.title : TrackKey → String
 def TrackKey.path : TrackKey → List String
   | t => ["project", t.slug]
 
+/-- Resolves the slug used in a directive argument to a track that has a page. -/
 def trackKeyOfSlug? (slug : String) : Option TrackKey :=
   match slug with
   | "zkvm" => some .zkVM
   | "evm" => some .evm
   | "cryptography" => some .cryptography
-  | "general" => some .general
   | _ => none
 
 structure TrackInfo where
@@ -36,54 +41,30 @@ structure TrackInfo where
   focus : String
   /-- Free-text executive summary of the track (status + outcomes), one entry per paragraph. Edit freely. -/
   overview : List String
-  whatNext : List String
+  verificationGoals : List String
 deriving Repr, Inhabited
 
 def tracks : Array TrackInfo := #[
   {
     key := .zkVM
     summary := "Verification of zkVM arithmetizations against the official RISC-V Sail semantics."
-    focus := "This track covers circuit semantics, extraction and comparison against machine specifications, and tooling that makes zkVM verification maintainable."
-    overview := [
-      "Current work is concentrated around extraction from machine specifications, verification of concrete circuit artifacts, and tooling that makes zkVM verification repeatable across implementations.",
-      "The strongest outcomes so far are infrastructure-heavy: circuit DSLs, MLIR-based intermediate representations, fuzzing and bug-finding work, and early formal verification reports around concrete zkVM components."
-    ]
-    whatNext := [
-      "track status summaries",
-      "grant-linked outcomes",
-      "artefact links and repository notes",
-      "track-specific technical documentation"
-    ]
+    focus := ""
+    overview := []
+    verificationGoals := []
   },
   {
     key := .evm
     summary := "Verifying that the EVM guest program executed inside a zkVM correctly implements the EVM specification, with the assurance carried down to the RISC-V the prover actually runs."
-    focus := "A zkVM proves the execution of a guest program, but there is no canonical guest. EVM implementations exist in Rust, Go, C++, Java, and other languages with very different formal-verification friendliness, and verifying any one of them at scale — while keeping a comparable level of assurance across them — is the central difficulty of this track. The work therefore targets EVM guests that can be verified down to the RISC-V they run as, currently centred on evm-asm: a verified macro assembler that builds the guest bottom-up from a machine-checked RV64 core so that no compiler sits in the trusted base."
-    overview := [
-      "The track's current centre of gravity is evm-asm, a Lean 4 verified macro assembler that implements EVM opcodes directly as RISC-V (RV64IM) subroutines with machine-checked correctness proofs. It builds the EVM guest from the bottom up: each opcode is implemented as RV64IM macro-assembly over 256-bit words held as four 64-bit limbs, and specified by a step-bounded Hoare triple in separation logic that the Lean kernel checks with no compiler in the trusted base and no unproved gaps or custom axioms. A parallel codegen path emits the verified programs as RISC-V ELFs and runs them on the Zisk emulator against the Python execution-specs reference.",
-      "The earliest substantial work in this track was a Runtime Verification grant that took the opposite route: it symbolically verified the revm-interpreter crate of REVM, compiled to RISC-V via the RISC Zero and SP1 toolchains, using the K Framework and a K model of RISC-V semantics. It showed the compile-and-verify route is viable for arithmetic, memory, and logical opcodes and delivered reusable RISC-V semantics, an EVM opcode summarization system, and a K-to-Lean code generator — while also surfacing the limits of that route, which motivate the current evm-asm work."
-    ]
-    whatNext := [
-      "a current picture of which EVM opcodes are proven, conditionally proven, or still open",
-      "the path from verified opcodes to a complete, verified stateless block validator",
-      "a comparison of the compile-and-verify and build-from-scratch routes on assurance, effort, and trusted-base size",
-      "guidance on reaching parity of assurance across EVM guests written in different languages"
-    ]
+    focus := ""
+    overview := []
+    verificationGoals := []
   },
   {
     key := .cryptography
     summary := "Verification of proof systems, security arguments, and cryptographic components used by zkVMs and zkEVMs."
-    focus := "This track connects executable specifications, proof libraries, and formalized security reasoning for the cryptographic core of the stack."
-    overview := [
-      "Current work spans executable specifications for proof-system components, foundations for security arguments, and Lean-based tooling needed to make proof-system verification and cryptographic reasoning cumulative.",
-      "This track already has visible outputs in the form of ArkLib, papers, talks, and specification-oriented grants, with ArkLib acting as a visible focal point. The main value now is consolidating those outputs into a clearer map of what has been formalized and what remains open."
-    ]
-    whatNext := [
-      "security-proof and specification notes",
-      "grant outcomes around ArkLib and related tooling",
-      "links to talks, articles, and papers",
-      "documentation around proof-system components"
-    ]
+    focus := ""
+    overview := []
+    verificationGoals := []
   }
 ]
 
@@ -433,10 +414,38 @@ structure ResourceItem where
   sourceLabel : String := ""
   blurb? : Option String := none
   trackTags : List TrackKey := []
-  featured : Bool := false
 deriving Repr
 
 def resources : Array ResourceItem := #[
+  {
+    kind := .talk
+    dateLabel := "September 2026"
+    title := "Devon Tuma - Verifying SP1 constraints with clean"
+    url := "https://youtu.be/O6zTEc7Y_yc"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .talk
+    dateLabel := "September 2026"
+    title := "Gregor Mitscha-Baude - Ironwood"
+    url := "https://www.youtube.com/watch?v=ZE_JTlAMTFg"
+    trackTags := [.cryptography]
+  },
+  {
+    kind := .talk
+    dateLabel := "August 2026"
+    title := "Giorgio Dell'Immagine - zkGolf"
+    url := "https://www.youtube.com/watch?v=9BSzHnkMSVg"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .talk
+    dateLabel := "August 2026"
+    sourceLabel := "SBC 2026"
+    title := "Alexander Hicks - AI vs QED: formally verifying the stack"
+    url := "https://www.youtube.com/watch?v=IY_SfBvejko"
+    trackTags := [.general]
+  },
   {
     kind := .talk
     dateLabel := "June 2026"
@@ -550,7 +559,6 @@ def resources : Array ResourceItem := #[
     title := "Yoichi Hirai - Your guide to formal verification when machines write Lean proofs"
     url := "https://www.youtube.com/watch?v=ciZZRyN26Dg"
     trackTags := [.cryptography]
-    featured := true
   },
   {
     kind := .talk
@@ -558,7 +566,6 @@ def resources : Array ResourceItem := #[
     title := "Derek Sorensen - Safely Snarkifying Ethereum: Formal Verification and Protocol"
     url := "https://youtu.be/-1FTm10m2V0?si=35z_cKAzvJAqXORK"
     trackTags := [.cryptography]
-    featured := true
   },
   {
     kind := .talk
@@ -615,7 +622,6 @@ def resources : Array ResourceItem := #[
     title := "ArkLib"
     url := "https://youtu.be/4aVI7MS0S4g"
     trackTags := [.cryptography]
-    featured := true
   },
   {
     kind := .talk
@@ -629,7 +635,6 @@ def resources : Array ResourceItem := #[
     dateLabel := "November 2025"
     title := "Securing Ethereum: The ZK-EVM Formal Verification Project"
     url := "https://youtu.be/jbCDHb4GMUw?si=O_VArNnHyDZyVp77"
-    featured := true
   },
   {
     kind := .talk
@@ -671,7 +676,6 @@ def resources : Array ResourceItem := #[
     dateLabel := "March 2025"
     title := "Formally verifying zk(E)VMs with the Ethereum Foundation"
     url := "https://www.youtube.com/live/L_uz5rH50Sw?si=U_TtFXsHbMr5lpZ9"
-    featured := true
   },
   {
     kind := .talk
@@ -703,12 +707,19 @@ def resources : Array ResourceItem := #[
   },
   {
     kind := .article
+    dateLabel := "April 2026"
+    sourceLabel := "zkSecurity"
+    title := "The Final Form of Software Development"
+    url := "https://blog.zksecurity.xyz/posts/end-coding/"
+    trackTags := [.general]
+  },
+  {
+    kind := .article
     dateLabel := "January 2026"
     sourceLabel := "zkSecurity"
     title := "Lean4 Formalization of a Simplified Round-by-round Soundness Proof of FRI"
     url := "https://blog.zksecurity.xyz/posts/simple-rbr-fri/"
     trackTags := [.cryptography]
-    featured := true
   },
   {
     kind := .article
@@ -717,7 +728,6 @@ def resources : Array ResourceItem := #[
     title := "Formal verification of the Keccak precompile from Plonky3"
     url := "https://formal.land/blog/2026/01/14/formal-verification-keccak-plonky3"
     trackTags := [.evm, .zkVM]
-    featured := true
   },
   {
     kind := .article
@@ -814,7 +824,6 @@ def resources : Array ResourceItem := #[
     url := "https://dl.acm.org/doi/10.1145/3763148"
     blurb? := some "Siddharth Bhat, Léo Stefanesco, Chris Hughes, Tobias Grosser."
     trackTags := [.evm]
-    featured := true
   },
   {
     kind := .paper
@@ -829,7 +838,6 @@ def resources : Array ResourceItem := #[
     title := "Verified-zkEVM"
     url := "https://github.com/Verified-zkEVM"
     blurb? := some "GitHub organization"
-    featured := true
   },
   {
     kind := .repo
@@ -837,19 +845,12 @@ def resources : Array ResourceItem := #[
     url := "https://github.com/Verified-zkEVM/evm-asm"
     blurb? := some "Verified macro assembler building the EVM guest bottom-up from a machine-checked RV64 core (experimental prototype)"
     trackTags := [.evm]
-    featured := true
-  },
-  {
-    kind := .repo
-    title := "Verified-zkEVM/verified-zkevm.org"
-    url := "https://github.com/Verified-zkEVM/verified-zkevm.org"
   },
   {
     kind := .repo
     title := "Verified-zkEVM/ArkLib"
     url := "https://github.com/Verified-zkEVM/ArkLib"
     trackTags := [.cryptography]
-    featured := true
   },
   {
     kind := .repo
@@ -865,8 +866,8 @@ def resources : Array ResourceItem := #[
   },
   {
     kind := .repo
-    title := "Verified-zkEVM/VCV-io"
-    url := "https://github.com/Verified-zkEVM/VCV-io"
+    title := "Verified-zkEVM/VCVio"
+    url := "https://github.com/Verified-zkEVM/VCVio"
     trackTags := [.cryptography]
   },
   {
@@ -874,12 +875,41 @@ def resources : Array ResourceItem := #[
     title := "Verified-zkEVM/clean"
     url := "https://github.com/Verified-zkEVM/clean"
     trackTags := [.zkVM]
-    featured := true
   },
   {
     kind := .repo
-    title := "Verified-zkEVM/Overview"
-    url := "https://github.com/Verified-zkEVM/Overview"
+    title := "Verified-zkEVM/ExtTreeMapLemmas"
+    url := "https://github.com/Verified-zkEVM/ExtTreeMapLemmas"
+    trackTags := [.general]
+  },
+  {
+    kind := .repo
+    title := "Verified-zkEVM/leanerVM"
+    url := "https://github.com/Verified-zkEVM/leanerVM"
+  },
+  {
+    kind := .repo
+    title := "Verified-zkEVM/PolyFun"
+    url := "https://github.com/Verified-zkEVM/PolyFun"
+    trackTags := [.general]
+  },
+  {
+    kind := .repo
+    title := "Verified-zkEVM/riscv-zkvm"
+    url := "https://github.com/Verified-zkEVM/riscv-zkvm"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .repo
+    title := "Verified-zkEVM/rust-lean"
+    url := "https://github.com/Verified-zkEVM/rust-lean"
+    trackTags := [.general]
+  },
+  {
+    kind := .repo
+    title := "Verified-zkEVM/zkLean"
+    url := "https://github.com/Verified-zkEVM/zkLean"
+    trackTags := [.zkVM]
   },
   {
     kind := .repo
@@ -892,7 +922,6 @@ def resources : Array ResourceItem := #[
     title := "project-llzk/llzk-lib"
     url := "https://github.com/project-llzk/llzk-lib"
     trackTags := [.zkVM]
-    featured := true
   },
   {
     kind := .repo
@@ -914,6 +943,78 @@ def resources : Array ResourceItem := #[
   },
   {
     kind := .repo
+    title := "project-llzk/.github"
+    url := "https://github.com/project-llzk/.github"
+  },
+  {
+    kind := .repo
+    title := "project-llzk/airbender-llzk-frontend"
+    url := "https://github.com/project-llzk/airbender-llzk-frontend"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .repo
+    title := "project-llzk/circom-benchmarks"
+    url := "https://github.com/project-llzk/circom-benchmarks"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .repo
+    title := "project-llzk/clean-llzk-frontend"
+    url := "https://github.com/project-llzk/clean-llzk-frontend"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .repo
+    title := "project-llzk/haloumi"
+    url := "https://github.com/project-llzk/haloumi"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .repo
+    title := "project-llzk/LLEQ"
+    url := "https://github.com/project-llzk/LLEQ"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .repo
+    title := "project-llzk/llzk-interpreter"
+    url := "https://github.com/project-llzk/llzk-interpreter"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .repo
+    title := "project-llzk/llzk-lean"
+    url := "https://github.com/project-llzk/llzk-lean"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .repo
+    title := "project-llzk/llzk-spec"
+    url := "https://github.com/project-llzk/llzk-spec"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .repo
+    title := "project-llzk/noir-benchmarks"
+    url := "https://github.com/project-llzk/noir-benchmarks"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .repo
+    title := "project-llzk/noir_llzk"
+    url := "https://github.com/project-llzk/noir_llzk"
+    trackTags := [.zkVM]
+  },
+  {
+    kind := .repo
+    title := "opencompl/veir"
+    url := "https://github.com/opencompl/veir"
+    blurb? := some "Compiler infrastructure in Lean with MLIR interoperability."
+    trackTags := [.general]
+  },
+  {
+    kind := .repo
     title := "Veridise/zirgen-to-llzk"
     url := "https://github.com/Veridise/zirgen-to-llzk"
     trackTags := [.zkVM]
@@ -923,6 +1024,13 @@ def resources : Array ResourceItem := #[
     title := "NethermindEth/CertiPlonk"
     url := "https://github.com/NethermindEth/CertiPlonk"
     trackTags := [.zkVM]
+  },
+  {
+    kind := .repo
+    title := "pirapira/stateless-pancaketh"
+    url := "https://github.com/pirapira/stateless-pancaketh"
+    blurb? := some "Experimental Ethereum stateless guest implementation in Pancake."
+    trackTags := [.evm]
   },
   {
     kind := .repo
@@ -940,8 +1048,5 @@ def resourcesForTrack (track : TrackKey) : Array ResourceItem :=
 
 def resourceItemsByKind (kind : ResourceKind) : Array ResourceItem :=
   resources.filter (·.kind == kind)
-
-def featuredResources : Array ResourceItem :=
-  resources.filter (·.featured) |>.take 6
 
 end VerifiedZkEvmSite

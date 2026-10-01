@@ -1,35 +1,26 @@
 import VersoBlog
 
 open Verso Genre Blog
-open Template
-open Verso.Output.Html
 
 namespace VerifiedZkEvmSite
 
-def hrefTo (segments : List String) : TemplateM String := do
-  if segments.isEmpty then
-    pure "./"
-  else
-    pure <| String.join (segments.map (· ++ "/"))
+/--
+Link to a page identified by its path segments from the site root.
 
-def currentRoot? : TemplateM (Option String) := do
-  pure <| (← currentPath).toList.head?
+Every page carries a `<base href>` pointing at the site root (see `siteHeader`), so hrefs are
+written root-relative and need no knowledge of where the linking page sits. That keeps link
+construction a plain function instead of something that has to run in a monad.
+-/
+def hrefTo : List String → String
+  | [] => "./"
+  | segments => String.join (segments.map (· ++ "/"))
 
-def pathActive (segments : List String) : TemplateM Bool := do
-  pure <| (← currentPath).toList == segments
+/-- Whether the page being rendered is exactly `segments`. -/
+def pathActive [Monad m] [MonadPath m] (segments : List String) : m Bool := do
+  return (← currentPath).toList == segments
 
-def rootActive (root : String) : TemplateM Bool := do
-  pure <| (← currentRoot?) == some root
-
-def absoluteHref (segments : List String) : String :=
-  match segments with
-  | [] => "/"
-  | _ => "/" ++ String.intercalate "/" segments ++ "/"
-
-def htmlHrefTo (target : List String) : HtmlM Page String := do
-  if target.isEmpty then
-    pure "./"
-  else
-    pure <| String.join (target.map (· ++ "/"))
+/-- Whether the page being rendered lives anywhere under the top-level section `root`. -/
+def rootActive [Monad m] [MonadPath m] (root : String) : m Bool := do
+  return (← currentPath).toList.head? == some root
 
 end VerifiedZkEvmSite

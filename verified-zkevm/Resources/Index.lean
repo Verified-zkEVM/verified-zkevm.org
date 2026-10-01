@@ -5,7 +5,7 @@ open Verso Genre Blog VerifiedZkEvmSite
 
 #doc (Page) "Resources" =>
 
-:::repo_grid
+:::resource_section "repos"
 
 :::
 
@@ -13,7 +13,7 @@ open Verso Genre Blog VerifiedZkEvmSite
 
 :::
 
-:::papers_section
+:::resource_section "papers"
 
 :::
 

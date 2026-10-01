@@ -5,13 +5,19 @@ open Verso Genre Blog VerifiedZkEvmSite
 
 #doc (Page) "Cryptography Track" =>
 
-:::track_spotlight "cryptography"
+:::track_header "cryptography"
 
 :::
 
 # Overview
 
 :::track_overview "cryptography"
+
+:::
+
+# Verification Goals
+
+:::track_goals "cryptography"
 
 :::
 
