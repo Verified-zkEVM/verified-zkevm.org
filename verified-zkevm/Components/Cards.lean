@@ -42,10 +42,17 @@ def renderInfoListCompact (title : String) (items : List String) : Html :=
     }}
 
 def renderGrantLink (grant : GrantAward) : Html :=
-  match grant.url, grant.urlLabel with
-  | some url, some label => {{ <a href={{ url }} class="mini-link">{{ label }}</a> }}
-  | some url, none => {{ <a href={{ url }} class="mini-link">"Link"</a> }}
-  | none, _ => .empty
+  let primary :=
+    match grant.url, grant.urlLabel with
+    | some url, some label => {{ <a href={{ url }} class="mini-link">{{ label }}</a> }}
+    | some url, none => {{ <a href={{ url }} class="mini-link">"Link"</a> }}
+    | none, _ => .empty
+  if grant.extraLinks.isEmpty then
+    primary
+  else
+    let extra := grant.extraLinks.toArray.map fun (label, url) =>
+      {{ <a href={{ url }} class="mini-link">{{ label }}</a> }}
+    {{ <div class="action-row">{{ primary }}{{ Html.seq extra }}</div> }}
 
 def renderGrantCard (level : Nat) (grant : GrantAward) : Html :=
   let periodHtml :=

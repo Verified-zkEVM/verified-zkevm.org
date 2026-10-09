@@ -99,11 +99,61 @@ structure GrantAward where
   period : Option String := none
   url : Option String := none
   urlLabel : Option String := none
+  /-- Additional links as (label, URL) pairs. -/
+  extraLinks : List (String × String) := []
   /-- One-line summary of what the grant produced. Populate per grant. -/
   output : Option String := none
 deriving Repr
 
 def grants : Array GrantAward := #[
+  {
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
+    title := "OpenVM Formal Verification"
+    description := "Intended to support formal verification of OpenVM’s RISC-V constraints against the official Sail semantics in Lean."
+    awardedTo := "Axiom"
+    period := some "Q4 2025"
+    url := some "https://github.com/openvm-org/openvm-fv"
+    urlLabel := some "openvm-fv"
+  },
+  {
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
+    title := "Formal Verification of the Brevis Pico RISC-V zkVM"
+    description := "Intended to support formal verification of Brevis Pico’s RISC-V constraints against the official Sail semantics in Lean."
+    awardedTo := "Nethermind"
+    period := some "Q1 2026"
+    url := some "https://github.com/NethermindEth/pico-fv"
+    urlLabel := some "pico-fv"
+  },
+  {
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
+    title := "GPU-Accelerated R1CS Witness Generation for LLZK"
+    description := "Intended to support GPU-accelerated R1CS witness generation for LLZK using an MLIR-based compiler stack."
+    awardedTo := "Fractalyze"
+    period := some "Q1 2026"
+  },
+  {
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
+    title := "Improved Proving Infrastructure for RISC-V zkVMs"
+    description := "Intended to support Lean infrastructure for verifying SP1’s RISC-V constraints against the official Sail semantics."
+    awardedTo := "SP1, Nethermind"
+    period := some "Q3 2025, Q1 2026"
+    url := some "https://github.com/succinctlabs/sp1-lean"
+    urlLabel := some "sp1-lean"
+  },
+  {
+    group := "zkVM Track"
+    relatedTrack := some .zkVM
+    title := "Noir to LLZK compiler"
+    description := "Intended to support the development of a compiler from Noir to LLZK via ACIR."
+    awardedTo := "Rei Labs"
+    period := some "Q1 2026"
+    url := some "https://github.com/project-llzk/noir_llzk"
+    urlLabel := some "noir_llzk"
+  },
   {
     group := "zkVM Track"
     relatedTrack := some .zkVM
@@ -223,6 +273,17 @@ def grants : Array GrantAward := #[
   {
     group := "EVM Track"
     relatedTrack := some .evm
+    title := "evm-asm"
+    description := "Intended to support the development of formally verified Ethereum execution guest programs for zkVMs, exploring macro assembly in Lean and verified compilation."
+    awardedTo := "zkSecurity"
+    period := some "Q2 2026"
+    url := some "https://github.com/Verified-zkEVM/evm-asm"
+    urlLabel := some "evm-asm"
+    extraLinks := [("stateless-pancaketh", "https://github.com/flamingoponderado/stateless-pancaketh")]
+  },
+  {
+    group := "EVM Track"
+    relatedTrack := some .evm
     title := "Certified compilation"
     description := "Intended to support research on certified compilation methods in the Rocq ecosystem together with tools for high-assurance cryptography."
     awardedTo := "Aarhus University"
@@ -247,10 +308,40 @@ def grants : Array GrantAward := #[
   {
     group := "Cryptography Track"
     relatedTrack := some .cryptography
-    title := "Technical Review of Fiat-Shamir From Duplex Sponges"
-    description := "Intended to support a technical review of the Fiat-Shamir transformation instantiated via duplex sponges."
-    awardedTo := "University of Maryland (Kasra Abbaszadeh)"
+    title := "The recursive extraction problem"
+    description := "Intended to support research on the recursive extraction problem in proof systems."
+    awardedTo := "Cornell University"
     period := some "Q4 2025"
+  },
+  {
+    group := "Cryptography Track"
+    relatedTrack := some .cryptography
+    title := "Formalising proximity generators"
+    description := "Intended to support the formalization of proximity generators and related properties in ArkLib."
+    awardedTo := "Katerina Hristova"
+    period := some "Q1 2026"
+    url := some "https://github.com/Verified-zkEVM/ArkLib"
+    urlLabel := some "ArkLib"
+  },
+  {
+    group := "Cryptography Track"
+    relatedTrack := some .cryptography
+    title := "CompPoly P2 roadmap"
+    description := "Intended to support Phase 2 of CompPoly’s roadmap, including fast field arithmetic, polynomial operations, exponentiation, multilinear transforms, and error-correcting interpolation."
+    awardedTo := "Formal Land, zkSecurity, Dimitris Mitsios, Runtime Verification"
+    period := some "Q2 2026"
+    url := some "https://github.com/Verified-zkEVM/CompPoly"
+    urlLabel := some "CompPoly"
+  },
+  {
+    group := "Cryptography Track"
+    relatedTrack := some .cryptography
+    title := "Protocol IR"
+    description := "Intended to support the development of an intermediate representation and compiler for zero-knowledge protocols, enabling protocol checks, generation of prover and verifier programs, and security analysis."
+    awardedTo := "Wonjae Choi"
+    period := some "Q2 2026"
+    url := some "https://github.com/zkcompiler/zkc"
+    urlLabel := some "zkc"
   },
   {
     group := "Cryptography Track"
@@ -271,10 +362,10 @@ def grants : Array GrantAward := #[
   {
     group := "Cryptography Track"
     relatedTrack := some .cryptography
-    title := "Fiat-Shamir specification"
-    description := "Intended to support the development of a Fiat-Shamir specification based on duplex sponges."
-    awardedTo := "Article 12, LLC (Michele Orrù)"
-    period := some "Q4 2025"
+    title := "Fiat-Shamir specification and review"
+    description := "Intended to support the development, formal verification, and technical review of a Fiat-Shamir specification based on duplex sponges."
+    awardedTo := "Article 12, LLC (Michele Orrù), Alessandro Chiesa, Chung Thai Nguyen"
+    period := some "Q4 2025, Q2 2026"
   },
   {
     group := "Cryptography Track"
@@ -327,10 +418,12 @@ def grants : Array GrantAward := #[
   },
   {
     group := "General Tooling"
-    title := "MLIR sidekick for Lean"
-    description := "Intended to support Lean-MLIR infrastructure development, including fast datastructures and a RISC-V dialect in Lean."
+    title := "VeIR"
+    description := "Intended to support the development of VeIR, a compiler infrastructure in Lean that combines an MLIR-style design with formal verification."
     awardedTo := "University of Cambridge"
-    period := some "Q3 2025"
+    period := some "Q3 2025, Q3 2026"
+    url := some "https://github.com/opencompl/veir/"
+    urlLabel := some "VeIR"
   },
   {
     group := "General Tooling"
@@ -343,39 +436,26 @@ def grants : Array GrantAward := #[
   },
   {
     group := "Events"
-    title := "HACS 2026"
-    description := "Support for HACS 2026 in March 2026."
+    title := "HACS"
+    description := "Support for the High Assurance Crypto Software workshops in 2025 and 2026."
     awardedTo := "Aspiration"
-    period := some "Q1 2026"
-    url := some "https://www.hacs-workshop.org/data/HACS_2026_Overview.pdf"
-    urlLabel := some "Overview"
-  },
-  {
-    group := "Events"
-    title := "HACS 2025"
-    description := "Support for HACS 2025 in March 2025."
-    awardedTo := "Aspiration"
-    period := some "Q1 2025"
+    period := some "Q1 2025, Q1 2026"
     url := some "https://www.hacs-workshop.org/data/HACS_2025_Overview.pdf"
-    urlLabel := some "Overview"
+    urlLabel := some "HACS 2025"
+    extraLinks := [("HACS 2026", "https://www.hacs-workshop.org/data/HACS_2026_Overview.pdf")]
   },
   {
     group := "Events"
-    title := "ZKProofs 7"
-    description := "Support for ZKProofs 7 in March 2025."
+    title := "ZKProof events"
+    description := "Support for the ZKProof Zurich event, ZKProof 7, and the Verified zkEVM ArkLib Day at ZKProof 8."
     awardedTo := "ZKProofs"
-    period := some "Q1 2025"
-    url := some "https://zkproof.org/events/zkproof-7-sofia"
-    urlLabel := some "Event"
-  },
-  {
-    group := "Events"
-    title := "ZKProofs Zurich Event"
-    description := "Support for a Zurich event discussing the formal verification of proof systems."
-    awardedTo := "ZKProofs"
-    period := some "Q4 2024"
+    period := some "Q4 2024, Q1 2025, Q1 2026"
     url := some "https://zkproof.org/verifier"
-    urlLabel := some "Summary"
+    urlLabel := some "ZKProof Zurich"
+    extraLinks := [
+      ("ZKProof 7", "https://zkproof.org/events/zkproof-7-sofia"),
+      ("ZKProof 8", "https://zkproof.org/events/zkproof-8-rome/")
+    ]
   },
   {
     group := "Community Resources and Education"
