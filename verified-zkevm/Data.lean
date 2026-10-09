@@ -133,6 +133,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support GPU-accelerated R1CS witness generation for LLZK using an MLIR-based compiler stack."
     awardedTo := "Fractalyze"
     period := some "Q1 2026"
+    url := some "https://github.com/fractalyze/llzk-to-shlo"
+    urlLabel := some "llzk-to-shlo"
   },
   {
     group := "zkVM Track"
@@ -161,6 +163,9 @@ def grants : Array GrantAward := #[
     description := "Intended to support the verification of Powdr Labs' autoprecompiles."
     awardedTo := "Powdr Labs GmbH, Certora"
     period := some "Q4 2025"
+    url := some "https://github.com/Certora/powdr-verifier/"
+    urlLabel := some "powdr-verifier"
+    extraLinks := [("apc-optimizer", "https://github.com/powdr-labs/apc-optimizer")]
   },
   {
     group := "zkVM Track"
@@ -169,6 +174,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support work on automated verification tools for zkVM arithmetizations."
     awardedTo := "Universidad Complutense de Madrid (Albert Rubio)"
     period := some "Q4 2025"
+    url := some "https://github.com/costa-group/avazar"
+    urlLabel := some "AVAZAR"
   },
   {
     group := "zkVM Track"
@@ -177,6 +184,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support the development of fuzzing techniques applicable to any RISC-V zkVM."
     awardedTo := "zksecurity"
     period := some "Q3 2025"
+    url := some "https://github.com/zksecurity/zkvmblast"
+    urlLabel := some "zkvmblast"
   },
   {
     group := "zkVM Track"
@@ -187,6 +196,7 @@ def grants : Array GrantAward := #[
     period := some "Q3 2025"
     url := some "https://bugs.zksecurity.xyz"
     urlLabel := some "zkBugs"
+    extraLinks := [("Repository", "https://github.com/zksecurity/zkbugs")]
   },
   {
     group := "zkVM Track"
@@ -195,6 +205,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support the development of techniques to automatically verify the consistency between witness generation and constraints."
     awardedTo := "Veridise"
     period := some "Q3 2025"
+    url := some "https://github.com/project-llzk/LLEQ"
+    urlLabel := some "LLEQ"
   },
   {
     group := "zkVM Track"
@@ -203,6 +215,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support work on prover killers."
     awardedTo := "Conner Swann"
     period := some "Q2 2025"
+    url := some "https://github.com/yourbuddyconner/zkarnage"
+    urlLabel := some "ZKarnage"
   },
   {
     group := "zkVM Track"
@@ -211,6 +225,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support an integration of Plonky3 with Rocq."
     awardedTo := "Formal Land"
     period := some "Q2 2025"
+    url := some "https://github.com/formal-land/garden"
+    urlLabel := some "Garden"
   },
   {
     group := "zkVM Track"
@@ -219,6 +235,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support an integration of Plonky3 with Lean."
     awardedTo := "Nethermind"
     period := some "Q1 2025"
+    url := some "https://github.com/NethermindEth/CertiPlonk"
+    urlLabel := some "CertiPlonk"
   },
   {
     group := "zkVM Track"
@@ -227,6 +245,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support an evaluation of Verus as a tool to verify representative Rust code."
     awardedTo := "CertiK"
     period := some "Q1 2025"
+    url := some "https://github.com/CertiKProject/zkvm-verus"
+    urlLabel := some "zkvm-verus"
   },
   {
     group := "zkVM Track"
@@ -235,6 +255,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support the development of Rocq tactics for handling arithmetic modulo and packed integers."
     awardedTo := "CertiK"
     period := some "Q1 2025"
+    url := some "https://github.com/CertiKProject/rocq_zkvm_tactics"
+    urlLabel := some "rocq_zkvm_tactics"
   },
   {
     group := "zkVM Track"
@@ -253,6 +275,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support the development of LLZK, a family of MLIR dialects for circuits."
     awardedTo := "Veridise"
     period := some "Q4 2024, Q4 2025"
+    url := some "https://github.com/project-llzk/llzk-lib"
+    urlLabel := some "llzk-lib"
   },
   {
     group := "zkVM Track"
@@ -261,6 +285,9 @@ def grants : Array GrantAward := #[
     description := "Intended to support a Lean backend for Sail so that the official RISC-V Sail specification can be extracted to Lean."
     awardedTo := "University of Cambridge, Galois, Lindy Labs (first grant only)"
     period := some "Q1 2025, Q3 2025"
+    url := some "https://github.com/rems-project/sail"
+    urlLabel := some "Sail"
+    extraLinks := [("lean-sail", "https://github.com/rems-project/lean-sail")]
   },
   {
     group := "zkVM Track"
@@ -269,6 +296,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support a Lean DSL for constraints and its integration with LLZK."
     awardedTo := "Galois"
     period := some "Q1 2025, Q3 2025"
+    url := some "https://github.com/Verified-zkEVM/zkLean"
+    urlLabel := some "zkLean"
   },
   {
     group := "EVM Track"
@@ -304,6 +333,12 @@ def grants : Array GrantAward := #[
     description := "Intended to support verification of revm compiled to RISC-V against KEVM together with development of a Lean backend for K."
     awardedTo := "Runtime Verification"
     period := some "Q4 2024"
+    url := some "https://github.com/runtimeverification/zkevm-harness"
+    urlLabel := some "zkevm-harness"
+    extraLinks := [
+      ("evm-equivalence", "https://github.com/runtimeverification/evm-equivalence"),
+      ("klean", "https://github.com/runtimeverification/k/tree/master/pyk/src/pyk/klean")
+    ]
   },
   {
     group := "Cryptography Track"
@@ -350,6 +385,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support investigation into Lean 4 based formal verification of Rust components used in zkEVM and zkVM stacks."
     awardedTo := "Runtime Verification"
     period := some "Q4 2025"
+    url := some "https://github.com/Verified-zkEVM/rust-lean"
+    urlLabel := some "rust-lean"
   },
   {
     group := "Cryptography Track"
@@ -358,6 +395,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support the addition of executable specifications for STIR and WHIR in ArkLib."
     awardedTo := "Nethermind"
     period := some "Q4 2025"
+    url := some "https://github.com/Verified-zkEVM/ArkLib"
+    urlLabel := some "ArkLib"
   },
   {
     group := "Cryptography Track"
@@ -366,6 +405,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support the development, formal verification, and technical review of a Fiat-Shamir specification based on duplex sponges."
     awardedTo := "Article 12, LLC (Michele Orrù), Alessandro Chiesa, Chung Thai Nguyen"
     period := some "Q4 2025, Q2 2026"
+    url := some "https://github.com/Verified-zkEVM/ArkLib"
+    urlLabel := some "ArkLib"
   },
   {
     group := "Cryptography Track"
@@ -374,6 +415,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support implementation of the Bluebell program logic in Lean for use in ArkLib."
     awardedTo := "Nethermind"
     period := some "Q3 2025"
+    url := some "https://github.com/Verified-zkEVM/iris-lean"
+    urlLabel := some "iris-lean"
   },
   {
     group := "Cryptography Track"
@@ -382,6 +425,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support experiments in using Logical Intelligence's AI tools for proofs in ArkLib."
     awardedTo := "Logical Intelligence"
     period := some "Q3 2025"
+    url := some "https://github.com/Verified-zkEVM/ArkLib"
+    urlLabel := some "ArkLib"
   },
   {
     group := "Cryptography Track"
@@ -389,6 +434,8 @@ def grants : Array GrantAward := #[
     title := "Binius in ArkLib"
     description := "Intended to support the formalization of Binius in ArkLib."
     awardedTo := "Chung Thai Nguyen"
+    url := some "https://github.com/Verified-zkEVM/ArkLib"
+    urlLabel := some "ArkLib"
   },
   {
     group := "Cryptography Track"
@@ -397,6 +444,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support development of a blueprint for STIR and WHIR security theorems in ArkLib."
     awardedTo := "Least Authority"
     period := some "Q1 2025"
+    url := some "https://github.com/Verified-zkEVM/ArkLib"
+    urlLabel := some "ArkLib"
   },
   {
     group := "Cryptography Track"
@@ -405,6 +454,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support development of a blueprint for FRI and coding theory prerequisites in ArkLib."
     awardedTo := "Nethermind"
     period := some "Q1 2025"
+    url := some "https://github.com/Verified-zkEVM/ArkLib"
+    urlLabel := some "ArkLib"
   },
   {
     group := "Cryptography Track"
@@ -470,6 +521,8 @@ def grants : Array GrantAward := #[
     description := "Intended to support continued development of ethproofs.org."
     awardedTo := "Fara Woolf"
     period := some "Q2 2025, Q3 2025"
+    url := some "https://github.com/ethproofs/ethproofs"
+    urlLabel := some "EthProofs"
   }
 ]
 
