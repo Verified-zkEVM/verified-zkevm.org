@@ -47,23 +47,40 @@ deriving Repr, Inhabited
 def tracks : Array TrackInfo := #[
   {
     key := .zkVM
-    summary := "Verification of zkVM arithmetizations against the official RISC-V Sail semantics."
+    summary := "Verification of zkVM constraints against the official RISC-V Sail semantics."
     focus := ""
-    overview := []
+    overview := ["The work on this track included the development of a general purpose Lean backend for Sail,
+                  which was subsequently used to verify RISC-V zkVM chips.
+                  Concurrent work on this track also served to establish clean, a Lean DSL for constraints,
+                  which has been successfully used as an extraction target for constraints generated in Rust and
+                  the development of verified constraints and witness generation logic natively verified in Lean.
+                  LLZK, a MLIR based compiler toolchain, was also developed as part of the work om this track,
+                  supporting the use of SMT based verification tools on a greater number of frontends,
+                  and paving the way for a verified compiler toolchain via VeIR."]
     verificationGoals := []
   },
   {
     key := .evm
-    summary := "Verifying that the EVM guest program executed inside a zkVM correctly implements the EVM specification, with the assurance carried down to the RISC-V the prover actually runs."
+    summary := "Verification of Ethereum execution guest program deployed on a zkVM correctly implements the EVM specification at the level of the RISC-V instructions."
     focus := ""
-    overview := []
+    overview := ["With uncertainty regarding client diversity,
+                  the status of each client with respect to use with zkVMs
+                  and the variance in language specific verification tooling,
+                  this track has ultimately focused on the feasibility of implementing an execution guest program
+                  with natively verified RISC-V assembly,
+                  either via the use of a proof assistant as macro assembler
+                  or via verified compilation."]
     verificationGoals := []
   },
   {
     key := .cryptography
-    summary := "Verification of proof systems, security arguments, and cryptographic components used by zkVMs and zkEVMs."
+    summary := "Formalization of proof system specifications and verification of deployed implementations."
     focus := ""
-    overview := []
+    overview := ["The work on this track has centered on three related libraries:
+                  ArkLib, a library formalizing executable specifications of SNARKs and unlderying mathematics (primarily coding theory);
+                  VCV-io, a library formalizing probabilistic computations and program logics for cryptographic games and security proofs;
+                  CompPoly, a library implementing computable polynomials, finite field arithmetic and evaluation algorithms which make ArkLib specifications executable.",
+                  "Work on these libraries continues beyond this project, and form part of the stack used for the end-to-end specification of leanVM in Lean."]
     verificationGoals := []
   }
 ]
