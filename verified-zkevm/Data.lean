@@ -857,6 +857,14 @@ def resources : Array ResourceItem := #[
   },
   {
     kind := .article
+    dateLabel := "November 2026"
+    sourceLabel := "Yukon"
+    title := "evm.fast competition"
+    url := "https://evm.fast"
+    trackTags := [.evm]
+  },
+  {
+    kind := .article
     dateLabel := "April 2026"
     sourceLabel := "zkSecurity"
     title := "The Final Form of Software Development"
